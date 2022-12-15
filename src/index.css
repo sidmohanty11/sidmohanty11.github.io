@@ -1,13 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,700;1,400:1,900&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Merriweather", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f0f0;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.rotate {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  float: left;
+}
+
+.app {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.app_div {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app_div img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  height: 700px;
+}
+
+.app_links svg {
+  padding: 0 5px;
+  transform-origin: 50% 50%;
+  transition: all 0.25s ease-in-out;
+}
+
+.app_links:hover svg {
+  transform: scale(1.2);
+}
+
+.app_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app_header__nav ul {
+  display: flex;
+  list-style: none;
+}
+
+.app_header__nav ul li {
+  margin: 0 10px;
+}
+
+.app_name {
+  font-size: 9rem;
+  font-weight: 900;
+}
+
+.app_name span {
+  display: block;
+}
+
+.app_p {
+  text-align: center;
+  font-size: 1rem;
+  padding-left: 50px;
+}
+
+.app_p span {
+  font-style: italic;
+}
+
+.app_header__nav ul li a {
+  color: black;
+  background-image: linear-gradient(to bottom, transparent 75%, #fcf113 0);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  transition: background-size 0.4s ease;
+}
+
+.app_header__nav ul li a:hover {
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+.app_resume_btn {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  font-display: swap;
+  color: black;
+  text-decoration: none;
+  border: 0.1rem solid black;
+  box-shadow: 0.2rem 0.2rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.app_resume_btn:hover {
+  translate: calc(0.2rem / 2) calc(0.2rem / 2);
+  box-shadow: calc(0.2rem / 2) calc(0.2rem / 2);
+}
+
+.app_resume_btn:active {
+  translate: 0.2rem 0.2rem;
+  box-shadow: 0 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .app_header {
+    flex-direction: column;
+  }
+  .app_header h2 {
+    margin: 0;
+    padding: 0;
+  }
+  .app_header__nav ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    padding-top: 5px;
+  }
+  .app_header__nav ul li {
+    margin: 2px;
+  }
+}
+
+@media only screen and (max-width: 1080px) {
+  .rotate {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    float: none;
+  }
+  .app {
+    width: 90%;
+  }
+  .app_div {
+    display: block;
+  }
+  .app_div img {
+    display: block;
+    height: 300px;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  .app_name {
+    display: none;
+  }
+  .app_name span {
+    display: inline;
+  }
+  .app_p {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .app {
+    width: 95%;
+  }
+  .app_p {
+    padding-left: 0;
+  }
 }

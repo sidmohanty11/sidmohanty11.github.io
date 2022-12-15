@@ -1,24 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "./components/Layout";
+import Blogs from "./pages/blogs";
+import ContactMe from "./pages/contact-me";
+import Education from "./pages/education";
+import Experiences from "./pages/experiences";
+import Projects from "./pages/projects";
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    index: true,
+    element: <App />,
+  },
+  ,
+  {
+    path: "/education",
+    element: <Education />,
+  },
+  {
+    path: "/experiences",
+    element: <Experiences />,
+  },
+  {
+    path: "/blogs",
+    element: <Blogs />,
+  },
+  {
+    path: "/contact-me",
+    element: <ContactMe />,
+  },
+  {
+    path: "/projects",
+    element: <Projects />,
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <Layout>
+      <div className="app_div">
+        <h1 className="app_name rotate">
+          <span>Sidharth</span> Mohanty
+        </h1>
+        <img src="/sid1.jpeg" alt="Profile pic" />
+        <p className="app_p">
+          Hi I am Sidharth Mohanty, a 3rd year CSE undergraduate at{" "}
+          <span>
+            Odisha University of Technology and Research (Formerly CET),
+            Bhubaneswar
+          </span>
+          . I am a full stack developer who likes to turn ideas into life. With
+          a keen interest of learning new technologies, I also have a drive to
+          solve real world problems. I have contributed to various open source
+          projects and have created some myself. I am proficient in JavaScript,
+          TypeScript, React.js, React Native, Vue.js, Node.js, Next.js,
+          Express.js, Golang, GraphQL, C++, MongoDB, PostgreSQL, and Docker.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      </div>
+    </Layout>
   );
 }
 
