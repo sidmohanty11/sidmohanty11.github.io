@@ -42,11 +42,13 @@ const { title, description } = Astro.props;
 	}
 </style>
 <script>
-	if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-		document.documentElement.classList.add("dark");
-	}
-
 	const theme = localStorage.getItem("theme");
+	if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+		if (!theme) {
+			localStorage.setItem("theme", "dark");
+			document.documentElement.classList.add("dark");
+		}
+	}
 	if (theme) {
 		document.documentElement.classList.add(theme);
 	}
