@@ -1,0 +1,54 @@
+---
+export interface Props {
+    blog: {
+        id: string | number;
+        title: string;
+        description: string;
+        tag_list: string[];
+        public_reactions_count: number;
+        reading_time_minutes: number;
+        canonical_url: string;
+    }
+}
+
+const {blog} = Astro.props;
+---
+
+<!-- create a blog card using tailwindcss -->
+<div class="flex flex-col rounded-lg shadow-lg overflow-hidden mb-4">
+    <div class="flex-1 bg-white p-6 flex flex-col justify-between dark:bg-gray-800">
+        <div class="flex-1">
+            <p class="text-sm leading-5 font-medium text-teal-600 dark:text-teal-400">
+                <a href={blog.canonical_url} class="hover:underline" target="_blank" rel="noopenner noreferer">
+                    {blog.title}
+                </a>
+            </p>
+            <a href={blog.canonical_url} class="block" target="_blank" rel="noopener noreferrer">
+                <h3 class="mt-2 text-xl leading-7 font-semibold text-gray-900 dark:text-zinc-50">
+                    {blog.description}
+                </h3>
+                {blog.tag_list.map((tag) => (
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mt-2">
+                        {tag}
+                    </span>
+                )
+                )}
+            </a>
+        </div>
+        <div class="mt-6 flex items-center">
+            <div class="ml-3">
+                <div class="flex text-sm leading-5 text-gray-500">
+                    <time datetime="2020-03-16" class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="mr-2" viewBox="0 0 24 24"><path d="M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z"/></svg>
+                        {blog.public_reactions_count} reactions
+                    </time>
+                    <span class="mx-1">
+                        &middot;
+                    </span>
+                    <time datetime="2020-03-16">
+                        {blog.reading_time_minutes} min read
+                    </time>
+                </div>
+            </div>
+        </div>
+    </div>

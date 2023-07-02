@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Blog from "../components/Blog.astro";
+
+const blogs = (await fetch(
+    "https://dev.to/api/articles?username=sidmohanty11"
+).then((res) => res.json())) as any[];
+---
+
+<Layout title="Blogs | Sidharth Mohanty" description="Welcome to my page - Sid : )">
+    <section class="mt-8 sm:mt-16">
+        <h1
+            class="text-zinc-900 dark:text-zinc-100 text-3xl md:text-5xl font-bold tracking-tight"
+        >
+            I write sometimes...
+        </h1>
+        <h2 class="mt-6 text-zinc-700 dark:text-zinc-300 text-base">
+            I believe writing is a great way to share knowledge, dive deeper into specific topics and get insights.<br />
+            I write about things that I learn and things that I find interesting.
+            I hope you find them interesting too!
+        </h2>
+    </section>
+    <section class="my-8">
+        {blogs.map((blog) => <Blog blog={blog} />)}
+    </section>
+</Layout>
+
+<style></style>

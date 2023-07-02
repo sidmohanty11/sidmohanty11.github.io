@@ -1,0 +1,78 @@
+---
+import Project from "../components/Project.astro";
+import Layout from "../layouts/Layout.astro";
+
+const projects = [
+    {
+        id: 1,
+        name: "jsnotion",
+        description:
+            "A code documentation tool that can 10x your productivity while learning how to code.",
+        imgUrl: "/assets/jsnotion.png",
+        github_link: "https://github.com/sidmohanty11/jsnotion",
+        live_link: 'https://www.npmjs.com/package/jsnotion'
+    },
+    {
+        id: 2,
+        name: "forum",
+        description:
+            "A college hangout hub where you can discuss, ask questions and write blogs.",
+        imgUrl: "/assets/forum.png",
+        github_link: "https://github.com/sidmohanty11/forum",
+        live_link: 'https://outr-forums.netlify.app/'
+    },
+    {
+        id: 3,
+        name: "next-ecom",
+        description:
+            "A college hangout hub where you can discuss, ask questions and write blogs.",
+        imgUrl: "/assets/next-ecom.png",
+        github_link: "https://github.com/sidmohanty11/forum",
+        live_link: 'https://next-ecom-one.vercel.app/'
+    },
+    {
+        id: 6,
+        name: "thread-it",
+        description:
+            "A college hangout hub where you can discuss, ask questions and write blogs.",
+        imgUrl: "/assets/thread-it.png",
+        github_link: "https://github.com/sidmohanty11/thread-it",
+        live_link: 'https://thread-it-pi.vercel.app/'
+    },
+    {
+        id: 4,
+        name: "ytdr",
+        description:
+            "Download YT playlists with one command - using concurrency.",
+        imgUrl: "/assets/yt-playlist-downloader.png",
+        github_link: "https://github.com/sidmohanty11/yt-playlist-downloader",
+    },
+    {
+        id: 5,
+        name: "mingo",
+        description: "A minimal yet powerful HTTP client implemented in go (inspired by axios).",
+        imgUrl: "/assets/mingo.png",
+        github_link: "https://github.com/sidmohanty11/mingo",
+    },
+];
+---
+
+<Layout title="Projects | Sidharth Mohanty" description="Welcome to my page - Sid : )">
+    <section class="mt-8 sm:mt-16">
+        <h1
+            class="text-zinc-900 dark:text-zinc-100 text-3xl md:text-5xl font-bold tracking-tight"
+        >
+            Always exploring and building.
+        </h1>
+        <h2 class="mt-6 text-zinc-700 dark:text-zinc-300 text-base">
+            Over the years I have worked on many things, but here are the ones
+            that I am most <br /> proud of. I am a firm believer in open source,
+            so please feel free to contribute.
+        </h2>
+    </section>
+    <section class="my-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {projects.map(project => <Project project={project} />)}
+    </section>
+</Layout>
+
+<style></style>

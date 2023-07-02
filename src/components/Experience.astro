@@ -1,0 +1,46 @@
+---
+export interface Props {
+    experience: {
+        id: string | number;
+        title: string;
+        company: string;
+        description: string;
+        span: string;
+        skills?: string[];
+    };
+}
+
+const { experience } = Astro.props;
+---
+
+<li class="mb-10 ml-4">
+    <div
+        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
+    >
+    </div>
+    <time
+        class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+        >{experience.span}</time
+    >
+    <h4
+        class="mb-1 mt-1 text-sm leading-none text-teal-500 dark:text-teal-300"
+        set:html={experience.company}
+    />
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+        {experience.title}
+    </h3>
+    <p
+        class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"
+        set:html={experience.description}
+    />
+    <ul class="flex flex-wrap -mx-2 items-center">
+        {
+            experience.skills &&
+                experience.skills.map((skill) => (
+                    <li class="px-2 mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400 border border-zinc-100 p-2 mx-2">
+                        {skill}
+                    </li>
+                ))
+        }
+    </ul>
+</li>
