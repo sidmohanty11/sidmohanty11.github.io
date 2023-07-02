@@ -132,7 +132,9 @@ const navElements = [
                         {
                             navElements.map((el) => (
                                 <li>
-                                    <a class={el.className} href={el.path}>{el.name}</a>
+                                    <a class={el.className} href={el.path}>
+                                        {el.name}
+                                    </a>
                                 </li>
                             ))
                         }
@@ -174,29 +176,41 @@ const navElements = [
 </header>
 
 <script>
-    const mobileNav = document.querySelector('#mobileNav');
-    const navigationBtn = document.querySelector('#navigationBtn');
-    const closeNavBtn = document.querySelector('#closeNavBtn');
-    const themeBtn = document.querySelector('#themeBtn');
+    const mobileNav = document.querySelector("#mobileNav");
+    const navigationBtn = document.querySelector("#navigationBtn");
+    const closeNavBtn = document.querySelector("#closeNavBtn");
+    const themeBtn = document.querySelector("#themeBtn");
 
-    document.addEventListener('click', (e) => {
-        if (e.target !== mobileNav && e.target !== navigationBtn && !mobileNav?.contains(e.target as Node)) {
-            mobileNav?.classList.add('hidden')
+    document.addEventListener("click", (e) => {
+        if (
+            e.target !== mobileNav &&
+            e.target !== navigationBtn &&
+            !mobileNav?.contains(e.target as Node)
+        ) {
+            mobileNav?.classList.add("hidden");
         }
     });
 
-    closeNavBtn?.addEventListener('click', () => {
-        mobileNav?.classList.add('hidden')
-    })
+    closeNavBtn?.addEventListener("click", () => {
+        mobileNav?.classList.add("hidden");
+    });
 
-    navigationBtn?.addEventListener('click', () => {
-        mobileNav?.classList.remove('hidden')
-    })
+    navigationBtn?.addEventListener("click", () => {
+        mobileNav?.classList.remove("hidden");
+    });
 
-    themeBtn?.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark')
-        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light')
-    })
+    themeBtn?.addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
+        const t = document.documentElement.classList.contains("dark")
+            ? "dark"
+            : "light";
+        localStorage.setItem("theme", t);
+        if (t === "dark") {
+            document.body.classList.add("darkDots");
+        } else {
+            document.body.classList.remove("darkDots");
+        }
+    });
 </script>
 
 <style></style>

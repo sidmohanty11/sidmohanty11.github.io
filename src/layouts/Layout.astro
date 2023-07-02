@@ -36,9 +36,12 @@ const { title, description } = Astro.props;
 	body {
 		font-family: "IBM Plex Sans Condensed", sans-serif;
 		background: white;
-		/* background-image: radial-gradient(#f2f2f2 2px, transparent 0);
+		background-image: radial-gradient(#f2f2f2 2px, transparent 0);
 		background-size: 40px 40px;
-		background-position: -19px -19px; */
+		background-position: -19px -19px;
+	}
+	.darkDots {
+		background-image: radial-gradient(#222 2px, transparent 0);
 	}
 </style>
 <script>
@@ -52,4 +55,9 @@ const { title, description } = Astro.props;
 	if (theme) {
 		document.documentElement.classList.add(theme);
 	}
+	if (theme === "dark") {
+            document.body.classList.add("darkDots");
+        } else {
+            document.body.classList.remove("darkDots");
+        }
 </script>
