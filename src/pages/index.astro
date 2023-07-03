@@ -180,10 +180,7 @@ blogs = blogs.splice(0, 3);
                     rel="noopener noreferrer"
                     class="flex items-center border-l border-zinc-100 pl-2 mb-2 transition hover:border-zinc-300"
                 >
-                    <p>
-                        <br />
-                        {blog.description}
-                    </p>
+                    <p><span class="font-semibold text-lg">{blog.title}</span><br/>{blog.description}</p>
                 </a>
             ))
         }
