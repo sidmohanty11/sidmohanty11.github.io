@@ -46,12 +46,12 @@ const { title, description } = Astro.props;
 	}
 </style>
 <script>
-	const theme = localStorage.getItem("theme");
+	let theme = localStorage.getItem("theme");
 	if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 		if (!theme) {
 			localStorage.setItem("theme", "dark");
 			document.documentElement.classList.add("dark");
-            document.body.classList.add("darkDots");
+			theme = 'dark'
 		}
 	}
 	if (theme) {
