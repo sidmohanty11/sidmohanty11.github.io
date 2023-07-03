@@ -51,6 +51,7 @@ const { title, description } = Astro.props;
 		if (!theme) {
 			localStorage.setItem("theme", "dark");
 			document.documentElement.classList.add("dark");
+            document.body.classList.add("darkDots");
 		}
 	}
 	if (theme) {
