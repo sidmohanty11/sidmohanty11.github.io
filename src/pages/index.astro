@@ -174,8 +174,16 @@ blogs = blogs.splice(0, 3);
         <h2 class="text-2xl my-2">Recent Blogs</h2>
         {
             blogs.map((blog) => (
-                <a href={blog.canonical_url} target="_blank" rel="noopener noreferrer" class="flex items-center border-l border-zinc-100 pl-2 mb-2 transition hover:border-zinc-300">
-                    <p><span class="font-semibold text-lg">{blog.title}</span><br/>{blog.description}</p>
+                <a
+                    href={blog.canonical_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center border-l border-zinc-100 pl-2 mb-2 transition hover:border-zinc-300"
+                >
+                    <p>
+                        <br />
+                        {blog.description}
+                    </p>
                 </a>
             ))
         }
@@ -184,5 +192,99 @@ blogs = blogs.splice(0, 3);
         <h2 class="text-2xl my-2">My Philosophy</h2>
         <p>Learning never stops - run, fall, get up repeat</p>
     </section>
+
+    <section class="mt-4 mb-8 dark:text-zinc-300">
+        <h2 class="text-2xl my-2">Contact me</h2>
+        <form
+            class="space-y-6 mx-auto border border-blue-200 rounded p-6 my-4 w-full dark:border-gray-800 bg-blue-50 dark:bg-blue-opaque"
+            id="contact-form"
+        >
+            <div class="space-y-2">
+                <label for="from_name" class="text-lg">Full name</label>
+                <input
+                    id="from_name"
+                    type="text"
+                    placeholder="Your name"
+                    class="w-full p-2 rounded dark:bg-gray-800 border border-gray-200"
+                    name="from_name"
+                />
+            </div>
+            <div class="space-y-2">
+                <label for="reply_to" class="text-lg">Email</label>
+                <input
+                    id="reply_to"
+                    type="email"
+                    placeholder="Your email"
+                    class="w-full p-2 rounded dark:bg-gray-800 border border-gray-200"
+                    name="reply_to"
+                />
+            </div>
+            <div class="space-y-2">
+                <label for="message" class="text-lg">Message</label>
+                <textarea
+                    id="message"
+                    rows="3"
+                    placeholder="Your message"
+                    class="w-full p-2 rounded dark:bg-gray-800 border border-gray-200"
+                    name="message"></textarea>
+            </div>
+            <button
+                type="submit"
+                id="contactFormBtn"
+                class="w-full flex items-center justify-center px-3 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                >Send Message</button
+            >
+        </form>
+    </section>
     <Dino />
 </Layout>
+
+<style>
+    :is(.dark .dark\:bg-blue-opaque) {
+        background-color: rgba(13, 42, 148, 0.18);
+    }
+</style>
+
+<script>
+    const contactForm = document.getElementById("contact-form");
+    const contactFormBtn = document.getElementById("contactFormBtn");
+
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
+    contactForm?.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        if (
+            this.from_name.value.length < 3 ||
+            this.message.value.length < 10 ||
+            !emailRegex.test(this.reply_to.value)
+        ) {
+            alert("Please fill the form correctly");
+            return;
+        }
+
+        contactFormBtn?.setAttribute("disabled", "disabled");
+        contactFormBtn?.classList.add("opacity-50");
+
+        emailjs
+            .sendForm(
+                "service_hf1jiuc",
+                "template_pg4422m",
+                this,
+                "aJgInfpLC2IuFXA9X"
+            )
+            .then(() => {
+                console.log("success");
+                alert("Message sent successfully!");
+
+                contactFormBtn?.removeAttribute("disabled");
+                contactFormBtn?.classList.remove("opacity-50");
+            })
+            .catch((err) => {
+                console.log(err);
+
+                contactFormBtn?.removeAttribute("disabled");
+                contactFormBtn?.classList.remove("opacity-50");
+            });
+    });
+</script>
