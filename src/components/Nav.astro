@@ -1,44 +1,29 @@
 ---
-const pathname = Astro.url.pathname;
-
-const dynamicNavClassName = (path: string) => {
-    if (pathname === path) {
-        return "relative inline-flex px-3 py-2 transition text-teal-500 dark:text-teal-300";
-    } else {
-        return "relative inline-flex px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-300";
-    }
-};
-
 const navElements = [
     {
         id: 1,
         name: "Home",
         path: "/",
-        className: dynamicNavClassName("/"),
     },
     {
         id: 2,
         name: "Story",
         path: "/story",
-        className: dynamicNavClassName("/story"),
     },
     {
         id: 3,
         name: "Blogs",
         path: "/blogs",
-        className: dynamicNavClassName("/blogs"),
     },
     {
         id: 4,
         name: "Experiences",
         path: "/experiences",
-        className: dynamicNavClassName("/experiences"),
     },
     {
         id: 5,
         name: "Projects",
         path: "/projects",
-        className: dynamicNavClassName("/projects"),
     },
 ];
 ---
@@ -60,7 +45,7 @@ const navElements = [
             >
                 {
                     navElements.map((element) => (
-                        <li class={element.className}>
+                        <li class="relative inline-flex px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-300 navElement">
                             <a href={element.path}>{element.name}</a>
                         </li>
                     ))
@@ -139,15 +124,15 @@ const navElements = [
                             ))
                         }
                         <li
-                        class="relative inline-flex px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-300"
-                    >
-                        <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
-                            >Resume</a
+                            class="relative inline-flex px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-300"
                         >
-                    </li>
+                            <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
+                                >Resume</a
+                            >
+                        </li>
                     </ul>
                 </nav>
             </section>
@@ -190,6 +175,16 @@ const navElements = [
     const navigationBtn = document.querySelector("#navigationBtn");
     const closeNavBtn = document.querySelector("#closeNavBtn");
     const themeBtn = document.querySelector("#themeBtn");
+
+    const pathname = window.location.pathname;
+
+    const navElements = document.querySelectorAll(".navElement");
+    navElements.forEach((el) => {
+        el = el.querySelector("a") as HTMLElement;
+        if (el.getAttribute("href") === pathname) {
+            el.classList.add("text-teal-500", "dark:text-teal-300");
+        }
+    });
 
     document.addEventListener("click", (e) => {
         if (
