@@ -112,12 +112,12 @@ const navElements = [
                 </section>
                 <nav class="mt-6">
                     <ul
-                        class="-my-2 divide-zinc-100 dark:divide-zinc-100/5 text-base text-zinc-900 dark:text-zinc-300"
+                        class="-my-2 flex flex-col divide-zinc-100 dark:divide-zinc-100/5 text-base text-zinc-900 dark:text-zinc-300"
                     >
                         {
                             navElements.map((el) => (
-                                <li>
-                                    <a class={el.className} href={el.path}>
+                                <li class="relative inline-flex px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-300 navElement">
+                                    <a href={el.path}>
                                         {el.name}
                                     </a>
                                 </li>
