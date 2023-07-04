@@ -181,7 +181,7 @@ const navElements = [
     const navElements = document.querySelectorAll(".navElement");
     navElements.forEach((el) => {
         el = el.querySelector("a") as HTMLElement;
-        if (el.getAttribute("href") === pathname) {
+        if (el.getAttribute("href") === pathname || `${el.getAttribute("href")}/` === pathname) {
             el.classList.add("text-teal-500", "dark:text-teal-300");
         }
     });
