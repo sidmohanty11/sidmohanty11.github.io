@@ -3,172 +3,171 @@ import Experience from "../components/Experience.astro";
 import Layout from "../layouts/Layout.astro";
 
 let exp = [
-    {
-        id: 1,
-        title: "Open Source Contributor",
-        company:
-            '<a href="https://rocket.chat" target="_blank">Rocket.Chat</a>',
-        description:
-            "An active contributor to RocketChat organization. Top contributor in GSoC leaderboard 2022 - Rank #1. I was selected as the Community Member of the Month (June 2022) and the interaction was posted in RC's YouTube Channel. Worked on different projects under Rocket.Chat organisation, specifically contributed to Rocket.Chat, RC4Community, fuselage and RocketChat.js.SDK.",
-        span: "Nov 2021 - Sept 2022",
-        skills: [
-            "JavaScript",
-            "TypeScript",
-            "Next.js",
-            "Meteor.js",
-            "React.js",
-            "Node.js",
-            "Strapi",
-        ],
-    },
-    {
-        id: 2,
-        title: "Product Engineer Intern",
-        company: '<a href="https://getpropel.app/" target="_blank">Propel</a>',
-        description:
-            'Worked on building a chrome extension and a microservice for scraping LinkedIn connections for <a class="underline" href="https://getpropel.app/" target="_blank">getpropel.app</a>. Created the backend and managed the deployment.',
-        span: "July 2022 - Sept 2022",
-        skills: [
-            "Microservices",
-            "AWS Lambda & EC2",
-            "Chrome Extension",
-            "MongoDB",
-            "JavaScript",
-            "TypeScript",
-            "Next.js",
-            "React.js",
-        ],
-    },
-    {
-        id: 3,
-        title: "Google Summer of Code",
-        company:
-            '<a href="https://rocket.chat" target="_blank">Rocket.Chat</a>',
-        description:
-            'Shipped a React.js chat component (npm package) which is an easy-to-embed mini-version of Rocket.Chat - <a class="underline" href="https://github.com/RocketChat/EmbeddedChat" target="_blank">EmbeddedChat</a> which has reached 50+ stars, 87+ forks and 18+ contributors on GitHub.',
-        span: "May 2022 - Sept 2022",
-        skills: [
-            "JavaScript",
-            "TypeScript",
-            "React.js",
-            "NPM",
-            "Rollup",
-            "RC API & Fuselage",
-        ],
-    },
-    {
-        id: 4,
-        title: "React.js SME",
-        company:
-            '<a href="https://relevel.com/" target="_blank">Relevel (by Unacademy)</a>',
-        description:
-            "React.js Subject Matter Expert - Created questions on React.js and web development for the Relevel platform.",
-        span: "Sept 2022 - Nov 2022",
-        skills: ["React.js", "HTML"],
-    },
-    {
-        id: 5,
-        title: "Software Engineer Intern",
-        company:
-            '<a href="https://dragonfruit.ai" target="_blank">Dragonfruit AI</a>',
-        description:
-            "At Dragonfruit, I built a folder-like structure to the current 'Views' structure extending its functionality to manage views nicely. I worked on region graphics using pixi.js and added interpoints and drag functionality to map regions as well as spatial filter regions. I wrote cleanup scripts, fixed 20+ tests and made e2e tests 36.06% faster. I changed Insight settings page interface to a modal for consistency and added a search filter dependency model where it checks if the search filter is referenced somewhere and alerts the user for the same if the user wants to delete it. <br/>Apart from my technical meetings, I also attended the product all-hands meetings to better understand the product. Additionally, I had the opportunity for regular meetings with one of the co-founders, where I learned a lot about how startups truly function and make decisions, among other things.",
-        span: "Sept 2022 - Dec 2022",
-        skills: [
-            "React.js",
-            "TypeScript",
-            "Pixi.js",
-            "Cypress",
-            "Python",
-            "SQLAlchemy",
-            "Ant Design",
-            "Redux",
-        ],
-    },
-    {
-        id: 6,
-        title: "Software Engineer Intern",
-        company: '<a href="https://memorang.com/" target="_blank">Memorang</a>',
-        description:
-            'I developed an Airtable extension called EdWrite, an internal tool at Memorang, leveraging GPT-3.5/4. It provided study materials to revolutionize education and generated high ARR to the company. I also led frontend refactoring, transitioning to TypeScript and React Native components within Next.js for improved code reusability. I also created <a href="https://studysage.ai" class="underline">StudySage.AI</a>, a React Native app with routing, real-time chatting, and file/audio uploads. I implemented audio-to-text transcription from various sources using LangChain and Node.js, generating summaries, key points, flashcards, etc.<br/>I attended daily meetings to discuss progress and plan the next steps. I worked closely with senior engineers to ensure the delivery of a high-quality product. Additionally, I documented all new developments in Confluence and utilized Jira for project management.',
-        span: "Jan 2023 - April 2023",
-        skills: [
-            "Next.js",
-            "React Native",
-            "React Native Paper",
-            "React.js",
-            "TypeScript",
-            "Node.js",
-            "Tiptap.js",
-            "Liquid.js",
-            "LangChain",
-            "GPT-3.5/4",
-            "AWS Amplify",
-            "fly.io",
-            "MUI",
-            "Turbo repo",
-            "Storybook",
-            "GraphQL",
-            "Airtable",
-        ],
-    },
-    {
-        id: 7,
-        title: "Google Summer of Code Mentor",
-        company:
-            '<a href="https://rocket.chat" target="_blank">Rocket.Chat</a>',
-        description:
-            "I mentored over 30 contributors to help them get started with OSS (open-source software) contributions within Rocket.Chat's ecosystem. This involved organizing regular meetings, assisting with their pull requests (PRs), reviewing their code, and guiding them throughout the process. Currently, I am mentoring a project called EmbeddedChat 2023 for the 2023 GSoC season.",
-        span: "Mar 2023 - Present",
-        skills: ["Mentorship", "JavaScript", "TypeScript", "React.js"],
-    },
-    {
-        id: 8,
-        title: "Founding Software Engineer Intern",
-        company: '<a href="https://jugyah.com" target="_blank">Jugyah</a>',
-        description:
-            'At Jugyah, I played a pivotal role in developing <a class="underline" href="https://jugyah.com" target="_blank">jugyah.com</a> using React.js and MUI. I created complex React.js components, improved page responsiveness, and designed the Payments architecture using Cashfree Payments. I also developed an internal tool for efficient cluster and property management in Mumbai. Additionally, I implemented powerful map features in the main app, including address auto-fill on marker drag and drop, and retrieval of nearby amenities using the Places API and Distance Matrix API.',
-        span: "Mar 2023 - May 2023",
-        skills: [
-            "React.js",
-            "Firebase",
-            "MUI",
-            "Cashfree Payments",
-            "Google Maps API",
-        ],
-    },
-    {
-        id: 9,
-        title: "LFX mentee at The Open Mainframe Project",
-        company:
-            '<a href="https://openmainframeproject.org/">The Open Mainframe Project</a>',
-        description:
-            'Working on an App Store app for <a href="https://zowe.org" class="underline" target="_blank">Zowe&apos;s</a> Virtual Desktop (similar to App Store in Mac or Linux) where users can directly download and install apps from the App Store.',
-        span: "Jun 2023 - Present",
-        skills: ["React.js", "Angular", "TypeScript", "Node.js", "C"],
-    },
+  {
+    id: 1,
+    title: "Open Source Contributor",
+    company: '<a href="https://rocket.chat" target="_blank">Rocket.Chat</a>',
+    description:
+      "An active contributor to RocketChat organization. Top contributor in GSoC leaderboard 2022 - Rank #1. I was selected as the Community Member of the Month (June 2022) and the interaction was posted in RC's YouTube Channel. Worked on different projects under Rocket.Chat organisation, specifically contributed to Rocket.Chat, RC4Community, fuselage and RocketChat.js.SDK.",
+    span: "Nov 2021 - Sept 2022",
+    skills: [
+      "JavaScript",
+      "TypeScript",
+      "Next.js",
+      "Meteor.js",
+      "React.js",
+      "Node.js",
+      "Strapi",
+    ],
+  },
+  {
+    id: 2,
+    title: "Product Engineer Intern",
+    company: '<a href="https://getpropel.app/" target="_blank">Propel</a>',
+    description:
+      'Worked on building a chrome extension and a microservice for scraping LinkedIn connections for <a class="underline" href="https://getpropel.app/" target="_blank">getpropel.app</a>. Created the backend and managed the deployment.',
+    span: "July 2022 - Sept 2022",
+    skills: [
+      "Microservices",
+      "AWS Lambda & EC2",
+      "Chrome Extension",
+      "MongoDB",
+      "JavaScript",
+      "TypeScript",
+      "Next.js",
+      "React.js",
+    ],
+  },
+  {
+    id: 3,
+    title: "Google Summer of Code",
+    company: '<a href="https://rocket.chat" target="_blank">Rocket.Chat</a>',
+    description:
+      'Shipped a React.js chat component (npm package) which is an easy-to-embed mini-version of Rocket.Chat - <a class="underline" href="https://github.com/RocketChat/EmbeddedChat" target="_blank">EmbeddedChat</a> which has reached 50+ stars, 87+ forks and 18+ contributors on GitHub.',
+    span: "May 2022 - Sept 2022",
+    skills: [
+      "JavaScript",
+      "TypeScript",
+      "React.js",
+      "NPM",
+      "Rollup",
+      "RC API & Fuselage",
+    ],
+  },
+  {
+    id: 4,
+    title: "React.js SME",
+    company:
+      '<a href="https://relevel.com/" target="_blank">Relevel (by Unacademy)</a>',
+    description:
+      "React.js Subject Matter Expert - Created questions on React.js and web development for the Relevel platform.",
+    span: "Sept 2022 - Nov 2022",
+    skills: ["React.js", "HTML"],
+  },
+  {
+    id: 5,
+    title: "Software Engineer Intern",
+    company:
+      '<a href="https://dragonfruit.ai" target="_blank">Dragonfruit AI</a>',
+    description:
+      "At Dragonfruit, I built a folder-like structure to the current 'Views' structure extending its functionality to manage views nicely. I worked on region graphics using pixi.js and added interpoints and drag functionality to map regions as well as spatial filter regions. I wrote cleanup scripts, fixed 20+ tests and made e2e tests 36.06% faster. I changed Insight settings page interface to a modal for consistency and added a search filter dependency model where it checks if the search filter is referenced somewhere and alerts the user for the same if the user wants to delete it. <br/>Apart from my technical meetings, I also attended the product all-hands meetings to better understand the product. Additionally, I had the opportunity for regular meetings with one of the co-founders, where I learned a lot about how startups truly function and make decisions, among other things.",
+    span: "Sept 2022 - Dec 2022",
+    skills: [
+      "React.js",
+      "TypeScript",
+      "Pixi.js",
+      "Cypress",
+      "Python",
+      "SQLAlchemy",
+      "Ant Design",
+      "Redux",
+    ],
+  },
+  {
+    id: 6,
+    title: "Software Engineer Intern",
+    company: '<a href="https://memorang.com/" target="_blank">Memorang</a>',
+    description:
+      'I developed an Airtable extension called EdWrite, an internal tool at Memorang, leveraging GPT-3.5/4. It provided study materials to revolutionize education and generated high ARR to the company. I also led frontend refactoring, transitioning to TypeScript and React Native components within Next.js for improved code reusability. I also created <a href="https://studysage.ai" class="underline">StudySage.AI</a>, a React Native app with routing, real-time chatting, and file/audio uploads. I implemented audio-to-text transcription from various sources using LangChain and Node.js, generating summaries, key points, flashcards, etc.<br/>I attended daily meetings to discuss progress and plan the next steps. I worked closely with senior engineers to ensure the delivery of a high-quality product. Additionally, I documented all new developments in Confluence and utilized Jira for project management.',
+    span: "Jan 2023 - April 2023",
+    skills: [
+      "Next.js",
+      "React Native",
+      "React Native Paper",
+      "React.js",
+      "TypeScript",
+      "Node.js",
+      "Tiptap.js",
+      "Liquid.js",
+      "LangChain",
+      "GPT-3.5/4",
+      "AWS Amplify",
+      "fly.io",
+      "MUI",
+      "Turbo repo",
+      "Storybook",
+      "GraphQL",
+      "Airtable",
+    ],
+  },
+  {
+    id: 7,
+    title: "Google Summer of Code Mentor",
+    company: '<a href="https://rocket.chat" target="_blank">Rocket.Chat</a>',
+    description:
+      "I mentored over 30 contributors to help them get started with OSS (open-source software) contributions within Rocket.Chat's ecosystem. This involved organizing regular meetings, assisting with their pull requests (PRs), reviewing their code, and guiding them throughout the process. Currently, I am mentoring a project called EmbeddedChat 2023 for the 2023 GSoC season.",
+    span: "Mar 2023 - Present",
+    skills: ["Mentorship", "JavaScript", "TypeScript", "React.js"],
+  },
+  {
+    id: 8,
+    title: "Founding Software Engineer Intern",
+    company: '<a href="https://jugyah.com" target="_blank">Jugyah</a>',
+    description:
+      'At Jugyah, I played a pivotal role in developing <a class="underline" href="https://jugyah.com" target="_blank">jugyah.com</a> using React.js and MUI. I created complex React.js components, improved page responsiveness, and designed the Payments architecture using Cashfree Payments. I also developed an internal tool for efficient cluster and property management in Mumbai. Additionally, I implemented powerful map features in the main app, including address auto-fill on marker drag and drop, and retrieval of nearby amenities using the Places API and Distance Matrix API.',
+    span: "Mar 2023 - May 2023",
+    skills: [
+      "React.js",
+      "Firebase",
+      "MUI",
+      "Cashfree Payments",
+      "Google Maps API",
+    ],
+  },
+  {
+    id: 9,
+    title: "LFX mentee at The Open Mainframe Project",
+    company:
+      '<a href="https://openmainframeproject.org/">The Open Mainframe Project</a>',
+    description:
+      'Worked on an App Store app for <a href="https://zowe.org" class="underline" target="_blank">Zowe&apos;s</a> Virtual Desktop (similar to App Store in Mac or Linux) where users can directly download and install apps from the App Store. To know more about this project, check out <a href="https://dev.to/sidmohanty11/my-lfx-journey-the-zowe-app-store-ui-project-1iao" class="underline" target="_blank">this blog post</a>.',
+    span: "Jun 2023 - Sept 2023",
+    skills: ["React.js", "Angular", "TypeScript", "Node.js", "C"],
+  },
 ].reverse();
 ---
 
-<Layout title="Experiences | Sidharth Mohanty" description="Welcome to my page - Sid : )">
-    <section class="mt-8 sm:mt-16">
-        <h1
-            class="text-zinc-900 dark:text-zinc-100 text-3xl md:text-5xl font-bold tracking-tight"
-        >
-            Stay hungry, stay curious.
-        </h1>
-        <h2 class="mt-6 text-zinc-700 dark:text-zinc-300 text-base">
-            In my years in college, I've had the privilege of working with some
-            amazing people and organizations, both startups and open source.<br
-            />
-            These experiences have given me valuable insights into the software industry.
-            Here are some highlights.
-        </h2>
-    </section>
+<Layout
+  title="Experiences | Sidharth Mohanty"
+  description="Welcome to my page - Sid : )"
+>
+  <section class="mt-8 sm:mt-16">
+    <h1
+      class="text-zinc-900 dark:text-zinc-100 text-3xl md:text-5xl font-bold tracking-tight"
+    >
+      Stay hungry, stay curious.
+    </h1>
+    <h2 class="mt-6 text-zinc-700 dark:text-zinc-300 text-base">
+      In my years in college, I've had the privilege of working with some
+      amazing people and organizations, both startups and open source.<br />
+      These experiences have given me valuable insights into the software industry.
+      Here are some highlights.
+    </h2>
+  </section>
 
-    <ol class="my-8 relative border-l border-gray-100 dark:border-gray-700">
-        {exp.map((e) => <Experience experience={e} />)}
-    </ol>
+  <ol class="my-8 relative border-l border-gray-100 dark:border-gray-700">
+    {exp.map((e) => <Experience experience={e} />)}
+  </ol>
 </Layout>
 
 <style></style>

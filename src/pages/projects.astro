@@ -1,78 +1,149 @@
 ---
+import MobileProject from "../components/MobileProject.astro";
 import Project from "../components/Project.astro";
 import Layout from "../layouts/Layout.astro";
 
 const projects = [
-    {
-        id: 1,
-        name: "jsnotion",
-        description:
-            "A code documentation tool that can 10x your productivity while learning how to code.",
-        imgUrl: "/assets/jsnotion.png",
-        github_link: "https://github.com/sidmohanty11/jsnotion",
-        live_link: 'https://www.npmjs.com/package/jsnotion'
-    },
-    {
-        id: 2,
-        name: "forum",
-        description:
-            "A college hangout hub where you can discuss, ask questions and write blogs.",
-        imgUrl: "/assets/forum.png",
-        github_link: "https://github.com/sidmohanty11/forum",
-        live_link: 'https://outr-forums.netlify.app/'
-    },
-    {
-        id: 3,
-        name: "next-ecom",
-        description:
-            "A college hangout hub where you can discuss, ask questions and write blogs.",
-        imgUrl: "/assets/next-ecom.png",
-        github_link: "https://github.com/sidmohanty11/forum",
-        live_link: 'https://next-ecom-one.vercel.app/'
-    },
-    {
-        id: 6,
-        name: "thread-it",
-        description:
-            "A college hangout hub where you can discuss, ask questions and write blogs.",
-        imgUrl: "/assets/thread-it.png",
-        github_link: "https://github.com/sidmohanty11/thread-it",
-        live_link: 'https://thread-it-pi.vercel.app/'
-    },
-    {
-        id: 4,
-        name: "ytdr",
-        description:
-            "Download YT playlists with one command - using concurrency.",
-        imgUrl: "/assets/yt-playlist-downloader.png",
-        github_link: "https://github.com/sidmohanty11/yt-playlist-downloader",
-    },
-    {
-        id: 5,
-        name: "mingo",
-        description: "A minimal yet powerful HTTP client implemented in go (inspired by axios).",
-        imgUrl: "/assets/mingo.png",
-        github_link: "https://github.com/sidmohanty11/mingo",
-    },
+  {
+    id: 1,
+    name: "jsnotion",
+    description:
+      "A code documentation tool that can 10x your productivity while learning how to code.",
+    imgUrl: "/assets/jsnotion.png",
+    github_link: "https://github.com/sidmohanty11/jsnotion",
+    live_link: "https://www.npmjs.com/package/jsnotion",
+  },
+  {
+    id: 2,
+    name: "forum",
+    description:
+      "A college hangout hub where you can discuss, ask questions and write blogs.",
+    imgUrl: "/assets/forum.png",
+    github_link: "https://github.com/sidmohanty11/forum",
+    live_link: "https://outr-forums.netlify.app/",
+  },
+  {
+    id: 3,
+    name: "next-ecom",
+    description:
+      "A Next.js based e-commerce application with Shopify integration inspired by their Ecom Site.",
+    imgUrl: "/assets/next-ecom.png",
+    github_link: "https://github.com/sidmohanty11/next-ecom",
+    live_link: "https://next-ecom-one.vercel.app/",
+  },
+  {
+    id: 4,
+    name: "ytdr",
+    description: "Download YT playlists with one command - using concurrency.",
+    imgUrl: "/assets/yt-playlist-downloader.png",
+    github_link: "https://github.com/sidmohanty11/yt-playlist-downloader",
+  },
+  {
+    id: 5,
+    name: "mingo",
+    description:
+      "A minimal yet powerful HTTP client implemented in go (inspired by axios).",
+    imgUrl: "/assets/mingo.png",
+    github_link: "https://github.com/sidmohanty11/mingo",
+  },
+  {
+    id: 6,
+    name: "thread-it",
+    description: "A Reddit Clone using Next.js 13, MySQL, Prisma and Redis.",
+    imgUrl: "/assets/thread-it.png",
+    github_link: "https://github.com/sidmohanty11/thread-it",
+    live_link: "https://thread-it-pi.vercel.app/",
+  },
+  {
+    id: 7,
+    name: "good-f-issues",
+    description: "Find good first issues org wide (Built using Qwik.js).",
+    imgUrl: "/assets/good-f-issues.png",
+    github_link: "https://github.com/sidmohanty11/good-f-issues",
+    live_link: "https://good-f-issues.vercel.app/",
+  },
+  {
+    id: 8,
+    name: "convo",
+    description:
+      "A chatting application that has whatsapp-like architecture, made by using Vue, Go, MongoDB and Pusher.",
+    imgUrl: "/assets/convo.png",
+    github_link: "https://github.com/sidmohanty11/good-f-issues",
+  },
+];
+
+const mobile_projects = [
+  {
+    id: 1,
+    name: "MaxGainz",
+    live_link:
+      "https://play.google.com/store/apps/details?id=com.sidmohanty11.maxgainz",
+    github_link: "",
+    imgUrl: "/assets/maxgainz.jpeg",
+    description:
+      "Next Generation Workout Tracker App for those who want to progressively overload and achieve maximum gains.",
+  },
+  {
+    id: 2,
+    name: "Poem Generator",
+    live_link:
+      "https://play.google.com/store/apps/details?id=com.poemgenerator",
+    github_link: "https://github.com/sidmohanty11/poem-generator",
+    imgUrl: "/assets/poemgenerator.jpeg",
+    description:
+      "An OpenAI GPT-3 API integration to use davinci model to generate cool poems on behalf of anyone to anyone. (DISCONTINUED)",
+  },
+  {
+    id: 3,
+    name: "Multiplayer Tic Tac Toe",
+    live_link:
+      "https://drive.google.com/file/d/1obksEXNLTNnfbzD3nUhPs-4tRy-a5KCE/view?usp=drive_link",
+    github_link: "",
+    imgUrl: "/assets/tictactoe.png",
+    description:
+      "A multiplayer tic tac toe game made using React Native and AWS Amplify.",
+  },
 ];
 ---
 
-<Layout title="Projects | Sidharth Mohanty" description="Welcome to my page - Sid : )">
-    <section class="mt-8 sm:mt-16">
-        <h1
-            class="text-zinc-900 dark:text-zinc-100 text-3xl md:text-5xl font-bold tracking-tight"
-        >
-            Always exploring and building.
-        </h1>
-        <h2 class="mt-6 text-zinc-700 dark:text-zinc-300 text-base">
-            Over the years I have worked on many things, but here are the ones
-            that I am most <br /> proud of. I am a firm believer in open source,
-            so please feel free to contribute.
-        </h2>
-    </section>
-    <section class="my-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {projects.map(project => <Project project={project} />)}
-    </section>
+<Layout
+  title="Projects | Sidharth Mohanty"
+  description="Welcome to my page - Sid : )"
+>
+  <section class="mt-8 sm:mt-16">
+    <h1
+      class="text-zinc-900 dark:text-zinc-100 text-3xl md:text-5xl font-bold tracking-tight"
+    >
+      Always exploring and building.
+    </h1>
+    <h2 class="my-6 text-zinc-700 dark:text-zinc-300 text-base">
+      Over the years I have worked on many things, but here are the ones that I
+      am most <br /> proud of. I am a firm believer in open source, so please feel
+      free to contribute.
+    </h2>
+  </section>
+  <h2>
+    <span
+      class="text-zinc-900 dark:text-zinc-100 text-2xl md:text-3xl font-bold tracking-tight"
+    >
+      Mobile Apps
+    </span>
+  </h2>
+  <section class="my-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
+    {mobile_projects.map((project) => <MobileProject project={project} />)}
+  </section>
+  <h2>
+    <span
+      class="text-zinc-900 dark:text-zinc-100 text-2xl md:text-3xl font-bold tracking-tight"
+    >
+      Web Apps, CLIs and Libraries
+    </span>
+  </h2>
+  <section class="my-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+    {
+      projects.map((project, index) => (
+        <Project project={project} data-index={index} />
+      ))
+    }
+  </section>
 </Layout>
-
-<style></style>
