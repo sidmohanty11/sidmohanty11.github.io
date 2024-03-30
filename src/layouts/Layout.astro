@@ -21,7 +21,16 @@ const { title, description } = Astro.props;
 			href="https://api.fonts.coollabs.io/css2?family=IBM+Plex+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
 			rel="stylesheet"
 		/>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			type="text/javascript"
+			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+		></script>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
@@ -51,15 +60,15 @@ const { title, description } = Astro.props;
 		if (!theme) {
 			localStorage.setItem("theme", "dark");
 			document.documentElement.classList.add("dark");
-			theme = 'dark'
+			theme = "dark";
 		}
 	}
 	if (theme) {
 		document.documentElement.classList.add(theme);
 	}
 	if (theme === "dark") {
-            document.body.classList.add("darkDots");
-        } else {
-            document.body.classList.remove("darkDots");
-        }
+		document.body.classList.add("darkDots");
+	} else {
+		document.body.classList.remove("darkDots");
+	}
 </script>

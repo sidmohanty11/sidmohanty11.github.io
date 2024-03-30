@@ -10,6 +10,9 @@ module.exports = {
 			  "2xl": "1400px",
 			},
 		},
+		fontFamily: {
+			mono: ['Ubuntu Mono', 'monospace'],
+		},
 		extend: {},
 	},
 	plugins: [],

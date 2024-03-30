@@ -6,9 +6,13 @@ import Dino from "../components/Dino.astro";
 const lifeUpdates = {
     "2024": [
         {
+            id: 1,
+            title: "Joined Builder.io as a Software Engineer!🎉",
+        },
+        {
             id: 2,
-            title: "Google Summer of Code mentor 2024 with Rocket.Chat"
-        }
+            title: "Google Summer of Code mentor 2024 with Rocket.Chat",
+        },
     ],
     "2023": [
         {
@@ -194,7 +198,11 @@ blogs = blogs.splice(0, 3);
                     rel="noopener noreferrer"
                     class="flex items-center border-l border-zinc-100 pl-2 mb-2 transition hover:border-zinc-300"
                 >
-                    <p><span class="font-semibold text-lg">{blog.title}</span><br/>{blog.description}</p>
+                    <p>
+                        <span class="font-semibold text-lg">{blog.title}</span>
+                        <br/>
+                        {blog.description}
+                    </p>
                 </a>
             ))
         }
@@ -260,7 +268,7 @@ blogs = blogs.splice(0, 3);
     const contactForm = document.getElementById("contact-form");
     const contactFormBtn = document.getElementById("contactFormBtn");
 
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
     contactForm?.addEventListener("submit", function (e) {
         e.preventDefault();
