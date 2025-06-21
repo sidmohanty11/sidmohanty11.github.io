@@ -190,6 +190,23 @@ blogs = blogs.splice(0, 3);
         </blockquote>
     </section>
 
+    <section class="content-section game-section">
+        <h2 class="section-title">Live the Philosophy</h2>
+        <p class="game-description">A simple game inspired by the learning journey — press SPACE to jump over obstacles!</p>
+
+        <div class="game-container">
+            <canvas id="learningGame" width="600" height="200"></canvas>
+            <div class="game-controls">
+                <button id="startGame" class="game-button">Start Learning Journey</button>
+                <div class="game-stats">
+                    <span>Score: <span id="gameScore">0</span></span>
+                    <span>Falls: <span id="gameFalls">0</span></span>
+                </div>
+            </div>
+            <p class="game-instructions">Press <kbd>SPACE</kbd> to jump • Press <kbd>R</kbd> to get back up</p>
+        </div>
+    </section>
+
     <section class="content-section contact-section">
         <h2 class="section-title">Get In Touch</h2>
         <form class="contact-form" id="contact-form">
@@ -323,7 +340,7 @@ blogs = blogs.splice(0, 3);
         max-height: 500px;
         opacity: 1;
     }
-     
+
     .timeline-list {
         list-style: none;
         margin: 0;
@@ -545,6 +562,94 @@ blogs = blogs.splice(0, 3);
         color: #ffffff;
     }
 
+    /* Game Styles */
+    .game-section {
+        text-align: center;
+        padding: 3rem 0;
+    }
+
+    .game-description {
+        font-size: 1.1rem;
+        color: #666666;
+        margin-bottom: 2rem;
+        font-style: italic;
+    }
+
+    .game-container {
+        max-width: 600px;
+        margin: 0 auto;
+        border: 2px solid #000000;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f8f8f8;
+    }
+
+    #learningGame {
+        display: block;
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #90EE90 60%, #90EE90 100%);
+    }
+
+    .game-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: #ffffff;
+        border-top: 1px solid #ddd;
+    }
+
+    .game-button {
+        background: #000000;
+        color: #ffffff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 4px;
+    }
+
+    .game-button:hover {
+        background: #333333;
+        transform: translateY(-2px);
+    }
+
+    .game-button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .game-stats {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .game-instructions {
+        padding: 0.75rem 1rem;
+        margin: 0;
+        font-size: 0.85rem;
+        color: #666666;
+        background: #f5f5f5;
+        border-top: 1px solid #ddd;
+    }
+
+    .game-instructions kbd {
+        background: #000000;
+        color: #ffffff;
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
     /* Contact Form Styles */
     .contact-section {
         max-width: 600px;
@@ -670,6 +775,288 @@ blogs = blogs.splice(0, 3);
 
     // Make function globally available
     window.toggleYear = toggleYear;
+
+    // Learning Journey Game
+    class LearningGame {
+        constructor() {
+            this.canvas = document.getElementById('learningGame');
+            this.ctx = this.canvas.getContext('2d');
+            this.startButton = document.getElementById('startGame');
+            this.scoreElement = document.getElementById('gameScore');
+            this.fallsElement = document.getElementById('gameFalls');
+
+            this.init();
+        }
+
+        init() {
+            // Game state
+            this.gameRunning = false;
+            this.gameSpeed = 2;
+            this.score = 0;
+            this.falls = 0;
+
+            // Player
+            this.player = {
+                x: 50,
+                y: 120,
+                width: 20,
+                height: 30,
+                velocityY: 0,
+                jumping: false,
+                falling: false,
+                onGround: true
+            };
+
+            // Obstacles
+            this.obstacles = [];
+            this.obstacleTimer = 0;
+
+            // Bind events
+            this.startButton.addEventListener('click', () => this.startGame());
+            document.addEventListener('keydown', (e) => this.handleKeyPress(e));
+
+            this.draw();
+        }
+
+        startGame() {
+            this.gameRunning = true;
+            this.score = 0;
+            this.falls = 0;
+            this.player.y = 120;
+            this.player.falling = false;
+            this.player.onGround = true;
+            this.obstacles = [];
+            this.startButton.textContent = 'Running...';
+            this.startButton.disabled = true;
+            this.gameLoop();
+        }
+
+        handleKeyPress(e) {
+            if (e.code === 'Space' && this.gameRunning && this.player.onGround && !this.player.falling) {
+                e.preventDefault();
+                this.jump();
+            }
+            if (e.code === 'KeyR' && this.player.falling) {
+                e.preventDefault();
+                this.getUp();
+            }
+        }
+
+        jump() {
+            this.player.velocityY = -8;
+            this.player.jumping = true;
+            this.player.onGround = false;
+        }
+
+        getUp() {
+            this.player.falling = false;
+            this.player.onGround = true;
+            this.player.y = 120;
+            this.falls++;
+            this.updateStats();
+        }
+
+        updatePhysics() {
+            // Gravity
+            if (!this.player.onGround) {
+                this.player.velocityY += 0.5;
+                this.player.y += this.player.velocityY;
+
+                // Land
+                if (this.player.y >= 120) {
+                    this.player.y = 120;
+                    this.player.velocityY = 0;
+                    this.player.jumping = false;
+                    this.player.onGround = true;
+                }
+            }
+        }
+
+        spawnObstacle() {
+            this.obstacleTimer++;
+            if (this.obstacleTimer > 120) {
+                this.obstacles.push({
+                    x: this.canvas.width,
+                    y: 135,
+                    width: 15,
+                    height: 25
+                });
+                this.obstacleTimer = 0;
+            }
+        }
+
+        updateObstacles() {
+            this.obstacles.forEach((obstacle, index) => {
+                obstacle.x -= this.gameSpeed;
+
+                // Remove off-screen obstacles
+                if (obstacle.x + obstacle.width < 0) {
+                    this.obstacles.splice(index, 1);
+                    this.score += 10;
+                }
+
+                // Collision detection
+                if (this.checkCollision(this.player, obstacle) && !this.player.falling) {
+                    this.player.falling = true;
+                    this.player.onGround = false;
+                }
+            });
+        }
+
+        checkCollision(rect1, rect2) {
+            return rect1.x < rect2.x + rect2.width &&
+                   rect1.x + rect1.width > rect2.x &&
+                   rect1.y < rect2.y + rect2.height &&
+                   rect1.y + rect1.height > rect2.y;
+        }
+
+        draw() {
+            // Clear canvas
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+            // Draw ground
+            this.ctx.fillStyle = '#8B4513';
+            this.ctx.fillRect(0, 150, this.canvas.width, 50);
+
+            // Draw player
+            if (this.player.falling) {
+                this.drawFallenCharacter();
+            } else {
+                this.drawRunningCharacter();
+            }
+
+            // Draw obstacles
+            this.ctx.fillStyle = '#FF0000';
+            this.obstacles.forEach(obstacle => {
+                this.ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            });
+
+            // Draw message if falling
+            if (this.player.falling) {
+                this.ctx.fillStyle = '#000000';
+                this.ctx.font = '16px Arial';
+                this.ctx.textAlign = 'center';
+                this.ctx.fillText('Press R to Get Back Up!', this.canvas.width / 2, 50);
+            }
+        }
+
+        drawRunningCharacter() {
+            const x = this.player.x;
+            const y = this.player.y;
+
+            // Head (circle)
+            this.ctx.fillStyle = '#FFE0BD'; // Skin color
+            this.ctx.beginPath();
+            this.ctx.arc(x + 10, y + 8, 8, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            // Eyes
+            this.ctx.fillStyle = '#000000';
+            this.ctx.beginPath();
+            this.ctx.arc(x + 7, y + 6, 1.5, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.beginPath();
+            this.ctx.arc(x + 13, y + 6, 1.5, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            // Smile
+            this.ctx.strokeStyle = '#000000';
+            this.ctx.lineWidth = 1.5;
+            this.ctx.beginPath();
+            this.ctx.arc(x + 10, y + 9, 3, 0, Math.PI);
+            this.ctx.stroke();
+
+            // Body
+            this.ctx.fillStyle = '#4444FF'; // Blue shirt
+            this.ctx.fillRect(x + 6, y + 16, 8, 12);
+
+            // Arms (simple lines)
+            this.ctx.strokeStyle = '#FFE0BD';
+            this.ctx.lineWidth = 3;
+            this.ctx.beginPath();
+            this.ctx.moveTo(x + 6, y + 20);
+            this.ctx.lineTo(x + 2, y + 24);
+            this.ctx.moveTo(x + 14, y + 20);
+            this.ctx.lineTo(x + 18, y + 24);
+            this.ctx.stroke();
+
+            // Legs (animated running)
+            const legOffset = Math.sin(this.score * 0.3) * 2;
+            this.ctx.strokeStyle = '#000080'; // Dark blue pants
+            this.ctx.lineWidth = 3;
+            this.ctx.beginPath();
+            this.ctx.moveTo(x + 8, y + 28);
+            this.ctx.lineTo(x + 6 + legOffset, y + 32);
+            this.ctx.moveTo(x + 12, y + 28);
+            this.ctx.lineTo(x + 14 - legOffset, y + 32);
+            this.ctx.stroke();
+        }
+
+        drawFallenCharacter() {
+            const x = this.player.x;
+            const y = 135;
+
+            // Head (sideways)
+            this.ctx.fillStyle = '#FFE0BD';
+            this.ctx.beginPath();
+            this.ctx.ellipse(x + 15, y + 5, 8, 6, 0, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            // X_X eyes (fallen)
+            this.ctx.strokeStyle = '#000000';
+            this.ctx.lineWidth = 2;
+            this.ctx.beginPath();
+            this.ctx.moveTo(x + 10, y + 3);
+            this.ctx.lineTo(x + 14, y + 7);
+            this.ctx.moveTo(x + 14, y + 3);
+            this.ctx.lineTo(x + 10, y + 7);
+            this.ctx.moveTo(x + 16, y + 3);
+            this.ctx.lineTo(x + 20, y + 7);
+            this.ctx.moveTo(x + 20, y + 3);
+            this.ctx.lineTo(x + 16, y + 7);
+            this.ctx.stroke();
+
+            // Body (lying down)
+            this.ctx.fillStyle = '#FF4444'; // Red (hurt)
+            this.ctx.fillRect(x, y + 8, 25, 6);
+
+            // Arms and legs (sprawled)
+            this.ctx.strokeStyle = '#FFE0BD';
+            this.ctx.lineWidth = 2;
+            this.ctx.beginPath();
+            this.ctx.moveTo(x + 5, y + 10);
+            this.ctx.lineTo(x - 2, y + 6);
+            this.ctx.moveTo(x + 20, y + 10);
+            this.ctx.lineTo(x + 27, y + 6);
+            this.ctx.moveTo(x + 8, y + 14);
+            this.ctx.lineTo(x + 5, y + 18);
+            this.ctx.moveTo(x + 17, y + 14);
+            this.ctx.lineTo(x + 20, y + 18);
+            this.ctx.stroke();
+        }
+
+        updateStats() {
+            this.scoreElement.textContent = this.score;
+            this.fallsElement.textContent = this.falls;
+        }
+
+        gameLoop() {
+            if (!this.gameRunning) return;
+
+            this.updatePhysics();
+            this.spawnObstacle();
+            this.updateObstacles();
+            this.draw();
+            this.updateStats();
+
+            requestAnimationFrame(() => this.gameLoop());
+        }
+    }
+
+    // Initialize game when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        new LearningGame();
+    });
 </script>
 
 <script>
