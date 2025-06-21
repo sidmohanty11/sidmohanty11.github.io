@@ -1,54 +1,352 @@
 ---
 export interface Props {
-    blog: {
-        id: string | number;
-        title: string;
-        description: string;
-        tag_list: string[];
-        public_reactions_count: number;
-        reading_time_minutes: number;
-        canonical_url: string;
-    }
+  blog: {
+    id: string | number;
+    title: string;
+    description: string;
+    tag_list: string[];
+    public_reactions_count: number;
+    reading_time_minutes: number;
+    canonical_url: string;
+    published_at: string;
+  };
+  index?: number;
 }
 
-const {blog} = Astro.props;
+const { blog, index = 0 } = Astro.props;
+
+// Format date
+const publishedDate = new Date(blog.published_at || Date.now());
+const formattedDate = publishedDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
-<!-- create a blog card using tailwindcss -->
-<div class="flex flex-col rounded-lg shadow-lg overflow-hidden mb-4">
-    <div class="flex-1 bg-white p-6 flex flex-col justify-between dark:bg-gray-800">
-        <div class="flex-1">
-            <p class="text-sm leading-5 font-medium text-teal-600 dark:text-teal-400">
-                <a href={blog.canonical_url} class="hover:underline" target="_blank" rel="noopenner noreferer">
-                    {blog.title}
-                </a>
-            </p>
-            <a href={blog.canonical_url} class="block" target="_blank" rel="noopener noreferrer">
-                <h3 class="mt-2 text-xl leading-7 font-semibold text-gray-900 dark:text-zinc-50">
-                    {blog.description}
-                </h3>
-                {blog.tag_list.map((tag) => (
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mt-2">
-                        {tag}
-                    </span>
-                )
-                )}
-            </a>
+<article class="blog-card" data-index={index}>
+  <div class="card-header">
+    <div class="card-number">{String(index + 1).padStart(2, "0")}</div>
+    <div class="card-date">{formattedDate}</div>
+  </div>
+
+  <div class="card-content">
+    <a
+      href={blog.canonical_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="card-link"
+    >
+      <h3 class="card-title">{blog.title}</h3>
+      <p class="card-description">{blog.description}</p>
+    </a>
+
+    {
+      blog.tag_list && blog.tag_list.length > 0 && (
+        <div class="card-tags">
+          {blog.tag_list.slice(0, 3).map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
         </div>
-        <div class="mt-6 flex items-center">
-            <div class="ml-3">
-                <div class="flex text-sm leading-5 text-gray-500">
-                    <time datetime="2020-03-16" class="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="mr-2" viewBox="0 0 24 24"><path d="M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z"/></svg>
-                        {blog.public_reactions_count} reactions
-                    </time>
-                    <span class="mx-1">
-                        &middot;
-                    </span>
-                    <time datetime="2020-03-16">
-                        {blog.reading_time_minutes} min read
-                    </time>
-                </div>
-            </div>
-        </div>
+      )
+    }
+  </div>
+
+  <div class="card-footer">
+    <div class="card-stats">
+      <div class="stat-item">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          class="stat-icon"
+        >
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+          ></path>
+        </svg>
+        <span class="stat-value">{blog.public_reactions_count}</span>
+      </div>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat-item">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          class="stat-icon"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12,6 12,12 16,14"></polyline>
+        </svg>
+        <span class="stat-value">{blog.reading_time_minutes} min</span>
+      </div>
     </div>
+
+    <a
+      href={blog.canonical_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="read-more"
+      aria-label="Read full article"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+        ></path>
+        <polyline points="15,3 21,3 21,9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+    </a>
+  </div>
+</article>
+
+<style>
+  .blog-card {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: transparent;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  body.classic-theme.dark-mode .blog-card {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .classic-theme.dark-mode .blog-card:hover {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  }
+
+  .blog-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #000000;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .classic-theme.dark-mode .blog-card::before {
+    background: #ffffff;
+  }
+
+  .blog-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .card-number {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1;
+  }
+
+  .classic-theme.dark-mode .card-number {
+    color: #ffffff;
+  }
+
+  .card-date {
+    font-size: 0.8rem;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .classic-theme.dark-mode .card-date {
+    color: #cccccc;
+  }
+
+  .card-content {
+    flex: 1;
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: #000000;
+    transition: color 0.3s ease;
+  }
+
+  .classic-theme.dark-mode .card-title {
+    color: #ffffff;
+  }
+
+  .card-link:hover .card-title {
+    color: #666666;
+  }
+
+  .classic-theme.dark-mode .card-link:hover .card-title {
+    color: #cccccc;
+  }
+
+  .card-description {
+    line-height: 1.6;
+    color: #666666;
+    font-size: 0.95rem;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .classic-theme.dark-mode .card-description {
+    color: #cccccc;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #666666;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  body.classic-theme.dark-mode .tag {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #cccccc !important;
+  }
+
+  .tag:hover {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
+  }
+
+  body.classic-theme.dark-mode .tag:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+  }
+
+  body.classic-theme.dark-mode .card-footer {
+    border-top-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .card-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666666;
+    font-size: 0.85rem;
+  }
+
+  .classic-theme.dark-mode .stat-item {
+    color: #cccccc;
+  }
+
+  .stat-icon {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2;
+  }
+
+  .stat-value {
+    font-weight: 500;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .classic-theme.dark-mode .stat-divider {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .read-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #000000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  body.classic-theme.dark-mode .read-more {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+  }
+
+  .read-more:hover {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
+  }
+
+  body.classic-theme.dark-mode .read-more:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+  }
+
+  .read-more svg {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2;
+  }
+</style>

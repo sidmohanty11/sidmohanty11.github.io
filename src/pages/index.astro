@@ -4,6 +4,12 @@ import Hero from "../components/Hero.astro";
 import Dino from "../components/Dino.astro";
 
 const lifeUpdates = {
+    "2025": [
+        {
+            id: 1,
+            title: "Promoted to Software Engineer II at Builder.io🚀",
+        },
+    ],
     "2024": [
         {
             id: 1,
@@ -74,33 +80,30 @@ blogs = blogs.splice(0, 3);
 
 <Layout title="Sidharth Mohanty" description="Welcome to my page - Sid : )">
     <Hero />
-    <section class="mt-4 pb-2 dark:text-zinc-300">
-        <h2 class="text-2xl">Life Changelog & Updates</h2>
-        <div>
+
+    <section class="content-section">
+        <h2 class="section-title">Professional Timeline</h2>
+        <div class="timeline-container">
             {
                 Object.entries(lifeUpdates)
                     .sort(([year1], [year2]) => {
                         return parseInt(year2) - parseInt(year1);
                     })
-                    .map(([year, updates]) => (
-                        <div>
-                            <h3 class="text-xl my-2">{year}</h3>
-                            <ul>
+                    .map(([year, updates], index) => (
+                        <div class="timeline-year">
+                            <h3 class={`year-heading ${year === "2025" ? "expanded" : "collapsed"}`}
+                                data-year={year}
+                                onclick={`toggleYear('${year}')`}>
+                                <span class="year-text">{year}</span>
+                                <svg class="year-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <polyline points="6,9 12,15 18,9"></polyline>
+                                </svg>
+                            </h3>
+                            <ul class={`timeline-list ${year === "2025" ? "expanded" : "collapsed"}`} data-year-content={year}>
                                 {updates.map((update) => (
-                                    <li class="flex items-center">
-                                        <svg
-                                            stroke="currentColor"
-                                            fill="currentColor"
-                                            stroke-width="0"
-                                            viewBox="0 0 16 16"
-                                            class="text-blue-500 mr-2"
-                                            height="1em"
-                                            width="1em"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
-                                        </svg>
-                                        <span class="font-semibold">
+                                    <li class="timeline-item">
+                                        <div class="timeline-marker"></div>
+                                        <span class="timeline-content">
                                             {update.title}
                                         </span>
                                     </li>
@@ -109,160 +112,565 @@ blogs = blogs.splice(0, 3);
                         </div>
                     ))
             }
-            <a href="/experiences" class="flex space-x-2 items-center mt-4">
-                <span>Checkout all my works</span>
-                <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 16 16"
-                    class="text-blue-500"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        fill-rule="evenodd"
-                        d="M8.5 1.5a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM7 5.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H8.5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H8.5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H8.5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H8.5a.5.5 0 0 1-.5-.5z"
-                    ></path>
+            <a href="/experiences" class="section-link">
+                <span>View Complete Professional History</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="m9 18 6-6-6-6"/>
                 </svg>
             </a>
         </div>
     </section>
-    <section class="mt-4 pb-2 dark:text-zinc-300">
-        <h2 class="text-2xl my-2">Talks & Videos</h2>
-        <div>
-            <ul>
-                <li class="flex items-center w-full">
-                    <span>
-                        <a
-                            href="https://www.youtube.com/watch?v=ZDlelRrL-8g&list=PL6p5XNtolyav0udwal2UzwP4vqTPXZUDz"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="flex flex-col sm:flex-row space-x-4 border border-zinc-100 bg-white p-2 hover:border-zinc-200 dark:bg-gray-800"
-                        >
-                            <img
-                                src="/assets/rc1.png"
-                                alt="Opensource to Opportunities talk at RC Alumni Meet"
-                                class="shadow-md"
-                            />
-                            <div class="mt-4">
-                                <p class="text-xl font-semibold">
-                                    Google Summer of Code Alumni Meet 2023:
-                                    Opensource to Opportunities
-                                </p>
-                                <p>
-                                    The talk centered around the significant
-                                    impact of open source in the realm of
-                                    industry-standard software <br />
-                                    development and how it can be leveraged to land
-                                    opportunities in the tech industry.
-                                </p>
-                                <p>@sidmohanty11</p>
-                            </div>
-                        </a>
-                    </span>
-                </li>
-            </ul>
+
+    <section class="content-section">
+        <h2 class="section-title">Featured Talk</h2>
+        <div class="talk-container">
+            <a
+                href="https://www.youtube.com/watch?v=ZDlelRrL-8g&list=PL6p5XNtolyav0udwal2UzwP4vqTPXZUDz"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="talk-card"
+            >
+                <div class="talk-image">
+                    <img
+                        src="/assets/rc1.png"
+                        alt="Opensource to Opportunities talk at RC Alumni Meet"
+                        class="talk-photo"
+                    />
+                </div>
+                <div class="talk-content">
+                    <h3 class="talk-title">
+                        Google Summer of Code Alumni Meet 2023: Opensource to Opportunities
+                    </h3>
+                    <p class="talk-description">
+                        The talk centered around the significant impact of open source in the realm of
+                        industry-standard software development and how it can be leveraged to land
+                        opportunities in the tech industry.
+                    </p>
+                    <p class="talk-speaker">@sidmohanty11</p>
+                </div>
+            </a>
+
             <a
                 href="https://www.youtube.com/playlist?list=PL6p5XNtolyav0udwal2UzwP4vqTPXZUDz"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex space-x-2 items-center mt-4"
+                class="section-link"
             >
-                <span>See All Videos & Talks</span><svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 16 16"
-                    class="text-blue-500 mr-2"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        fill-rule="evenodd"
-                        d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM7 4a1 1 0 0 1 2 0v5a1 1 0 1 1-2 0V4zm1-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"
-                    ></path>
+                <span>See All Videos & Talks</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="m9 18 6-6-6-6"/>
                 </svg>
             </a>
         </div>
     </section>
-    <section class="mt-4 pb-2 dark:text-zinc-300">
-        <h2 class="text-2xl my-2">Recent Blogs</h2>
-        {
-            blogs.map((blog) => (
-                <a
-                    href={blog.canonical_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex items-center border-l border-zinc-100 pl-2 mb-2 transition hover:border-zinc-300"
-                >
-                    <p>
-                        <span class="font-semibold text-lg">{blog.title}</span>
-                        <br/>
-                        {blog.description}
-                    </p>
-                </a>
-            ))
-        }
-    </section>
-    <section class="mt-4 pb-2 dark:text-zinc-300">
-        <h2 class="text-2xl my-2">My Philosophy</h2>
-        <p>Learning never stops - run, fall, get up repeat</p>
+
+    <section class="content-section">
+        <h2 class="section-title">Recent Articles</h2>
+        <div class="blog-container">
+            {
+                blogs.map((blog) => (
+                    <a
+                        href={blog.canonical_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="blog-item"
+                    >
+                        <h3 class="blog-title">{blog.title}</h3>
+                        <p class="blog-description">{blog.description}</p>
+                    </a>
+                ))
+            }
+        </div>
     </section>
 
-    <section class="mt-4 mb-8 dark:text-zinc-300">
-        <h2 class="text-2xl my-2">Contact me</h2>
-        <form
-            class="space-y-6 mx-auto border border-blue-200 rounded p-6 my-4 w-full dark:border-gray-800 bg-blue-50 dark:bg-blue-opaque"
-            id="contact-form"
-        >
-            <div class="space-y-2">
-                <label for="from_name" class="text-lg">Full name</label>
+    <section class="content-section">
+        <h2 class="section-title">Philosophy</h2>
+        <blockquote class="philosophy-quote">
+            "Learning never stops — run, fall, get up, repeat."
+        </blockquote>
+    </section>
+
+    <section class="content-section contact-section">
+        <h2 class="section-title">Get In Touch</h2>
+        <form class="contact-form" id="contact-form">
+            <div class="form-group">
+                <label for="from_name" class="form-label">Full Name</label>
                 <input
                     id="from_name"
                     type="text"
                     placeholder="Your name"
-                    class="w-full p-2 rounded dark:bg-gray-800 border border-gray-200"
+                    class="form-input"
                     name="from_name"
+                    required
                 />
             </div>
-            <div class="space-y-2">
-                <label for="reply_to" class="text-lg">Email</label>
+            <div class="form-group">
+                <label for="reply_to" class="form-label">Email</label>
                 <input
                     id="reply_to"
                     type="email"
                     placeholder="Your email"
-                    class="w-full p-2 rounded dark:bg-gray-800 border border-gray-200"
+                    class="form-input"
                     name="reply_to"
+                    required
                 />
             </div>
-            <div class="space-y-2">
-                <label for="message" class="text-lg">Message</label>
+            <div class="form-group">
+                <label for="message" class="form-label">Message</label>
                 <textarea
                     id="message"
-                    rows="3"
+                    rows="4"
                     placeholder="Your message"
-                    class="w-full p-2 rounded dark:bg-gray-800 border border-gray-200"
-                    name="message"></textarea>
+                    class="form-input form-textarea"
+                    name="message"
+                    required
+                ></textarea>
             </div>
             <button
                 type="submit"
                 id="contactFormBtn"
-                class="w-full flex items-center justify-center px-3 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-                >Send Message</button
+                class="form-submit"
             >
+                Send Message
+            </button>
         </form>
     </section>
+
     <Dino />
 </Layout>
 
 <style>
-    :is(.dark .dark\:bg-blue-opaque) {
-        background-color: rgba(13, 42, 148, 0.18);
+    .content-section {
+        margin: 4rem 0;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    body.classic-theme.dark-mode .content-section {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .content-section:last-of-type {
+        border-bottom: none;
+    }
+
+    .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        color: #000000;
+    }
+
+    .classic-theme.dark-mode .section-title {
+        color: #ffffff;
+    }
+
+    /* Timeline Styles */
+    .timeline-container {
+        position: relative;
+    }
+
+    .timeline-year {
+        margin-bottom: 3rem;
+    }
+
+    .year-heading {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #000000;
+        margin-bottom: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+        user-select: none;
+    }
+
+    .year-heading:hover {
+        background: rgba(0, 0, 0, 0.02);
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .year-toggle-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        transition: transform 0.3s ease;
+        stroke-width: 2;
+    }
+
+    .year-heading.expanded .year-toggle-icon {
+        transform: rotate(180deg);
+    }
+
+    .timeline-list {
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .timeline-list.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+    }
+
+    .timeline-list.expanded {
+        max-height: 500px;
+        opacity: 1;
+    }
+     
+    .timeline-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .timeline-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .timeline-marker {
+        width: 8px;
+        height: 8px;
+        background: #000000;
+        border-radius: 50%;
+        margin-right: 1rem;
+        margin-top: 0.5rem;
+        flex-shrink: 0;
+    }
+
+    .classic-theme.dark-mode .timeline-marker {
+        background: #ffffff;
+    }
+
+    .timeline-content {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #333333;
+    }
+
+    .classic-theme.dark-mode .timeline-content {
+        color: #dddddd;
+    }
+
+    .section-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 2rem;
+        color: #000000;
+        text-decoration: none;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    .classic-theme.dark-mode .section-link {
+        color: #ffffff;
+    }
+
+    .section-link:hover {
+        border-bottom-color: #000000;
+    }
+
+    .classic-theme.dark-mode .section-link:hover {
+        border-bottom-color: #ffffff;
+    }
+
+    .section-link svg {
+        width: 1rem;
+        height: 1rem;
+        stroke-width: 2;
+    }
+
+    /* Talk Styles */
+    .talk-container {
+        max-width: 800px;
+    }
+
+    .talk-card {
+        display: block;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+        margin-bottom: 2rem;
+    }
+
+    .classic-theme.dark-mode .talk-card {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .talk-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .classic-theme.dark-mode .talk-card:hover {
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .talk-image {
+        margin-bottom: 1.5rem;
+    }
+
+    .talk-photo {
+        width: 100%;
+        height: auto;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+    }
+
+    .talk-card:hover .talk-photo {
+        filter: grayscale(0%);
+    }
+
+    .talk-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #000000;
+    }
+
+    .classic-theme.dark-mode .talk-title {
+        color: #ffffff;
+    }
+
+    .talk-description {
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        color: #666666;
+    }
+
+    .classic-theme.dark-mode .talk-description {
+        color: #cccccc;
+    }
+
+    .talk-speaker {
+        font-size: 0.9rem;
+        color: #999999;
+        font-style: italic;
+    }
+
+    .classic-theme.dark-mode .talk-speaker {
+        color: #aaaaaa;
+    }
+
+    /* Blog Styles */
+    .blog-container {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .blog-item {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        padding: 1.5rem 0;
+        border-left: 3px solid transparent;
+        padding-left: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .blog-item:hover {
+        border-left-color: #000000;
+    }
+
+    body.classic-theme.dark-mode .blog-item:hover {
+        border-left-color: #ffffff !important;
+    }
+
+    .blog-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #000000;
+    }
+
+    .classic-theme.dark-mode .blog-title {
+        color: #ffffff;
+    }
+
+    .blog-description {
+        line-height: 1.6;
+        color: #666666;
+    }
+
+    .classic-theme.dark-mode .blog-description {
+        color: #cccccc;
+    }
+
+    /* Philosophy Styles */
+    .philosophy-quote {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        font-style: italic;
+        text-align: center;
+        margin: 0;
+        padding: 2rem;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        color: #000000;
+        position: relative;
+    }
+
+    body.classic-theme.dark-mode .philosophy-quote {
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+    }
+
+    .philosophy-quote::before {
+        content: '"';
+        font-size: 3rem;
+        position: absolute;
+        top: -0.5rem;
+        left: 1rem;
+        color: #000000;
+    }
+
+    .classic-theme.dark-mode .philosophy-quote::before {
+        color: #ffffff;
+    }
+
+    /* Contact Form Styles */
+    .contact-section {
+        max-width: 600px;
+        margin: 4rem auto;
+    }
+
+    .contact-form {
+        margin-top: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #000000;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+    }
+
+    .classic-theme.dark-mode .form-label {
+        color: #ffffff;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        background: transparent;
+        color: #000000;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    body.classic-theme.dark-mode .form-input {
+        border-color: rgba(255, 255, 255, 0.3) !important;
+        color: #ffffff !important;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #000000;
+    }
+
+    body.classic-theme.dark-mode .form-input:focus {
+        border-color: #ffffff !important;
+    }
+
+    .form-input::placeholder {
+        color: #999999;
+    }
+
+    .classic-theme.dark-mode .form-input::placeholder {
+        color: #666666;
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .form-submit {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 1px solid #000000 !important;
+        padding: 1rem 2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        font-family: inherit;
+    }
+
+    /* Multiple selectors for maximum specificity */
+    button.form-submit,
+    #contactFormBtn,
+    button#contactFormBtn.form-submit,
+    form button.form-submit {
+        color: #ffffff !important;
+        background-color: #000000 !important;
+    }
+
+    .form-submit:hover {
+        background-color: transparent !important;
+        color: #000000 !important;
+        border-color: #000000 !important;
+    }
+
+    .form-submit:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 </style>
+
+<script>
+    function toggleYear(year) {
+        const heading = document.querySelector(`[data-year="${year}"]`);
+        const content = document.querySelector(`[data-year-content="${year}"]`);
+
+        if (heading && content) {
+            const isExpanded = heading.classList.contains('expanded');
+
+            if (isExpanded) {
+                heading.classList.remove('expanded');
+                heading.classList.add('collapsed');
+                content.classList.remove('expanded');
+                content.classList.add('collapsed');
+            } else {
+                heading.classList.remove('collapsed');
+                heading.classList.add('expanded');
+                content.classList.remove('collapsed');
+                content.classList.add('expanded');
+            }
+        }
+    }
+
+    // Make function globally available
+    window.toggleYear = toggleYear;
+</script>
 
 <script>
     const contactForm = document.getElementById("contact-form");

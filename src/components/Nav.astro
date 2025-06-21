@@ -1,221 +1,368 @@
 ---
 const navElements = [
-    {
-        id: 1,
-        name: "Home",
-        path: "/",
-    },
-    {
-        id: 2,
-        name: "Story",
-        path: "/story",
-    },
-    {
-        id: 3,
-        name: "Blogs",
-        path: "/blogs",
-    },
-    {
-        id: 4,
-        name: "Experiences",
-        path: "/experiences",
-    },
-    {
-        id: 5,
-        name: "Projects",
-        path: "/projects",
-    },
+  {
+    id: 1,
+    name: "Home",
+    path: "/",
+  },
+  {
+    id: 2,
+    name: "Story",
+    path: "/story",
+  },
+  {
+    id: 3,
+    name: "Blogs",
+    path: "/blogs",
+  },
+  {
+    id: 4,
+    name: "Experiences",
+    path: "/experiences",
+  },
+  {
+    id: 5,
+    name: "Projects",
+    path: "/projects",
+  },
 ];
 ---
 
-<header
-    class="p-4 sticky top-0 backdrop-filter backdrop-blur-sm bg-opacity-30 z-10"
->
-    <section class="flex justify-between items-center container">
-        <a href="/">
-            <img
-                src="/assets/sidharth-mohanty.jpeg"
-                alt="Sidharth Mohanty (icon)"
-                class="w-8 h-8 rounded-full"
-            />
-        </a>
-        <nav class="pointer-events-auto hidden sm:block">
-            <ul
-                class="flex rounded-full px-3 text-sm font-medium shadow shadow-zinc-900/5 text-zinc-900 dark:text-zinc-300 ring-1 ring-zinc-900/5 dark:ring-zinc-700/90 bg-zinc-50 dark:bg-black"
-            >
-                {
-                    navElements.map((element) => (
-                        <li class="relative inline-flex px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-300 navElement">
-                            <a href={element.path}>{element.name}</a>
-                        </li>
-                    ))
-                }
-                <li
-                    class="relative inline-flex px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-300"
-                >
-                    <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
-                        >Resume</a
-                    >
-                </li>
-            </ul>
-        </nav>
-        <div class="flex sm:block">
-            <button
-                type="button"
-                class="group flex sm:hidden mr-2 items-center rounded-full px-3 py-2 shadow shadow-zinc-900/5 text-zinc-900 dark:text-zinc-300 ring-1 ring-zinc-900/5 dark:ring-zinc-700/90 bg-zinc-50 dark:bg-black"
-                id="navigationBtn"
-                >Navigation
-                <svg
-                    class="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-300"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 8 6"
-                    aria-hidden="true"
-                    ><path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        d="M1.75 1.75 4 4.25l2.25-2.5"></path></svg
-                ></button
-            >
-            <section
-                class="hidden fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white dark:bg-zinc-900 p-8 ring-1 ring-zinc-900/5 dark:ring-zinc-700 opacity-100 scale-100 transition-all duration-75"
-                id="mobileNav"
-            >
-                <section
-                    class="flex flex-row-reverse items-center justify-between"
-                >
-                    <button class="-m-1 p-1" id="closeNavBtn"
-                        ><svg
-                            class="h-6 w-6 text-zinc-500 dark:text-zinc-300"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                            ><path
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                                d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5"
-                            ></path></svg
-                        ></button
-                    >
-                    <h3
-                        class="text-sm font-medium text-zinc-700 dark:text-zinc-500"
-                    >
-                        Navigation
-                    </h3>
-                </section>
-                <nav class="mt-6">
-                    <ul
-                        class="-my-2 flex flex-col divide-zinc-100 dark:divide-zinc-100/5 text-base text-zinc-900 dark:text-zinc-300"
-                    >
-                        {
-                            navElements.map((el) => (
-                                <li class="relative inline-flex px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-300 navElement">
-                                    <a href={el.path}>
-                                        {el.name}
-                                    </a>
-                                </li>
-                            ))
-                        }
-                        <li
-                            class="relative inline-flex px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-300"
-                        >
-                            <a
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
-                                >Resume</a
-                            >
-                        </li>
-                    </ul>
-                </nav>
-            </section>
-            <button
-                type="button"
-                class="group flex rounded-full px-3 py-2 shadow shadow-zinc-900/5 text-zinc-900 dark:text-zinc-300 ring-1 ring-zinc-900/5 dark:ring-zinc-700/90 bg-zinc-50 dark:bg-black"
-                id="themeBtn"
-                ><span class="sr-only">theme</span>
-                <svg
-                    class="inline-flex dark:hidden h-6 w-6 fill-zinc-100 stroke-zinc-500 group-hover:fill-zinc-300 group-hover:stroke-zinc-700"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    ><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                    ></path></svg
-                >
-                <svg
-                    class="hidden dark:inline-flex h-6 w-6 fill-zinc-700 stroke-zinc-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    ><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
-                    ></path></svg
-                ></button
-            >
-        </div>
-    </section>
+<header class="classic-header">
+  <section class="header-content">
+    <a href="/" class="logo-container">
+      <img
+        src="/assets/sidharth-mohanty.jpeg"
+        alt="Sidharth Mohanty"
+        class="profile-image"
+      />
+    </a>
+
+    <nav class="desktop-nav">
+      <ul class="nav-list">
+        {
+          navElements.map((element) => (
+            <li class="nav-item">
+              <a href={element.path} class="nav-link">
+                {element.name}
+              </a>
+            </li>
+          ))
+        }
+        <li class="nav-item">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
+            class="nav-link resume-link">Resume</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-controls">
+      <button type="button" class="mobile-nav-btn" id="navigationBtn">
+        <span class="mobile-nav-text">Menu</span>
+        <svg
+          class="mobile-nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+        >
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Mobile Navigation -->
+  <section class="mobile-nav hidden" id="mobileNav">
+    <div class="mobile-nav-header">
+      <h3 class="mobile-nav-title">Navigation</h3>
+      <button class="mobile-nav-close" id="closeNavBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav-content">
+      <ul class="mobile-nav-list">
+        {
+          navElements.map((el) => (
+            <li class="mobile-nav-item">
+              <a href={el.path} class="mobile-nav-link">
+                {el.name}
+              </a>
+            </li>
+          ))
+        }
+        <li class="mobile-nav-item">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
+            class="mobile-nav-link">Resume</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </section>
 </header>
 
+<style>
+  .classic-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-container {
+    text-decoration: none;
+  }
+
+  .profile-image {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .profile-image:hover {
+    border-color: #000000;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: block;
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2.5rem;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    opacity: 0.6;
+  }
+
+  .nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #000000;
+  }
+
+  .resume-link {
+    border: 1px solid #000000;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .resume-link:hover {
+    background: #000000;
+    color: #ffffff !important;
+    opacity: 1;
+  }
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .mobile-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: 1px solid #000000;
+    color: #000000;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-nav-btn {
+      display: none;
+    }
+  }
+
+  .mobile-nav-btn:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+
+  .mobile-nav-text {
+    font-size: 0.85rem;
+  }
+
+  .mobile-nav-icon {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 1.5;
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 2rem;
+  }
+
+  .mobile-nav.hidden {
+    display: none;
+  }
+
+  .mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .mobile-nav-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: #000000;
+  }
+
+  .mobile-nav-close {
+    background: none;
+    border: 1px solid #000000;
+    color: #000000;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-nav-close:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+
+  .mobile-nav-close svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    stroke-width: 1.5;
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-nav-item {
+    margin-bottom: 2rem;
+  }
+
+  .mobile-nav-link {
+    color: #000000;
+    text-decoration: none;
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+    display: block;
+  }
+
+  .mobile-nav-link:hover {
+    opacity: 0.6;
+  }
+</style>
+
 <script>
-    const mobileNav = document.querySelector("#mobileNav");
-    const navigationBtn = document.querySelector("#navigationBtn");
-    const closeNavBtn = document.querySelector("#closeNavBtn");
-    const themeBtn = document.querySelector("#themeBtn");
+  const mobileNav = document.querySelector("#mobileNav");
+  const navigationBtn = document.querySelector("#navigationBtn");
+  const closeNavBtn = document.querySelector("#closeNavBtn");
 
-    const pathname = window.location.pathname;
+  const pathname = window.location.pathname;
 
-    const navElements = document.querySelectorAll(".navElement");
-    navElements.forEach((el) => {
-        el = el.querySelector("a") as HTMLElement;
-        if (el.getAttribute("href") === pathname || `${el.getAttribute("href")}/` === pathname) {
-            el.classList.add("text-teal-500", "dark:text-teal-300");
-        }
-    });
+  // Set active navigation link
+  const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+  navLinks.forEach((link) => {
+    const href = link.getAttribute("href");
+    if (href === pathname || `${href}/` === pathname) {
+      link.classList.add("active");
+    }
+  });
 
-    document.addEventListener("click", (e) => {
-        if (
-            e.target !== mobileNav &&
-            e.target !== navigationBtn &&
-            !mobileNav?.contains(e.target as Node)
-        ) {
-            mobileNav?.classList.add("hidden");
-        }
-    });
+  // Mobile navigation
+  document.addEventListener("click", (e) => {
+    if (
+      e.target !== mobileNav &&
+      e.target !== navigationBtn &&
+      !mobileNav?.contains(e.target as Node) &&
+      !navigationBtn?.contains(e.target as Node)
+    ) {
+      mobileNav?.classList.add("hidden");
+    }
+  });
 
-    closeNavBtn?.addEventListener("click", () => {
-        mobileNav?.classList.add("hidden");
-    });
+  closeNavBtn?.addEventListener("click", () => {
+    mobileNav?.classList.add("hidden");
+  });
 
-    navigationBtn?.addEventListener("click", () => {
-        mobileNav?.classList.remove("hidden");
-    });
-
-    themeBtn?.addEventListener("click", () => {
-        document.documentElement.classList.toggle("dark");
-        const t = document.documentElement.classList.contains("dark")
-            ? "dark"
-            : "light";
-        localStorage.setItem("theme", t);
-        if (t === "dark") {
-            document.body.classList.add("darkDots");
-        } else {
-            document.body.classList.remove("darkDots");
-        }
-    });
+  navigationBtn?.addEventListener("click", () => {
+    mobileNav?.classList.remove("hidden");
+  });
 </script>
-
-<style></style>

@@ -12,6 +12,8 @@ const projects = [
     imgUrl: "/assets/jsnotion.png",
     github_link: "https://github.com/sidmohanty11/jsnotion",
     live_link: "https://www.npmjs.com/package/jsnotion",
+    category: "CLI Tool",
+    year: "2023",
   },
   {
     id: 2,
@@ -21,6 +23,8 @@ const projects = [
     imgUrl: "/assets/forum.png",
     github_link: "https://github.com/sidmohanty11/forum",
     live_link: "https://outr-forums.netlify.app/",
+    category: "Web App",
+    year: "2022",
   },
   {
     id: 3,
@@ -30,6 +34,8 @@ const projects = [
     imgUrl: "/assets/next-ecom.png",
     github_link: "https://github.com/sidmohanty11/next-ecom",
     live_link: "https://next-ecom-one.vercel.app/",
+    category: "E-commerce",
+    year: "2023",
   },
   {
     id: 4,
@@ -37,6 +43,8 @@ const projects = [
     description: "Download YT playlists with one command - using concurrency.",
     imgUrl: "/assets/yt-playlist-downloader.png",
     github_link: "https://github.com/sidmohanty11/yt-playlist-downloader",
+    category: "CLI Tool",
+    year: "2022",
   },
   {
     id: 5,
@@ -45,6 +53,8 @@ const projects = [
       "A minimal yet powerful HTTP client implemented in go (inspired by axios).",
     imgUrl: "/assets/mingo.png",
     github_link: "https://github.com/sidmohanty11/mingo",
+    category: "Library",
+    year: "2023",
   },
   {
     id: 6,
@@ -53,6 +63,8 @@ const projects = [
     imgUrl: "/assets/thread-it.png",
     github_link: "https://github.com/sidmohanty11/thread-it",
     live_link: "https://thread-it-pi.vercel.app/",
+    category: "Web App",
+    year: "2023",
   },
   {
     id: 7,
@@ -61,6 +73,8 @@ const projects = [
     imgUrl: "/assets/good-f-issues.png",
     github_link: "https://github.com/sidmohanty11/good-f-issues",
     live_link: "https://good-f-issues.vercel.app/",
+    category: "Web App",
+    year: "2023",
   },
   {
     id: 8,
@@ -69,6 +83,8 @@ const projects = [
       "A chatting application that has whatsapp-like architecture, made by using Vue, Go, MongoDB and Pusher.",
     imgUrl: "/assets/convo.png",
     github_link: "https://github.com/sidmohanty11/good-f-issues",
+    category: "Web App",
+    year: "2022",
   },
 ];
 
@@ -82,6 +98,8 @@ const mobile_projects = [
     imgUrl: "/assets/maxgainz.jpeg",
     description:
       "Next Generation Workout Tracker App for those who want to progressively overload and achieve maximum gains.",
+    category: "Fitness",
+    year: "2023",
   },
   {
     id: 2,
@@ -92,6 +110,8 @@ const mobile_projects = [
     imgUrl: "/assets/poemgenerator.jpeg",
     description:
       "An OpenAI GPT-3 API integration to use davinci model to generate cool poems on behalf of anyone to anyone. (DISCONTINUED)",
+    category: "AI/ML",
+    year: "2022",
   },
   {
     id: 3,
@@ -102,48 +122,302 @@ const mobile_projects = [
     imgUrl: "/assets/tictactoe.png",
     description:
       "A multiplayer tic tac toe game made using React Native and AWS Amplify.",
+    category: "Game",
+    year: "2022",
   },
 ];
+
+// Calculate statistics
+const totalProjects = projects.length + mobile_projects.length;
+const webApps = projects.filter((p) => p.category === "Web App").length;
+const mobileApps = mobile_projects.length;
+const openSourceProjects = [...projects, ...mobile_projects].filter(
+  (p) => p.github_link
+).length;
 ---
 
 <Layout
   title="Projects | Sidharth Mohanty"
   description="Welcome to my page - Sid : )"
 >
-  <section class="mt-8 sm:mt-16">
-    <h1
-      class="text-zinc-900 dark:text-zinc-100 text-3xl md:text-5xl font-bold tracking-tight"
-    >
-      Always exploring and building.
-    </h1>
-    <h2 class="my-6 text-zinc-700 dark:text-zinc-300 text-base">
-      Over the years I have worked on many things, but here are the ones that I
-      am most <br /> proud of. I am a firm believer in open source, so please feel
-      free to contribute.
-    </h2>
+  <section class="projects-hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Digital Creations</h1>
+
+      <div class="hero-subtitle-container">
+        <div class="subtitle-line"></div>
+        <p class="hero-subtitle">Always Exploring & Building</p>
+        <div class="subtitle-line"></div>
+      </div>
+
+      <p class="hero-description">
+        Over the years I have worked on many things, but here are the ones that
+        I am most proud of. I am a firm believer in open source, so please feel
+        free to explore, contribute, and learn from these projects.
+      </p>
+    </div>
   </section>
-  <h2>
-    <span
-      class="text-zinc-900 dark:text-zinc-100 text-2xl md:text-3xl font-bold tracking-tight"
-    >
-      Mobile Apps
-    </span>
-  </h2>
-  <section class="my-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
-    {mobile_projects.map((project) => <MobileProject project={project} />)}
+
+  <section class="mobile-projects-section">
+    <div class="section-header">
+      <h2 class="section-title">Mobile Applications</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="section-subtitle">
+      <p>
+        Native mobile experiences built with React Native and published to app
+        stores
+      </p>
+    </div>
+
+    <div class="mobile-projects-grid">
+      {
+        mobile_projects.map((project, index) => (
+          <MobileProject project={project} index={index} />
+        ))
+      }
+    </div>
   </section>
-  <h2>
-    <span
-      class="text-zinc-900 dark:text-zinc-100 text-2xl md:text-3xl font-bold tracking-tight"
-    >
-      Web Apps, CLIs and Libraries
-    </span>
-  </h2>
-  <section class="my-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
-    {
-      projects.map((project, index) => (
-        <Project project={project} data-index={index} />
-      ))
-    }
+
+  <section class="web-projects-section">
+    <div class="section-header">
+      <h2 class="section-title">Web Apps, CLIs & Libraries</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="section-subtitle">
+      <p>Full-stack applications, command-line tools, and reusable libraries</p>
+    </div>
+
+    <div class="web-projects-grid">
+      {
+        projects.map((project, index) => (
+          <Project project={project} index={index} />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="projects-footer">
+    <div class="footer-content">
+      <h3 class="footer-title">Interested in Collaboration?</h3>
+      <p class="footer-description">
+        I'm always open to discussing new projects, creative ideas, or
+        opportunities to build something amazing together.
+      </p>
+      <div class="footer-actions">
+        <a href="/experiences" class="footer-link">
+          <span>View My Experience</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </a>
+        <a
+          href="https://github.com/sidmohanty11"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          <span>GitHub Profile</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            ></path>
+            <polyline points="15,3 21,3 21,9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </div>
   </section>
 </Layout>
+
+<style>
+  .projects-hero {
+    padding: 4rem 0 1.3125rem;
+    margin-top: 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-family: "Playfair Display", serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: #000000;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 4.5rem;
+    }
+  }
+
+  .hero-subtitle-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+
+  .subtitle-line {
+    flex: 1;
+    height: 1px;
+    background: #000000;
+    max-width: 100px;
+  }
+
+  .hero-subtitle {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    color: #333333;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mobile-projects-section,
+  .web-projects-section {
+    padding: 4rem 0;
+  }
+
+  .web-projects-section {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000000;
+    white-space: nowrap;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: #000000;
+  }
+
+  .section-subtitle {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .section-subtitle p {
+    color: #666666;
+    font-style: italic;
+    font-size: 1rem;
+  }
+
+  .mobile-projects-grid {
+    display: grid;
+    gap: 3rem;
+    justify-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .web-projects-grid {
+    display: grid;
+    gap: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .web-projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .projects-footer {
+    margin-top: 4rem;
+    padding: 4rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .footer-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 1rem;
+  }
+
+  .footer-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #333333;
+    margin-bottom: 2rem;
+  }
+
+  .footer-actions {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border: 1px solid #000000;
+    padding: 1rem 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .footer-link:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+
+  .footer-link svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    stroke-width: 2;
+  }
+</style>

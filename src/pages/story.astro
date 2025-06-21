@@ -3,62 +3,576 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-    title="Story | Sidharth Mohanty"
-    description="Welcome to my page - Sid : )"
+  title="Story | Sidharth Mohanty"
+  description="Welcome to my page - Sid : )"
 >
-    <section class="mt-8 sm:mt-16">
-        <h1
-            class="text-zinc-900 dark:text-zinc-100 text-3xl md:text-5xl font-bold tracking-tight"
-        >
-            Code, Gym, Caffeine, Repeat.
-        </h1>
-        <h2 class="my-6 text-zinc-700 dark:text-zinc-300 text-base">
-            Before we start, here is a riddle that describes me:<br />
-            "Through uncharted realms, I roam with might, seeking treasures hidden
-            out of sight."
-        </h2>
-    </section>
-    <section class="my-8">
-        <h2
-            class="text-zinc-900 dark:text-zinc-100 text-2xl md:text-4xl font-bold tracking-tight"
-        >
-            About me
-        </h2>
-        <p class="my-6 text-zinc-700 dark:text-zinc-300 text-base">
-            Hi there, I'm Sidharth 👋
-            <br />
-            <br />
-            I'm a final year Computer Science student at the Odisha University of
-            Technology and Research in Bhubaneswar (🇮🇳). I'm a fullstack developer
-            with over 2 years of experience crafting mind-blowing
-            applications. Web apps, mobile apps, chrome extensions, APIs—yeah, I've
-            conquered them all. No biggie.
-            <span class="text-zinc-900 dark:text-zinc-100 text-base font-bold"
-                >JK, I'm still learning!</span
+  <section class="story-hero">
+    <div class="hero-content">
+      <div class="hero-quote-container">
+        <div class="quote-mark">"</div>
+        <blockquote class="hero-quote">
+          Through uncharted realms, I roam with might,<br />
+          seeking treasures hidden out of sight.
+        </blockquote>
+        <div class="quote-mark closing">"</div>
+      </div>
+
+      <h1 class="hero-title">
+        The Story Behind<br />
+        <span class="title-accent">The Code</span>
+      </h1>
+
+      <div class="hero-subtitle-container">
+        <div class="subtitle-line"></div>
+        <p class="hero-subtitle">Code • Gym • Caffeine • Repeat</p>
+        <div class="subtitle-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story-content">
+    <div class="content-grid">
+      <div class="story-introduction">
+        <div class="intro-header">
+          <h2 class="intro-title">About Sidharth</h2>
+          <div class="intro-line"></div>
+        </div>
+
+        <div class="intro-text">
+          <p class="greeting">Hi there, I'm Sidharth 👋</p>
+
+          <p class="intro-paragraph">
+            I'm a final year Computer Science student at the Odisha University
+            of Technology and Research in Bhubaneswar, India. I'm a fullstack
+            developer with over 2 years of experience crafting applications that
+            solve real problems.
+          </p>
+
+          <p class="intro-paragraph emphasis">
+            Web apps, mobile apps, chrome extensions, APIs—I've explored them
+            all. But here's the thing: <span class="highlight"
+              >I'm still learning every single day.</span
             >
-            <br />
-            <br />
-            You know what they say—I've been a JS fanboy since day one. React, Vue,
-            Angular, Node, Express, Nest, Next, Nuxt... I've danced with them all.
-            But that's not all, folks. I've even dabbled in the dark arts of Golang
-            and Python, creating APIs and CLI tools that would make wizards jealous.
-            Impressive, right?
-            <br />
-            <br />
-            When it comes to tech, I'm the guy who's always on the hunt for the latest
-            and greatest. Trendy tech? You bet I'm curious. I just love exploring
-            new stuffs— Backend, DevOps, Databases, System Design, CI/CD you name
-            it.
-            <br />
-            <br />
-            But hey, I'm not all about the code. I'm a fitness enthusiast, sculpting
-            my coding muscles while pumping iron at the gym. And don't get me started
-            on coffee—it's the elixir that fuels my coding adventures. They say knowledge
-            is power, and I'm here to soak it all in. An eternal learner, always
-            tinkering, experimenting, and solving problems. The tech world is my
-            infinite universe, and I'm on an endless quest for discovering new horizons.
-        </p>
-    </section>
+          </p>
+        </div>
+      </div>
+
+      <div class="story-details">
+        <div class="detail-section">
+          <h3 class="detail-title">Technical Journey</h3>
+          <div class="detail-content">
+            <p>
+              I've been a JavaScript enthusiast since day one. React, Vue,
+              Angular, Node, Express, Nest, Next, Nuxt—I've danced with them
+              all. But that's not where it ends.
+            </p>
+            <p>
+              I've ventured into the worlds of Golang and Python, creating APIs
+              and CLI tools that bridge the gap between complex problems and
+              elegant solutions.
+            </p>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3 class="detail-title">Always Exploring</h3>
+          <div class="detail-content">
+            <p>
+              When it comes to technology, I'm always hunting for the latest
+              innovations. Backend architecture, DevOps practices, database
+              optimization, system design, CI/CD pipelines—curiosity drives my
+              exploration.
+            </p>
+            <p>
+              The tech landscape is vast and ever-changing, and I embrace that
+              complexity with enthusiasm and systematic learning.
+            </p>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3 class="detail-title">Beyond the Screen</h3>
+          <div class="detail-content">
+            <p>
+              But I'm not all about the code. I'm a fitness enthusiast who
+              believes in strengthening both mind and body. The gym is where I
+              find balance, building physical resilience alongside mental
+              agility.
+            </p>
+            <p>
+              And coffee? It's the fuel that powers late-night coding sessions
+              and early morning problem-solving marathons. Some call it
+              addiction; I call it dedication.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="philosophy-section">
+      <div class="philosophy-header">
+        <div class="philosophy-line"></div>
+        <h2 class="philosophy-title">My Philosophy</h2>
+        <div class="philosophy-line"></div>
+      </div>
+
+      <blockquote class="philosophy-quote">
+        "Knowledge is power, and I'm here to absorb it all. An eternal learner,
+        always tinkering, experimenting, and solving problems. The tech world is
+        my infinite universe, and I'm on an endless quest for discovering new
+        horizons."
+      </blockquote>
+    </div>
+
+    <div class="journey-timeline">
+      <h2 class="timeline-title">The Journey So Far</h2>
+      <div class="timeline-grid">
+        <div class="timeline-item">
+          <div class="timeline-number">01</div>
+          <div class="timeline-content">
+            <h3>Student & Explorer</h3>
+            <p>Computer Science at OUTR, Bhubaneswar</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-number">02</div>
+          <div class="timeline-content">
+            <h3>Developer & Builder</h3>
+            <p>2+ years crafting fullstack applications</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-number">03</div>
+          <div class="timeline-content">
+            <h3>Open Source Contributor</h3>
+            <p>Contributing to meaningful projects worldwide</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-number">04</div>
+          <div class="timeline-content">
+            <h3>Continuous Learner</h3>
+            <p>Always exploring new technologies and methodologies</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
 
-<style></style>
+<style>
+  .story-hero {
+    padding: 4rem 0 6rem;
+    margin-top: 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  body.classic-theme.dark-mode .story-hero {
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-quote-container {
+    position: relative;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .quote-mark {
+    font-family: "Playfair Display", serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1;
+    opacity: 0.3;
+  }
+
+  .classic-theme.dark-mode .quote-mark {
+    color: #ffffff;
+  }
+
+  .quote-mark.closing {
+    align-self: flex-end;
+  }
+
+  .hero-quote {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #333333;
+    margin: 0;
+    text-align: center;
+    max-width: 500px;
+  }
+
+  .classic-theme.dark-mode .hero-quote {
+    color: #dddddd;
+  }
+
+  .hero-title {
+    font-family: "Playfair Display", serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: #000000;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 4.5rem;
+    }
+  }
+
+  .classic-theme.dark-mode .hero-title {
+    color: #ffffff;
+  }
+
+  .title-accent {
+    color: #666666;
+    font-weight: 400;
+  }
+
+  .classic-theme.dark-mode .title-accent {
+    color: #cccccc;
+  }
+
+  .hero-subtitle-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .subtitle-line {
+    flex: 1;
+    height: 1px;
+    background: #000000;
+    max-width: 100px;
+  }
+
+  .classic-theme.dark-mode .subtitle-line {
+    background: #ffffff;
+  }
+
+  .hero-subtitle {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  .classic-theme.dark-mode .hero-subtitle {
+    color: #cccccc;
+  }
+
+  .story-content {
+    padding: 4rem 0;
+  }
+
+  .content-grid {
+    display: grid;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+    }
+  }
+
+  .intro-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .intro-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000000;
+    white-space: nowrap;
+  }
+
+  .classic-theme.dark-mode .intro-title {
+    color: #ffffff;
+  }
+
+  .intro-line {
+    flex: 1;
+    height: 1px;
+    background: #000000;
+  }
+
+  .classic-theme.dark-mode .intro-line {
+    background: #ffffff;
+  }
+
+  .intro-text {
+    margin-bottom: 2rem;
+  }
+
+  .greeting {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 1.5rem;
+  }
+
+  .classic-theme.dark-mode .greeting {
+    color: #ffffff;
+  }
+
+  .intro-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #333333;
+    margin-bottom: 1.5rem;
+  }
+
+  .classic-theme.dark-mode .intro-paragraph {
+    color: #dddddd;
+  }
+
+  .intro-paragraph.emphasis {
+    font-style: italic;
+    border-left: 3px solid #000000;
+    padding-left: 1.5rem;
+  }
+
+  .classic-theme.dark-mode .intro-paragraph.emphasis {
+    border-left-color: #ffffff;
+  }
+
+  .highlight {
+    font-weight: 600;
+    color: #000000;
+    font-style: normal;
+  }
+
+  .classic-theme.dark-mode .highlight {
+    color: #ffffff;
+  }
+
+  .detail-section {
+    margin-bottom: 3rem;
+  }
+
+  .detail-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+  }
+
+  body.classic-theme.dark-mode .detail-title {
+    color: #ffffff !important;
+    border-bottom-color: #ffffff !important;
+  }
+
+  .detail-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #333333;
+    margin-bottom: 1rem;
+  }
+
+  .classic-theme.dark-mode .detail-content p {
+    color: #dddddd;
+  }
+
+  .philosophy-section {
+    margin: 6rem 0;
+    text-align: center;
+  }
+
+  .philosophy-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+  }
+
+  .philosophy-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000000;
+    white-space: nowrap;
+  }
+
+  .classic-theme.dark-mode .philosophy-title {
+    color: #ffffff;
+  }
+
+  .philosophy-line {
+    flex: 1;
+    height: 1px;
+    background: #000000;
+    max-width: 150px;
+  }
+
+  .classic-theme.dark-mode .philosophy-line {
+    background: #ffffff;
+  }
+
+  .philosophy-quote {
+    font-family: "Playfair Display", serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: #000000;
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+
+  body.classic-theme.dark-mode .philosophy-quote {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .philosophy-quote::before,
+  .philosophy-quote::after {
+    content: '"';
+    font-size: 3rem;
+    font-weight: 700;
+    color: #000000;
+    position: absolute;
+    opacity: 0.3;
+  }
+
+  .classic-theme.dark-mode .philosophy-quote::before,
+  .classic-theme.dark-mode .philosophy-quote::after {
+    color: #ffffff;
+  }
+
+  .philosophy-quote::before {
+    top: 1rem;
+    left: 1.5rem;
+  }
+
+  .philosophy-quote::after {
+    bottom: 0.5rem;
+    right: 1.5rem;
+  }
+
+  .journey-timeline {
+    margin: 6rem 0;
+  }
+
+  .timeline-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .classic-theme.dark-mode .timeline-title {
+    color: #ffffff;
+  }
+
+  .timeline-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .timeline-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .timeline-item {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  body.classic-theme.dark-mode .timeline-item {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .timeline-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .classic-theme.dark-mode .timeline-item:hover {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  }
+
+  .timeline-number {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1rem;
+  }
+
+  .classic-theme.dark-mode .timeline-number {
+    color: #ffffff;
+  }
+
+  .timeline-content h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 0.5rem;
+  }
+
+  .classic-theme.dark-mode .timeline-content h3 {
+    color: #ffffff;
+  }
+
+  .timeline-content p {
+    font-size: 0.9rem;
+    color: #666666;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .classic-theme.dark-mode .timeline-content p {
+    color: #cccccc;
+  }
+</style>

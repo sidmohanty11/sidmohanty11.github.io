@@ -1,89 +1,404 @@
 ---
 export interface Props {
-    project: {
-        id: string | number;
-        name: string;
-        description: string;
-        github_link: string;
-        live_link?: string;
-        imgUrl: string;
-    };
+  project: {
+    id: string | number;
+    name: string;
+    description: string;
+    github_link: string;
+    live_link?: string;
+    imgUrl: string;
+    category?: string;
+    year?: string;
+  };
+  index?: number;
 }
 
-const { project } = Astro.props;
+const { project, index = 0 } = Astro.props;
 ---
 
-<div class="relative bg-gray-900 rounded-lg shadow-lg mainDiv max-h-[400px]">
-    <div class="h-6 bg-gray-700 rounded-t-lg flex items-center justify-between">
-        <div class="flex items-center">
-            <div class="w-3 h-3 rounded-full bg-red-500 ml-2"></div>
-            <div class="w-3 h-3 rounded-full bg-yellow-500 mx-2"></div>
-            <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-        </div>
-        <div class="text-white font-mono mr-10">{project.name}</div>
-        <div></div>
+<article class="project-card">
+  <div class="card-header">
+    <div class="project-number">{String(index + 1).padStart(2, "0")}</div>
+    <div class="project-meta">
+      {
+        project.category && (
+          <span class="project-category">{project.category}</span>
+        )
+      }
+      {project.year && <span class="project-year">{project.year}</span>}
     </div>
-    <img src={project.imgUrl} alt={project.name} class="object-cover max-h-[350px] w-full overflow-hidden" />
-    <div
-        class="absolute inset-0 bg-black bg-opacity-70 opacity-0 invisible transition-opacity duration-300"
-    >
-        <div class="absolute inset-0 flex flex-col justify-center items-center">
-            <h3 class="text-white text-2xl mb-2">{project.name}</h3>
-            <div class="flex space-x-2">
-                <a
-                    href={project.github_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex space-x-2 bg-gray-100 rounded-full px-4 py-2 mt-2 lg:mt-0 transition hover:text-teal-500 dark:hover:text-teal-300 hover-icon"
-                >
-                    <svg
-                        width="24"
-                        height="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        class="transition"
-                    >
-                        <path
-                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                        ></path>
-                    </svg>
-                    <span>GitHub</span>
-                </a>
-                {
-                    project.live_link && (
-                        <a
-                            href={project.live_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="flex space-x-2 bg-gray-100 rounded-full px-4 py-2 mt-2 lg:mt-0 transition hover:text-teal-500 dark:hover:text-teal-300 hover-icon"
-                        >
-                            <svg
-                                width="24"
-                                height="24"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                class="transition"
-                            >
-                                <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12m2.557 16h-5.115c.546 2.46 1.441 4.114 2.558 5.744 1.194-1.741 2.041-3.41 2.557-5.744m-7.157 0h-4.567c1.236 2.825 3.704 4.972 6.755 5.716-1.048-1.733-1.783-3.658-2.188-5.716m13.767 0h-4.567c-.391 1.988-1.095 3.887-2.175 5.694 3.012-.763 5.517-2.895 6.742-5.694m-14.005-6h-4.962c-.267 1.313-.267 2.685 0 4h4.915c-.119-1.329-.101-2.672.047-4m7.661 0h-5.647c-.165 1.326-.185 2.672-.053 4h5.753c.133-1.328.111-2.673-.053-4m6.977 0h-4.963c.148 1.328.166 2.671.048 4h4.915c.26-1.285.273-2.648 0-4m-12.156-7.729c-3.077.732-5.567 2.886-6.811 5.729h4.653c.435-2.042 1.178-3.985 2.158-5.729m2.355-.048c-1.089 1.77-1.91 3.453-2.463 5.777h4.927c-.534-2.246-1.337-3.948-2.464-5.777m2.368.069c1.013 1.812 1.733 3.76 2.146 5.708h4.654c-1.232-2.816-3.762-4.958-6.8-5.708" />
-                            </svg>
-                            <span>Live</span>
-                        </a>
-                    )
-                }
-            </div>
-            <p class="text-white mt-4">{project.description}</p>
+  </div>
+
+  <div class="project-image-container">
+    <img
+      src={project.imgUrl}
+      alt={project.name}
+      class="project-image"
+      loading="lazy"
+    />
+    <div class="image-overlay">
+      <div class="overlay-content">
+        <h3 class="overlay-title">{project.name}</h3>
+        <p class="overlay-description">{project.description}</p>
+        <div class="overlay-actions">
+          <a
+            href={project.github_link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="action-button"
+            aria-label="View GitHub repository"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              ></path>
+            </svg>
+            <span>Code</span>
+          </a>
+
+          {
+            project.live_link && (
+              <a
+                href={project.live_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="action-button"
+                aria-label="View live demo"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15,3 21,3 21,9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                <span>Live</span>
+              </a>
+            )
+          }
         </div>
+      </div>
     </div>
-</div>
+  </div>
+
+  <div class="card-content">
+    <h3 class="project-title">{project.name}</h3>
+    <p class="project-description">{project.description}</p>
+
+    <div class="project-links">
+      <a
+        href={project.github_link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-link"
+      >
+        <span>View Code</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+          ></path>
+          <polyline points="15,3 21,3 21,9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+
+      {
+        project.live_link && (
+          <a
+            href={project.live_link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link live-link"
+          >
+            <span>Live Demo</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>
 
 <style>
-    .hover-icon:hover > svg {
-        fill: #38b2ac;
-    }
-    .mainDiv:hover > :nth-child(3) {
-        visibility: visible;
-        opacity: 1;
-    }
+  .project-card {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.classic-theme.dark-mode .project-card {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .classic-theme.dark-mode .project-card:hover {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .project-number {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1;
+  }
+
+  .classic-theme.dark-mode .project-number {
+    color: #ffffff;
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .project-category,
+  .project-year {
+    font-size: 0.8rem;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .classic-theme.dark-mode .project-category,
+  .classic-theme.dark-mode .project-year {
+    color: #cccccc;
+  }
+
+  .project-category {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  body.classic-theme.dark-mode .project-category {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .project-image-container {
+    position: relative;
+    margin: 0 1.5rem 1.5rem;
+    overflow: hidden;
+    background: #f8f8f8;
+    height: 200px;
+  }
+
+  .classic-theme.dark-mode .project-image-container {
+    background: #1a1a1a;
+  }
+
+  .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover .project-image {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .classic-theme.dark-mode .image-overlay {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .project-image-container:hover .image-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .overlay-content {
+    text-align: center;
+    padding: 2rem;
+    color: #ffffff;
+  }
+
+  .classic-theme.dark-mode .overlay-content {
+    color: #000000;
+  }
+
+  .overlay-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .overlay-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .overlay-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .action-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid #ffffff;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .classic-theme.dark-mode .action-button {
+    color: #000000;
+    border-color: #000000;
+  }
+
+  .action-button:hover {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .classic-theme.dark-mode .action-button:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+
+  .action-button svg {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2;
+  }
+
+  .card-content {
+    padding: 0 1.5rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 1rem;
+  }
+
+  .classic-theme.dark-mode .project-title {
+    color: #ffffff;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #666666;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .classic-theme.dark-mode .project-description {
+    color: #cccccc;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+  }
+
+  .project-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #000000;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    flex: 1;
+    justify-content: center;
+  }
+
+  body.classic-theme.dark-mode .project-link {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  .project-link:hover {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
+  }
+
+  body.classic-theme.dark-mode .project-link:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+  }
+
+  .project-link svg {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2;
+  }
+
+  .live-link {
+    border-color: #000000;
+    background: #000000;
+    color: #ffffff;
+  }
+
+  body.classic-theme.dark-mode .live-link {
+    border-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .live-link:hover {
+    background: transparent;
+    color: #000000;
+  }
+
+  body.classic-theme.dark-mode .live-link:hover {
+    background: transparent !important;
+    color: #ffffff !important;
+  }
 </style>
