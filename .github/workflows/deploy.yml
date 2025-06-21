@@ -1,11 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow every day at a specific time (adjust the cron schedule as needed)
-  schedule:
-    - cron: "0 0 * * *"
   # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
   push:
     branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
@@ -24,7 +20,7 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
-        uses: withastro/action@v0
+        uses: withastro/action@v3
         # with:
             # path: . # The root location of your Astro project inside the repository. (optional)
             # node-version: 16 # The specific version of Node that should be used to build your site. Defaults to 16. (optional)
@@ -39,4 +35,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
