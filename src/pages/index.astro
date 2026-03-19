@@ -32,16 +32,22 @@ blogs = blogs.splice(0, 3);
 <Layout title="Sidharth Mohanty" description="Software Engineer - Portfolio">
   <Hero />
 
-  <section class="section" style="animation: fadeInUp 0.6s ease 0.1s both;">
+  <!-- Timeline Section -->
+  <section class="section reveal">
     <div class="section-header">
-      <h2 class="section-label">Timeline</h2>
+      <div class="section-label-group">
+        <span class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        </span>
+        <h2 class="section-label">Timeline</h2>
+      </div>
       <a href="/experiences" class="section-action">
         View all
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18 6-6-6-6"/></svg>
       </a>
     </div>
 
-    <div class="timeline">
+    <div class="glass-panel timeline-panel">
       {
         Object.entries(lifeUpdates)
           .sort(([a], [b]) => parseInt(b) - parseInt(a))
@@ -74,9 +80,15 @@ blogs = blogs.splice(0, 3);
     </div>
   </section>
 
-  <section class="section" style="animation: fadeInUp 0.6s ease 0.2s both;">
+  <!-- Featured Talk Section -->
+  <section class="section reveal">
     <div class="section-header">
-      <h2 class="section-label">Featured Talk</h2>
+      <div class="section-label-group">
+        <span class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="23,7 16,12 23,17"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        </span>
+        <h2 class="section-label">Featured Talk</h2>
+      </div>
       <a
         href="https://www.youtube.com/playlist?list=PL6p5XNtolyav0udwal2UzwP4vqTPXZUDz"
         target="_blank"
@@ -92,21 +104,18 @@ blogs = blogs.splice(0, 3);
       href="https://www.youtube.com/watch?v=ZDlelRrL-8g&list=PL6p5XNtolyav0udwal2UzwP4vqTPXZUDz"
       target="_blank"
       rel="noopener noreferrer"
-      class="talk-card"
+      class="talk-card glass-panel"
     >
       <div class="talk-thumbnail">
-        <img
-          src="/assets/rc1.png"
-          alt="Opensource to Opportunities talk"
-          class="talk-img"
-        />
+        <img src="/assets/rc1.png" alt="Opensource to Opportunities talk" class="talk-img" />
         <div class="play-overlay">
-          <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon">
-            <polygon points="5,3 19,12 5,21"></polygon>
-          </svg>
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
         </div>
       </div>
       <div class="talk-info">
+        <span class="talk-tag">YouTube</span>
         <h3 class="talk-name">GSoC Alumni Meet 2023: Opensource to Opportunities</h3>
         <p class="talk-desc">
           How open source can be leveraged to land opportunities and grow as
@@ -116,9 +125,15 @@ blogs = blogs.splice(0, 3);
     </a>
   </section>
 
-  <section class="section" style="animation: fadeInUp 0.6s ease 0.3s both;">
+  <!-- Recent Writing Section -->
+  <section class="section reveal">
     <div class="section-header">
-      <h2 class="section-label">Recent Writing</h2>
+      <div class="section-label-group">
+        <span class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </span>
+        <h2 class="section-label">Recent Writing</h2>
+      </div>
       <a href="/blogs" class="section-action">
         All articles
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18 6-6-6-6"/></svg>
@@ -127,12 +142,12 @@ blogs = blogs.splice(0, 3);
 
     <div class="articles-list">
       {
-        blogs.map((blog: any) => (
+        blogs.map((blog: any, i: number) => (
           <a
             href={blog.canonical_url}
             target="_blank"
             rel="noopener noreferrer"
-            class="article-row"
+            class={`article-row reveal reveal-delay-${i + 1}`}
           >
             <div class="article-main">
               <h3 class="article-title">{blog.title}</h3>
@@ -147,26 +162,40 @@ blogs = blogs.splice(0, 3);
     </div>
   </section>
 
-  <section class="section cta-section" style="animation: fadeInUp 0.6s ease 0.4s both;">
-    <div class="cta-content">
-      <h2 class="cta-title">Let's connect</h2>
-      <p class="cta-text">
-        I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great.
-      </p>
-      <a href="mailto:sidmohanty11@gmail.com" class="cta-btn">
-        Get in touch
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M17 7H7M17 7V17"/>
-        </svg>
-      </a>
+  <!-- CTA Section -->
+  <section class="section cta-section reveal">
+    <div class="cta-panel">
+      <div class="cta-glow" aria-hidden="true"></div>
+      <div class="cta-content">
+        <h2 class="cta-title">Let's build something together</h2>
+        <p class="cta-text">
+          I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great.
+        </p>
+        <a href="mailto:sidmohanty11@gmail.com" class="cta-btn">
+          <span>Get in touch</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 </Layout>
 
 <style>
+  /* Sections */
   .section {
-    padding: 3rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 3.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    position: relative;
+  }
+
+  .section::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.5), transparent);
   }
 
   .section-header {
@@ -176,9 +205,32 @@ blogs = blogs.splice(0, 3);
     margin-bottom: 1.75rem;
   }
 
+  .section-label-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(99, 102, 241, 0.1);
+    color: #818cf8;
+  }
+
+  .section-icon svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+  }
+
   .section-label {
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: #71717a;
@@ -189,26 +241,39 @@ blogs = blogs.splice(0, 3);
     align-items: center;
     gap: 0.25rem;
     font-size: 0.8rem;
-    color: #a1a1aa;
+    color: #52525b;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
   }
 
   .section-action:hover {
-    color: #fafafa;
+    color: #818cf8;
   }
 
   .section-action svg {
     width: 14px;
     height: 14px;
     stroke-width: 2;
+    transition: transform 0.2s ease;
+  }
+
+  .section-action:hover svg {
+    transform: translateX(2px);
+  }
+
+  /* Glass panel */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03);
   }
 
   /* Timeline */
-  .timeline {
-    display: flex;
-    flex-direction: column;
+  .timeline-panel {
+    padding: 0.5rem 1.25rem;
   }
 
   .timeline-group {
@@ -224,7 +289,7 @@ blogs = blogs.splice(0, 3);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.875rem 0;
+    padding: 1rem 0;
     background: none;
     border: none;
     cursor: pointer;
@@ -232,7 +297,7 @@ blogs = blogs.splice(0, 3);
     font-family: "JetBrains Mono", monospace;
     font-size: 0.9rem;
     font-weight: 500;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
   }
 
   .year-btn:hover {
@@ -243,8 +308,12 @@ blogs = blogs.splice(0, 3);
     width: 16px;
     height: 16px;
     stroke-width: 2;
-    color: #52525b;
-    transition: transform 0.25s ease;
+    color: #3f3f46;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .year-btn:hover .chevron-icon {
+    color: #818cf8;
   }
 
   .year-btn.expanded .chevron-icon {
@@ -256,7 +325,7 @@ blogs = blogs.splice(0, 3);
     margin: 0;
     padding: 0 0 0.75rem 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   }
 
   .timeline-items.collapsed {
@@ -275,21 +344,37 @@ blogs = blogs.splice(0, 3);
     align-items: flex-start;
     gap: 0.75rem;
     padding: 0.5rem 0;
+    transition: padding-left 0.2s ease;
+  }
+
+  .timeline-entry:hover {
+    padding-left: 0.25rem;
   }
 
   .entry-dot {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background: #6366f1;
     border-radius: 50%;
-    margin-top: 0.55rem;
+    margin-top: 0.5rem;
     flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(99, 102, 241, 0.4);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .timeline-entry:hover .entry-dot {
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
   }
 
   .entry-text {
     font-size: 0.925rem;
     line-height: 1.6;
     color: #a1a1aa;
+    transition: color 0.2s ease;
+  }
+
+  .timeline-entry:hover .entry-text {
+    color: #d4d4d8;
   }
 
   /* Talk Card */
@@ -297,31 +382,33 @@ blogs = blogs.splice(0, 3);
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    padding: 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 12px;
+    padding: 1rem;
     text-decoration: none;
     color: inherit;
-    transition: all 0.25s ease;
-    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
   }
 
   @media (min-width: 640px) {
     .talk-card {
       flex-direction: row;
       gap: 1.5rem;
+      padding: 1.25rem;
     }
   }
 
   .talk-card:hover {
-    border-color: rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(99, 102, 241, 0.2);
+    background: rgba(99, 102, 241, 0.03);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(99, 102, 241, 0.1);
+    transform: translateY(-2px);
   }
 
   .talk-thumbnail {
     position: relative;
     flex-shrink: 0;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
     aspect-ratio: 16/9;
     width: 100%;
@@ -329,7 +416,7 @@ blogs = blogs.splice(0, 3);
 
   @media (min-width: 640px) {
     .talk-thumbnail {
-      width: 280px;
+      width: 300px;
     }
   }
 
@@ -337,11 +424,11 @@ blogs = blogs.splice(0, 3);
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .talk-card:hover .talk-img {
-    transform: scale(1.03);
+    transform: scale(1.05);
   }
 
   .play-overlay {
@@ -350,20 +437,38 @@ blogs = blogs.splice(0, 3);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0.1));
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.3s ease;
   }
 
   .talk-card:hover .play-overlay {
     opacity: 1;
   }
 
+  .play-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+  }
+
+  .talk-card:hover .play-btn {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+  }
+
   .play-icon {
-    width: 36px;
-    height: 36px;
+    width: 20px;
+    height: 20px;
     color: #fff;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    margin-left: 2px;
   }
 
   .talk-info {
@@ -373,8 +478,27 @@ blogs = blogs.splice(0, 3);
     gap: 0.5rem;
   }
 
+  .talk-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .talk-tag::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ef4444;
+  }
+
   .talk-name {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 600;
     color: #fafafa;
     line-height: 1.35;
@@ -398,20 +522,22 @@ blogs = blogs.splice(0, 3);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    gap: 1.5rem;
+    padding: 1.25rem 0.75rem;
+    margin: 0 -0.75rem;
+    border-radius: 10px;
     text-decoration: none;
     color: inherit;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .article-row:last-child {
-    border-bottom: none;
+  .article-row + .article-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
   }
 
   .article-row:hover {
-    padding-left: 0.5rem;
+    background: rgba(255, 255, 255, 0.025);
+    padding-left: 1.25rem;
   }
 
   .article-row:hover .article-title {
@@ -420,7 +546,7 @@ blogs = blogs.splice(0, 3);
 
   .article-row:hover .article-arrow {
     color: #818cf8;
-    transform: translate(2px, -2px);
+    transform: translate(3px, -3px);
   }
 
   .article-main {
@@ -432,14 +558,14 @@ blogs = blogs.splice(0, 3);
     font-size: 1rem;
     font-weight: 500;
     color: #e4e4e7;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.3rem;
     line-height: 1.4;
     transition: color 0.2s ease;
   }
 
   .article-excerpt {
     font-size: 0.85rem;
-    color: #52525b;
+    color: #71717a;
     line-height: 1.5;
     margin: 0;
     display: -webkit-box;
@@ -449,37 +575,72 @@ blogs = blogs.splice(0, 3);
   }
 
   .article-arrow {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     stroke-width: 2;
-    color: #3f3f46;
+    color: #27272a;
     flex-shrink: 0;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* CTA */
   .cta-section {
+    padding: 4rem 0 5rem;
+    border-top: none;
+  }
+
+  .cta-section::before {
+    display: none;
+  }
+
+  .cta-panel {
+    position: relative;
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 20px;
+    padding: 3.5rem 2rem;
     text-align: center;
-    padding: 5rem 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.04), rgba(139, 92, 246, 0.02), rgba(59, 130, 246, 0.03));
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
   }
 
   .cta-content {
-    max-width: 420px;
+    position: relative;
+    z-index: 1;
+    max-width: 440px;
     margin: 0 auto;
   }
 
   .cta-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.75rem;
+    letter-spacing: -0.035em;
+    margin-bottom: 0.875rem;
     color: #fafafa;
+    line-height: 1.15;
+  }
+
+  @media (min-width: 768px) {
+    .cta-title {
+      font-size: 2.5rem;
+    }
   }
 
   .cta-text {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #71717a;
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 2rem;
   }
 
@@ -487,25 +648,31 @@ blogs = blogs.splice(0, 3);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: #6366f1;
+    padding: 0.875rem 1.75rem;
+    background: linear-gradient(135deg, #6366f1, #7c3aed);
     color: #fff;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 500;
+    border-radius: 10px;
+    font-size: 0.925rem;
+    font-weight: 600;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .cta-btn:hover {
-    background: #4f46e5;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .cta-btn svg {
     width: 16px;
     height: 16px;
     stroke-width: 2;
+    transition: transform 0.2s ease;
+  }
+
+  .cta-btn:hover svg {
+    transform: translate(2px, -2px);
   }
 </style>
 
@@ -516,7 +683,6 @@ blogs = blogs.splice(0, 3);
 
     if (heading && content) {
       const isExpanded = heading.classList.contains("expanded");
-
       if (isExpanded) {
         heading.classList.replace("expanded", "collapsed");
         content.classList.replace("expanded", "collapsed");
@@ -533,38 +699,19 @@ blogs = blogs.splice(0, 3);
 <script>
   const contactForm = document.getElementById("contact-form");
   const contactFormBtn = document.getElementById("contactFormBtn");
-
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
   contactForm?.addEventListener("submit", function (e) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
-
-    if (
-      form.from_name.value.length < 3 ||
-      form.message.value.length < 10 ||
-      !emailRegex.test(form.reply_to.value)
-    ) {
+    if (form.from_name.value.length < 3 || form.message.value.length < 10 || !emailRegex.test(form.reply_to.value)) {
       alert("Please fill the form correctly");
       return;
     }
-
     contactFormBtn?.setAttribute("disabled", "disabled");
-
     (window as any).emailjs
-      .sendForm(
-        "service_hf1jiuc",
-        "template_pg4422m",
-        form,
-        "aJgInfpLC2IuFXA9X"
-      )
-      .then(() => {
-        alert("Message sent successfully!");
-        contactFormBtn?.removeAttribute("disabled");
-      })
-      .catch((err: any) => {
-        console.log(err);
-        contactFormBtn?.removeAttribute("disabled");
-      });
+      .sendForm("service_hf1jiuc", "template_pg4422m", form, "aJgInfpLC2IuFXA9X")
+      .then(() => { alert("Message sent successfully!"); contactFormBtn?.removeAttribute("disabled"); })
+      .catch((err: any) => { console.log(err); contactFormBtn?.removeAttribute("disabled"); });
   });
 </script>
