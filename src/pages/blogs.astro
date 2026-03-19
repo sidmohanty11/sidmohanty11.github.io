@@ -11,6 +11,16 @@ const blogs = (await fetch(
   <section class="blogs-hero">
     <p class="hero-eyebrow">Writing</p>
     <h1 class="hero-title">Articles & Insights</h1>
+    <svg class="wavy-accent" viewBox="0 0 120 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M2 6c4-4 8-4 12 0s8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0 8 4 12 0" stroke="url(#wavyGradBlogs)" stroke-width="2.5" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="wavyGradBlogs" x1="0" y1="6" x2="120" y2="6">
+          <stop offset="0%" stop-color="#6366f1"/>
+          <stop offset="50%" stop-color="#a78bfa"/>
+          <stop offset="100%" stop-color="#818cf8"/>
+        </linearGradient>
+      </defs>
+    </svg>
     <p class="hero-desc">
       Thoughts on technology, development, and the lessons I learn along the way.
     </p>
@@ -93,6 +103,14 @@ const blogs = (await fetch(
     .hero-title {
       font-size: 4rem;
     }
+  }
+
+  .wavy-accent {
+    width: 120px;
+    height: 12px;
+    display: block;
+    margin: 0 auto 1.25rem;
+    opacity: 0.8;
   }
 
   .hero-desc {

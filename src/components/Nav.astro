@@ -22,17 +22,25 @@ const navElements = [
           </a>
         ))
       }
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
-        class="resume-btn"
-      >
-        Resume
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="resume-icon">
-          <path d="M7 17L17 7M17 7H7M17 7V17"/>
-        </svg>
-      </a>
+      <div class="nav-actions">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
+          class="nav-action-link"
+        >
+          Resume
+        </a>
+        <a href="mailto:sidmohanty11@gmail.com" class="nav-action-link">
+          Contact
+        </a>
+        <a href="https://github.com/sidmohanty11" target="_blank" rel="noopener noreferrer" class="nav-icon-link" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://twitter.com/sidmohanty11" target="_blank" rel="noopener noreferrer" class="nav-icon-link" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
     </nav>
 
     <button type="button" class="mobile-menu-btn" id="navigationBtn" aria-label="Open menu">
@@ -168,32 +176,49 @@ const navElements = [
     border-radius: 1px;
   }
 
-  .resume-btn {
-    display: inline-flex;
+  .nav-actions {
+    display: flex;
     align-items: center;
-    gap: 0.375rem;
-    color: #e4e4e7;
+    gap: 0.125rem;
+    margin-left: 0.75rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .nav-action-link {
+    color: #a1a1aa;
     font-size: 0.825rem;
     font-weight: 500;
-    padding: 0.4rem 0.875rem;
-    border: 1px solid rgba(99, 102, 241, 0.3);
+    padding: 0.4rem 0.625rem;
     border-radius: 6px;
     text-decoration: none;
-    transition: all 0.25s ease;
-    margin-left: 0.5rem;
-    background: rgba(99, 102, 241, 0.06);
+    transition: all 0.2s ease;
   }
 
-  .resume-btn:hover {
-    background: rgba(99, 102, 241, 0.12);
-    border-color: rgba(99, 102, 241, 0.5);
-    box-shadow: 0 0 16px rgba(99, 102, 241, 0.1);
+  .nav-action-link:hover {
+    color: #fafafa;
+    background: rgba(255, 255, 255, 0.04);
   }
 
-  .resume-icon {
-    width: 0.8rem;
-    height: 0.8rem;
-    stroke-width: 2;
+  .nav-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #52525b;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-icon-link:hover {
+    color: #a1a1aa;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .nav-icon-link svg {
+    width: 15px;
+    height: 15px;
   }
 
   .mobile-menu-btn {
@@ -327,37 +352,50 @@ const navElements = [
   }
 </style>
 
-<script>
-  const mobileNav = document.querySelector("#mobileNav");
-  const navigationBtn = document.querySelector("#navigationBtn");
-  const closeNavBtn = document.querySelector("#closeNavBtn");
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    var mobileNav = document.getElementById("mobileNav");
+    var navigationBtn = document.getElementById("navigationBtn");
+    var closeNavBtn = document.getElementById("closeNavBtn");
 
-  const pathname = window.location.pathname;
+    var pathname = window.location.pathname;
+    var navLinks = document.querySelectorAll(".nav-link, .mobile-link");
+    navLinks.forEach(function (link) {
+      var href = link.getAttribute("href");
+      if (href === pathname || href + "/" === pathname) {
+        link.classList.add("active");
+      }
+    });
 
-  const navLinks = document.querySelectorAll(".nav-link, .mobile-link");
-  navLinks.forEach((link) => {
-    const href = link.getAttribute("href");
-    if (href === pathname || `${href}/` === pathname) {
-      link.classList.add("active");
+    if (navigationBtn) {
+      navigationBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (mobileNav) mobileNav.classList.remove("hidden");
+      });
     }
-  });
 
-  document.addEventListener("click", (e) => {
-    if (
-      e.target !== mobileNav &&
-      e.target !== navigationBtn &&
-      !mobileNav?.contains(e.target as Node) &&
-      !navigationBtn?.contains(e.target as Node)
-    ) {
-      mobileNav?.classList.add("hidden");
+    if (closeNavBtn) {
+      closeNavBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (mobileNav) mobileNav.classList.add("hidden");
+      });
     }
-  });
 
-  closeNavBtn?.addEventListener("click", () => {
-    mobileNav?.classList.add("hidden");
-  });
+    // Close on overlay background click (not inner content)
+    if (mobileNav) {
+      mobileNav.addEventListener("click", function (e) {
+        if (e.target === mobileNav) {
+          mobileNav.classList.add("hidden");
+        }
+      });
+    }
 
-  navigationBtn?.addEventListener("click", () => {
-    mobileNav?.classList.remove("hidden");
+    // Close on link click
+    var mobileLinks = document.querySelectorAll(".mobile-link");
+    mobileLinks.forEach(function (link) {
+      link.addEventListener("click", function () {
+        if (mobileNav) mobileNav.classList.add("hidden");
+      });
+    });
   });
 </script>

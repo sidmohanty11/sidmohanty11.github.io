@@ -695,23 +695,3 @@ blogs = blogs.splice(0, 3);
 
   (window as any).toggleYear = toggleYear;
 </script>
-
-<script>
-  const contactForm = document.getElementById("contact-form");
-  const contactFormBtn = document.getElementById("contactFormBtn");
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-
-  contactForm?.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    if (form.from_name.value.length < 3 || form.message.value.length < 10 || !emailRegex.test(form.reply_to.value)) {
-      alert("Please fill the form correctly");
-      return;
-    }
-    contactFormBtn?.setAttribute("disabled", "disabled");
-    (window as any).emailjs
-      .sendForm("service_hf1jiuc", "template_pg4422m", form, "aJgInfpLC2IuFXA9X")
-      .then(() => { alert("Message sent successfully!"); contactFormBtn?.removeAttribute("disabled"); })
-      .catch((err: any) => { console.log(err); contactFormBtn?.removeAttribute("disabled"); });
-  });
-</script>
