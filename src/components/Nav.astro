@@ -1,332 +1,267 @@
 ---
 const navElements = [
-  {
-    id: 1,
-    name: "Home",
-    path: "/",
-  },
-  {
-    id: 2,
-    name: "Story",
-    path: "/story",
-  },
-  {
-    id: 3,
-    name: "Blogs",
-    path: "/blogs",
-  },
-  {
-    id: 4,
-    name: "Experiences",
-    path: "/experiences",
-  },
-  {
-    id: 5,
-    name: "Projects",
-    path: "/projects",
-  },
+  { id: 1, name: "Home", path: "/" },
+  { id: 2, name: "Story", path: "/story" },
+  { id: 3, name: "Blogs", path: "/blogs" },
+  { id: 4, name: "Experience", path: "/experiences" },
+  { id: 5, name: "Projects", path: "/projects" },
 ];
 ---
 
-<header class="classic-header">
-  <section class="header-content">
-    <a href="/" class="logo-container">
-      <img
-        src="/assets/sidharth-mohanty.jpeg"
-        alt="Sidharth Mohanty"
-        class="profile-image"
-      />
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-text">sid.</span>
     </a>
 
     <nav class="desktop-nav">
-      <ul class="nav-list">
-        {
-          navElements.map((element) => (
-            <li class="nav-item">
-              <a href={element.path} class="nav-link">
-                {element.name}
-              </a>
-            </li>
-          ))
-        }
-        <li class="nav-item">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
-            class="nav-link resume-link">Resume</a
-          >
-        </li>
-      </ul>
+      {
+        navElements.map((el) => (
+          <a href={el.path} class="nav-link">
+            {el.name}
+          </a>
+        ))
+      }
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
+        class="resume-btn"
+      >
+        Resume
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="resume-icon">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15,3 21,3 21,9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
     </nav>
 
-    <div class="header-controls">
-      <button type="button" class="mobile-nav-btn" id="navigationBtn">
-        <span class="mobile-nav-text">Menu</span>
-        <svg
-          class="mobile-nav-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-        >
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-  </section>
+    <button type="button" class="mobile-menu-btn" id="navigationBtn" aria-label="Open menu">
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+    </button>
+  </div>
 
-  <!-- Mobile Navigation -->
-  <section class="mobile-nav hidden" id="mobileNav">
-    <div class="mobile-nav-header">
-      <h3 class="mobile-nav-title">Navigation</h3>
-      <button class="mobile-nav-close" id="closeNavBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-    <nav class="mobile-nav-content">
-      <ul class="mobile-nav-list">
+  <div class="mobile-overlay hidden" id="mobileNav">
+    <div class="mobile-overlay-inner">
+      <div class="mobile-header">
+        <a href="/" class="logo">
+          <span class="logo-text">sid.</span>
+        </a>
+        <button class="mobile-close-btn" id="closeNavBtn" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-nav-links">
         {
           navElements.map((el) => (
-            <li class="mobile-nav-item">
-              <a href={el.path} class="mobile-nav-link">
-                {el.name}
-              </a>
-            </li>
+            <a href={el.path} class="mobile-link">
+              {el.name}
+            </a>
           ))
         }
-        <li class="mobile-nav-item">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
-            class="mobile-nav-link">Resume</a
-          >
-        </li>
-      </ul>
-    </nav>
-  </section>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://drive.google.com/file/d/1EoFN--jq4xlQJ53tqIHTBhZa87qdNUUG/view"
+          class="mobile-link"
+        >
+          Resume
+        </a>
+      </nav>
+    </div>
+  </div>
 </header>
 
 <style>
-  .classic-header {
+  .site-header {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 1rem 0;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  .header-content {
-    max-width: 1200px;
+  .header-inner {
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 64px;
   }
 
-  .logo-container {
+  @media (min-width: 768px) {
+    .header-inner {
+      padding: 0 2.5rem;
+    }
+  }
+
+  .logo {
     text-decoration: none;
   }
 
-  .profile-image {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    transition: border-color 0.3s ease;
-  }
-
-  .profile-image:hover {
-    border-color: #000000;
+  .logo-text {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fafafa;
+    letter-spacing: -0.02em;
   }
 
   .desktop-nav {
     display: none;
+    align-items: center;
+    gap: 2rem;
   }
 
   @media (min-width: 768px) {
     .desktop-nav {
-      display: block;
+      display: flex;
     }
   }
 
-  .nav-list {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 2.5rem;
-  }
-
-  .nav-item {
-    position: relative;
-  }
-
   .nav-link {
-    color: #000000;
+    color: #a1a1aa;
     text-decoration: none;
+    font-size: 0.875rem;
     font-weight: 400;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    position: relative;
+    transition: color 0.2s ease;
+    letter-spacing: 0;
   }
 
-  .nav-link:hover {
-    opacity: 0.6;
+  .nav-link:hover,
+  .nav-link.active {
+    color: #fafafa;
   }
 
-  .nav-link.active::after {
-    content: "";
-    position: absolute;
-    bottom: -0.5rem;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: #000000;
-  }
-
-  .resume-link {
-    border: 1px solid #000000;
+  .resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #fafafa;
+    font-size: 0.875rem;
+    font-weight: 500;
     padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
 
-  .resume-link:hover {
-    background: #000000;
-    color: #ffffff !important;
-    opacity: 1;
+  .resume-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.25);
   }
 
-  .header-controls {
+  .resume-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    stroke-width: 2;
+  }
+
+  .mobile-menu-btn {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .mobile-nav-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 5px;
     background: none;
-    border: 1px solid #000000;
-    color: #000000;
-    padding: 0.5rem 1rem;
+    border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    padding: 6px;
   }
 
   @media (min-width: 768px) {
-    .mobile-nav-btn {
+    .mobile-menu-btn {
       display: none;
     }
   }
 
-  .mobile-nav-btn:hover {
-    background: #000000;
-    color: #ffffff;
+  .menu-bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #fafafa;
+    border-radius: 1px;
+    transition: all 0.2s ease;
   }
 
-  .mobile-nav-text {
-    font-size: 0.85rem;
+  .mobile-menu-btn:hover .menu-bar {
+    background: #a1a1aa;
   }
 
-  .mobile-nav-icon {
-    width: 1rem;
-    height: 1rem;
-    stroke-width: 1.5;
-  }
-
-  /* Mobile Navigation */
-  .mobile-nav {
+  .mobile-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
+    inset: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
     z-index: 100;
-    padding: 2rem;
+    animation: fadeIn 0.2s ease;
   }
 
-  .mobile-nav.hidden {
+  .mobile-overlay.hidden {
     display: none;
   }
 
-  .mobile-nav-header {
+  .mobile-overlay-inner {
+    padding: 0 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3rem;
+    height: 64px;
   }
 
-  .mobile-nav-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0;
-    color: #000000;
-  }
-
-  .mobile-nav-close {
+  .mobile-close-btn {
     background: none;
-    border: 1px solid #000000;
-    color: #000000;
-    width: 2.5rem;
-    height: 2.5rem;
+    border: none;
+    color: #a1a1aa;
     cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 6px;
+    transition: color 0.2s ease;
   }
 
-  .mobile-nav-close:hover {
-    background: #000000;
-    color: #ffffff;
+  .mobile-close-btn:hover {
+    color: #fafafa;
   }
 
-  .mobile-nav-close svg {
-    width: 1.2rem;
-    height: 1.2rem;
+  .mobile-close-btn svg {
+    width: 24px;
+    height: 24px;
     stroke-width: 1.5;
   }
 
-  .mobile-nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 2rem;
   }
 
-  .mobile-nav-item {
-    margin-bottom: 2rem;
-  }
-
-  .mobile-nav-link {
-    color: #000000;
+  .mobile-link {
+    color: #a1a1aa;
     text-decoration: none;
-    font-family: "Playfair Display", serif;
     font-size: 2rem;
-    font-weight: 500;
-    transition: opacity 0.3s ease;
-    display: block;
+    font-weight: 300;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: color 0.2s ease;
+    letter-spacing: -0.02em;
   }
 
-  .mobile-nav-link:hover {
-    opacity: 0.6;
+  .mobile-link:hover,
+  .mobile-link.active {
+    color: #fafafa;
   }
 </style>
 
@@ -337,8 +272,7 @@ const navElements = [
 
   const pathname = window.location.pathname;
 
-  // Set active navigation link
-  const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+  const navLinks = document.querySelectorAll(".nav-link, .mobile-link");
   navLinks.forEach((link) => {
     const href = link.getAttribute("href");
     if (href === pathname || `${href}/` === pathname) {
@@ -346,7 +280,6 @@ const navElements = [
     }
   });
 
-  // Mobile navigation
   document.addEventListener("click", (e) => {
     if (
       e.target !== mobileNav &&

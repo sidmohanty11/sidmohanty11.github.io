@@ -17,388 +17,158 @@ const { project, index = 0 } = Astro.props;
 ---
 
 <article class="project-card">
-  <div class="card-header">
-    <div class="project-number">{String(index + 1).padStart(2, "0")}</div>
-    <div class="project-meta">
-      {
-        project.category && (
-          <span class="project-category">{project.category}</span>
-        )
-      }
-      {project.year && <span class="project-year">{project.year}</span>}
-    </div>
+  <div class="card-image">
+    <img src={project.imgUrl} alt={project.name} class="project-img" loading="lazy" />
   </div>
-
-  <div class="project-image-container">
-    <img
-      src={project.imgUrl}
-      alt={project.name}
-      class="project-image"
-      loading="lazy"
-    />
-    <div class="image-overlay">
-      <div class="overlay-content">
-        <h3 class="overlay-title">{project.name}</h3>
-        <p class="overlay-description">{project.description}</p>
-        <div class="overlay-actions">
-          <a
-            href={project.github_link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="action-button"
-            aria-label="View GitHub repository"
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-              ></path>
-            </svg>
-            <span>Code</span>
-          </a>
-
-          {
-            project.live_link && (
-              <a
-                href={project.live_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="action-button"
-                aria-label="View live demo"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15,3 21,3 21,9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                <span>Live</span>
-              </a>
-            )
-          }
-        </div>
-      </div>
+  <div class="card-body">
+    <div class="card-meta">
+      {project.category && <span class="card-category">{project.category}</span>}
+      {project.year && <span class="card-year">{project.year}</span>}
     </div>
-  </div>
-
-  <div class="card-content">
-    <h3 class="project-title">{project.name}</h3>
-    <p class="project-description">{project.description}</p>
-
-    <div class="project-links">
-      <a
-        href={project.github_link}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link"
-      >
-        <span>View Code</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-          ></path>
-          <polyline points="15,3 21,3 21,9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
+    <h3 class="card-name">{project.name}</h3>
+    <p class="card-desc">{project.description}</p>
+    <div class="card-actions">
+      <a href={project.github_link} target="_blank" rel="noopener noreferrer" class="action-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        Code
       </a>
-
-      {
-        project.live_link && (
-          <a
-            href={project.live_link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project-link live-link"
-          >
-            <span>Live Demo</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 6v6l4 2" />
-            </svg>
-          </a>
-        )
-      }
+      {project.live_link && (
+        <a href={project.live_link} target="_blank" rel="noopener noreferrer" class="action-link action-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          Live
+        </a>
+      )}
     </div>
   </div>
 </article>
 
 <style>
   .project-card {
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+    transition: all 0.25s ease;
     display: flex;
     flex-direction: column;
-  }
-
-  body.classic-theme.dark-mode .project-card {
-    border-color: rgba(255, 255, 255, 0.2) !important;
+    height: 100%;
   }
 
   .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-2px);
   }
 
-  .classic-theme.dark-mode .project-card:hover {
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-  }
-
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 1.5rem 0;
-    margin-bottom: 1rem;
-  }
-
-  .project-number {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #000000;
-    line-height: 1;
-  }
-
-  .classic-theme.dark-mode .project-number {
-    color: #ffffff;
-  }
-
-  .project-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .project-category,
-  .project-year {
-    font-size: 0.8rem;
-    color: #666666;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 500;
-  }
-
-  .classic-theme.dark-mode .project-category,
-  .classic-theme.dark-mode .project-year {
-    color: #cccccc;
-  }
-
-  .project-category {
-    padding: 0.25rem 0.75rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-  }
-
-  body.classic-theme.dark-mode .project-category {
-    border-color: rgba(255, 255, 255, 0.2) !important;
-  }
-
-  .project-image-container {
-    position: relative;
-    margin: 0 1.5rem 1.5rem;
+  .card-image {
+    height: 180px;
     overflow: hidden;
-    background: #f8f8f8;
-    height: 200px;
+    background: #18181b;
   }
 
-  .classic-theme.dark-mode .project-image-container {
-    background: #1a1a1a;
-  }
-
-  .project-image {
+  .project-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%);
+    opacity: 0.8;
     transition: all 0.3s ease;
   }
 
-  .project-card:hover .project-image {
-    filter: grayscale(0%);
-    transform: scale(1.05);
-  }
-
-  .image-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .classic-theme.dark-mode .image-overlay {
-    background: rgba(255, 255, 255, 0.95);
-  }
-
-  .project-image-container:hover .image-overlay {
+  .project-card:hover .project-img {
     opacity: 1;
-    visibility: visible;
+    transform: scale(1.03);
   }
 
-  .overlay-content {
-    text-align: center;
-    padding: 2rem;
-    color: #ffffff;
-  }
-
-  .classic-theme.dark-mode .overlay-content {
-    color: #000000;
-  }
-
-  .overlay-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .overlay-description {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-  }
-
-  .overlay-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  .action-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 1px solid #ffffff;
-    padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .classic-theme.dark-mode .action-button {
-    color: #000000;
-    border-color: #000000;
-  }
-
-  .action-button:hover {
-    background: #ffffff;
-    color: #000000;
-  }
-
-  .classic-theme.dark-mode .action-button:hover {
-    background: #000000;
-    color: #ffffff;
-  }
-
-  .action-button svg {
-    width: 1rem;
-    height: 1rem;
-    stroke-width: 2;
-  }
-
-  .card-content {
-    padding: 0 1.5rem 1.5rem;
-    flex: 1;
+  .card-body {
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
-  }
-
-  .project-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #000000;
-    margin-bottom: 1rem;
-  }
-
-  .classic-theme.dark-mode .project-title {
-    color: #ffffff;
-  }
-
-  .project-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #666666;
-    margin-bottom: 1.5rem;
     flex: 1;
   }
 
-  .classic-theme.dark-mode .project-description {
-    color: #cccccc;
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 0.625rem;
   }
 
-  .project-links {
+  .card-category {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #6366f1;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card-year {
+    font-size: 0.7rem;
+    color: #52525b;
+    font-weight: 500;
+  }
+
+  .card-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e4e4e7;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+  }
+
+  .project-card:hover .card-name {
+    color: #fafafa;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #71717a;
+    margin: 0 0 1.25rem;
+    flex: 1;
+  }
+
+  .card-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: auto;
   }
 
-  .project-link {
-    display: flex;
+  .action-link {
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: #000000;
-    text-decoration: none;
-    font-size: 0.8rem;
+    gap: 0.375rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    color: #a1a1aa;
+    font-size: 0.75rem;
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
-    flex: 1;
-    justify-content: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
 
-  body.classic-theme.dark-mode .project-link {
-    color: #ffffff !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
+  .action-link:hover {
+    color: #fafafa;
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.04);
   }
 
-  .project-link:hover {
-    background: #000000;
-    color: #ffffff;
-    border-color: #000000;
-  }
-
-  body.classic-theme.dark-mode .project-link:hover {
-    background: #ffffff !important;
-    color: #000000 !important;
-    border-color: #ffffff !important;
-  }
-
-  .project-link svg {
-    width: 1rem;
-    height: 1rem;
+  .action-link svg {
+    width: 14px;
+    height: 14px;
     stroke-width: 2;
   }
 
-  .live-link {
-    border-color: #000000;
-    background: #000000;
-    color: #ffffff;
+  .action-primary {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.2);
+    color: #818cf8;
   }
 
-  body.classic-theme.dark-mode .live-link {
-    border-color: #ffffff !important;
-    background: #ffffff !important;
-    color: #000000 !important;
-  }
-
-  .live-link:hover {
-    background: transparent;
-    color: #000000;
-  }
-
-  body.classic-theme.dark-mode .live-link:hover {
-    background: transparent !important;
-    color: #ffffff !important;
+  .action-primary:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: rgba(99, 102, 241, 0.3);
+    color: #a5b4fc;
   }
 </style>

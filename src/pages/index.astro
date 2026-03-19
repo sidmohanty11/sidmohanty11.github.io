@@ -1,1104 +1,570 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-import Dino from "../components/Dino.astro";
 
 const lifeUpdates = {
-    "2025": [
-        {
-            id: 1,
-            title: "Promoted to Software Engineer II at Builder.io🚀",
-        },
-    ],
-    "2024": [
-        {
-            id: 1,
-            title: "Joined Builder.io as a Software Engineer!🎉",
-        },
-        {
-            id: 2,
-            title: "Google Summer of Code mentor 2024 with Rocket.Chat",
-        },
-    ],
-    "2023": [
-        {
-            id: 9,
-            title: "Got selected for an internship at my dream company - Builder.io",
-        },
-        {
-            id: 1,
-            title: "Linux Foundation Mentorship Program 2023 (summer) with The Open Mainframe Project.",
-        },
-        {
-            id: 5,
-            title: "Contributed to Embedchain - an Open Source RAG framework (Oct-Dec)",
-        },
-        {
-            id: 2,
-            title: "Google Summer of Code mentor 2023 with Rocket.Chat",
-        },
-        {
-            id: 3,
-            title: "Worked with Jugyah as a Founding Software Engineer Intern (Mar-May)",
-        },
-        {
-            id: 4,
-            title: "Worked with Memorang as a Software Engineer Intern (Jan-Apr)",
-        },
-    ],
-    "2022": [
-        {
-            id: 1,
-            title: "Worked with DragonfruitAI as a Software Engineer Intern (Sep-Dec)",
-        },
-        {
-            id: 2,
-            title: "Selected as React.js Subject Matter Expert at Relevel (by Unacademy)",
-        },
-        {
-            id: 3,
-            title: "Google Summer of Code 2022 with Rocket.Chat (May-Sep)",
-        },
-        {
-            id: 4,
-            title: "Worked with PropelHQ team as a Product Engineer Intern",
-        },
-    ],
-    "2021": [
-        {
-            id: 1,
-            title: "Open Source Contributor at Rocket.Chat (Oct 2021-Sep 2022)",
-        },
-    ],
+  "2025": [
+    { id: 1, title: "Promoted to Software Engineer II at Builder.io" },
+  ],
+  "2024": [
+    { id: 1, title: "Joined Builder.io as a Software Engineer" },
+    { id: 2, title: "Google Summer of Code mentor 2024 with Rocket.Chat" },
+  ],
+  "2023": [
+    { id: 9, title: "Got selected for an internship at my dream company - Builder.io" },
+    { id: 1, title: "Linux Foundation Mentorship Program 2023 with The Open Mainframe Project" },
+    { id: 5, title: "Contributed to Embedchain - an Open Source RAG framework" },
+    { id: 2, title: "Google Summer of Code mentor 2023 with Rocket.Chat" },
+  ],
+  "2022": [
+    { id: 3, title: "Google Summer of Code 2022 with Rocket.Chat" },
+    { id: 2, title: "Selected as React.js Subject Matter Expert at Relevel" },
+    { id: 1, title: "Software Engineer Intern at DragonfruitAI" },
+  ],
 };
 
 let blogs = (await fetch(
-    "https://dev.to/api/articles?username=sidmohanty11"
+  "https://dev.to/api/articles?username=sidmohanty11"
 ).then((res) => res.json())) as any[];
 blogs = blogs.splice(0, 3);
 ---
 
-<Layout title="Sidharth Mohanty" description="Welcome to my page - Sid : )">
-    <Hero />
+<Layout title="Sidharth Mohanty" description="Software Engineer - Portfolio">
+  <Hero />
 
-    <section class="content-section">
-        <h2 class="section-title">Professional Timeline</h2>
-        <div class="timeline-container">
-            {
-                Object.entries(lifeUpdates)
-                    .sort(([year1], [year2]) => {
-                        return parseInt(year2) - parseInt(year1);
-                    })
-                    .map(([year, updates], index) => (
-                        <div class="timeline-year">
-                            <h3 class={`year-heading ${year === "2025" ? "expanded" : "collapsed"}`}
-                                data-year={year}
-                                onclick={`toggleYear('${year}')`}>
-                                <span class="year-text">{year}</span>
-                                <svg class="year-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <polyline points="6,9 12,15 18,9"></polyline>
-                                </svg>
-                            </h3>
-                            <ul class={`timeline-list ${year === "2025" ? "expanded" : "collapsed"}`} data-year-content={year}>
-                                {updates.map((update) => (
-                                    <li class="timeline-item">
-                                        <div class="timeline-marker"></div>
-                                        <span class="timeline-content">
-                                            {update.title}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))
-            }
-            <a href="/experiences" class="section-link">
-                <span>View Complete Professional History</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="m9 18 6-6-6-6"/>
+  <section class="section" style="animation: fadeInUp 0.6s ease 0.1s both;">
+    <div class="section-header">
+      <h2 class="section-label">Timeline</h2>
+      <a href="/experiences" class="section-action">
+        View all
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+
+    <div class="timeline">
+      {
+        Object.entries(lifeUpdates)
+          .sort(([a], [b]) => parseInt(b) - parseInt(a))
+          .map(([year, updates]) => (
+            <div class="timeline-group">
+              <button
+                class={`year-btn ${year === "2025" ? "expanded" : "collapsed"}`}
+                data-year={year}
+                onclick={`toggleYear('${year}')`}
+              >
+                <span class="year-label">{year}</span>
+                <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polyline points="6,9 12,15 18,9"></polyline>
                 </svg>
-            </a>
-        </div>
-    </section>
-
-    <section class="content-section">
-        <h2 class="section-title">Featured Talk</h2>
-        <div class="talk-container">
-            <a
-                href="https://www.youtube.com/watch?v=ZDlelRrL-8g&list=PL6p5XNtolyav0udwal2UzwP4vqTPXZUDz"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="talk-card"
-            >
-                <div class="talk-image">
-                    <img
-                        src="/assets/rc1.png"
-                        alt="Opensource to Opportunities talk at RC Alumni Meet"
-                        class="talk-photo"
-                    />
-                </div>
-                <div class="talk-content">
-                    <h3 class="talk-title">
-                        Google Summer of Code Alumni Meet 2023: Opensource to Opportunities
-                    </h3>
-                    <p class="talk-description">
-                        The talk centered around the significant impact of open source in the realm of
-                        industry-standard software development and how it can be leveraged to land
-                        opportunities in the tech industry.
-                    </p>
-                    <p class="talk-speaker">@sidmohanty11</p>
-                </div>
-            </a>
-
-            <a
-                href="https://www.youtube.com/playlist?list=PL6p5XNtolyav0udwal2UzwP4vqTPXZUDz"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="section-link"
-            >
-                <span>See All Videos & Talks</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="m9 18 6-6-6-6"/>
-                </svg>
-            </a>
-        </div>
-    </section>
-
-    <section class="content-section">
-        <h2 class="section-title">Recent Articles</h2>
-        <div class="blog-container">
-            {
-                blogs.map((blog) => (
-                    <a
-                        href={blog.canonical_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="blog-item"
-                    >
-                        <h3 class="blog-title">{blog.title}</h3>
-                        <p class="blog-description">{blog.description}</p>
-                    </a>
-                ))
-            }
-        </div>
-    </section>
-
-    <section class="content-section">
-        <h2 class="section-title">Philosophy</h2>
-        <blockquote class="philosophy-quote">
-            "Learning never stops — run, fall, get up, repeat."
-        </blockquote>
-    </section>
-
-    <section class="content-section game-section">
-        <h2 class="section-title">Live the Philosophy</h2>
-        <p class="game-description">A simple game inspired by the learning journey — press SPACE to jump over obstacles!</p>
-
-        <div class="game-container">
-            <canvas id="learningGame" width="600" height="200"></canvas>
-            <div class="game-controls">
-                <button id="startGame" class="game-button">Start Learning Journey</button>
-                <div class="game-stats">
-                    <span>Score: <span id="gameScore">0</span></span>
-                    <span>Falls: <span id="gameFalls">0</span></span>
-                </div>
+              </button>
+              <ul
+                class={`timeline-items ${year === "2025" ? "expanded" : "collapsed"}`}
+                data-year-content={year}
+              >
+                {updates.map((u) => (
+                  <li class="timeline-entry">
+                    <span class="entry-dot"></span>
+                    <span class="entry-text">{u.title}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p class="game-instructions">Press <kbd>SPACE</kbd> to jump • Press <kbd>R</kbd> to get back up</p>
+          ))
+      }
+    </div>
+  </section>
+
+  <section class="section" style="animation: fadeInUp 0.6s ease 0.2s both;">
+    <div class="section-header">
+      <h2 class="section-label">Featured Talk</h2>
+      <a
+        href="https://www.youtube.com/playlist?list=PL6p5XNtolyav0udwal2UzwP4vqTPXZUDz"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="section-action"
+      >
+        All talks
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+
+    <a
+      href="https://www.youtube.com/watch?v=ZDlelRrL-8g&list=PL6p5XNtolyav0udwal2UzwP4vqTPXZUDz"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="talk-card"
+    >
+      <div class="talk-thumbnail">
+        <img
+          src="/assets/rc1.png"
+          alt="Opensource to Opportunities talk"
+          class="talk-img"
+        />
+        <div class="play-overlay">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon">
+            <polygon points="5,3 19,12 5,21"></polygon>
+          </svg>
         </div>
-    </section>
+      </div>
+      <div class="talk-info">
+        <h3 class="talk-name">GSoC Alumni Meet 2023: Opensource to Opportunities</h3>
+        <p class="talk-desc">
+          How open source can be leveraged to land opportunities and grow as
+          a software engineer in the tech industry.
+        </p>
+      </div>
+    </a>
+  </section>
 
-    <section class="content-section contact-section">
-        <h2 class="section-title">Get In Touch</h2>
-        <form class="contact-form" id="contact-form">
-            <div class="form-group">
-                <label for="from_name" class="form-label">Full Name</label>
-                <input
-                    id="from_name"
-                    type="text"
-                    placeholder="Your name"
-                    class="form-input"
-                    name="from_name"
-                    required
-                />
-            </div>
-            <div class="form-group">
-                <label for="reply_to" class="form-label">Email</label>
-                <input
-                    id="reply_to"
-                    type="email"
-                    placeholder="Your email"
-                    class="form-input"
-                    name="reply_to"
-                    required
-                />
-            </div>
-            <div class="form-group">
-                <label for="message" class="form-label">Message</label>
-                <textarea
-                    id="message"
-                    rows="4"
-                    placeholder="Your message"
-                    class="form-input form-textarea"
-                    name="message"
-                    required
-                ></textarea>
-            </div>
-            <button
-                type="submit"
-                id="contactFormBtn"
-                class="form-submit"
-            >
-                Send Message
-            </button>
-        </form>
-    </section>
+  <section class="section" style="animation: fadeInUp 0.6s ease 0.3s both;">
+    <div class="section-header">
+      <h2 class="section-label">Recent Writing</h2>
+      <a href="/blogs" class="section-action">
+        All articles
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
 
-    <Dino />
+    <div class="articles-list">
+      {
+        blogs.map((blog: any) => (
+          <a
+            href={blog.canonical_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="article-row"
+          >
+            <div class="article-main">
+              <h3 class="article-title">{blog.title}</h3>
+              <p class="article-excerpt">{blog.description}</p>
+            </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="article-arrow">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section cta-section" style="animation: fadeInUp 0.6s ease 0.4s both;">
+    <div class="cta-content">
+      <h2 class="cta-title">Let's connect</h2>
+      <p class="cta-text">
+        I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great.
+      </p>
+      <a href="mailto:sidmohanty11@gmail.com" class="cta-btn">
+        Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M7 17L17 7M17 7H7M17 7V17"/>
+        </svg>
+      </a>
+    </div>
+  </section>
 </Layout>
 
 <style>
-    .content-section {
-        margin: 4rem 0;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
+  .section {
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
 
-    body.classic-theme.dark-mode .content-section {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.75rem;
+  }
 
-    .content-section:last-of-type {
-        border-bottom: none;
-    }
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #71717a;
+  }
 
-    .section-title {
-        font-family: "Playfair Display", serif;
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 2rem;
-        color: #000000;
-    }
+  .section-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
 
-    .classic-theme.dark-mode .section-title {
-        color: #ffffff;
-    }
+  .section-action:hover {
+    color: #fafafa;
+  }
 
-    /* Timeline Styles */
-    .timeline-container {
-        position: relative;
-    }
+  .section-action svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+  }
 
-    .timeline-year {
-        margin-bottom: 0;
-    }
+  /* Timeline */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .year-heading {
-        font-family: "Playfair Display", serif;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #000000;
-        margin-bottom: 1rem;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: all 0.3s ease;
-        user-select: none;
-    }
+  .timeline-group {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
 
-    .year-heading:hover {
-        background: rgba(0, 0, 0, 0.02);
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
+  .timeline-group:last-child {
+    border-bottom: none;
+  }
 
-    .year-toggle-icon {
-        width: 1.2rem;
-        height: 1.2rem;
-        transition: transform 0.3s ease;
-        stroke-width: 2;
-    }
+  .year-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fafafa;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
 
-    .year-heading.expanded .year-toggle-icon {
-        transform: rotate(180deg);
-    }
+  .year-btn:hover {
+    color: #818cf8;
+  }
 
-    .timeline-list {
-        overflow: hidden;
-        transition: max-height 0.3s ease, opacity 0.3s ease;
-    }
+  .chevron-icon {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+    color: #52525b;
+    transition: transform 0.25s ease;
+  }
 
-    .timeline-list.collapsed {
-        max-height: 0;
-        opacity: 0;
-        margin: 0;
-    }
+  .year-btn.expanded .chevron-icon {
+    transform: rotate(180deg);
+  }
 
-    .timeline-list.expanded {
-        max-height: 500px;
-        opacity: 1;
-    }
+  .timeline-items {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0.75rem 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+  }
 
-    .timeline-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+  .timeline-items.collapsed {
+    max-height: 0;
+    opacity: 0;
+    padding-bottom: 0;
+  }
 
-    .timeline-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 1.5rem;
-        position: relative;
-    }
+  .timeline-items.expanded {
+    max-height: 500px;
+    opacity: 1;
+  }
 
-    .timeline-marker {
-        width: 8px;
-        height: 8px;
-        background: #000000;
-        border-radius: 50%;
-        margin-right: 1rem;
-        margin-top: 0.5rem;
-        flex-shrink: 0;
-    }
+  .timeline-entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+  }
 
-    .classic-theme.dark-mode .timeline-marker {
-        background: #ffffff;
-    }
+  .entry-dot {
+    width: 5px;
+    height: 5px;
+    background: #6366f1;
+    border-radius: 50%;
+    margin-top: 0.55rem;
+    flex-shrink: 0;
+  }
 
-    .timeline-content {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: #333333;
-    }
+  .entry-text {
+    font-size: 0.925rem;
+    line-height: 1.6;
+    color: #a1a1aa;
+  }
 
-    .classic-theme.dark-mode .timeline-content {
-        color: #dddddd;
-    }
+  /* Talk Card */
+  .talk-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+    background: rgba(255, 255, 255, 0.02);
+  }
 
-    .section-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 2rem;
-        color: #000000;
-        text-decoration: none;
-        font-weight: 500;
-        text-transform: uppercase;
-        font-size: 0.85rem;
-        letter-spacing: 0.05em;
-        border-bottom: 1px solid transparent;
-        transition: all 0.3s ease;
-    }
-
-    .classic-theme.dark-mode .section-link {
-        color: #ffffff;
-    }
-
-    .section-link:hover {
-        border-bottom-color: #000000;
-    }
-
-    .classic-theme.dark-mode .section-link:hover {
-        border-bottom-color: #ffffff;
-    }
-
-    .section-link svg {
-        width: 1rem;
-        height: 1rem;
-        stroke-width: 2;
-    }
-
-    /* Talk Styles */
-    .talk-container {
-        max-width: 800px;
-    }
-
+  @media (min-width: 640px) {
     .talk-card {
-        display: block;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        padding: 2rem;
-        text-decoration: none;
-        color: inherit;
-        transition: all 0.3s ease;
-        margin-bottom: 2rem;
+      flex-direction: row;
+      gap: 1.5rem;
     }
+  }
 
-    .classic-theme.dark-mode .talk-card {
-        border-color: rgba(255, 255, 255, 0.2);
-    }
+  .talk-card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+  }
 
-    .talk-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
+  .talk-thumbnail {
+    position: relative;
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    width: 100%;
+  }
 
-    .classic-theme.dark-mode .talk-card:hover {
-        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+  @media (min-width: 640px) {
+    .talk-thumbnail {
+      width: 280px;
     }
+  }
 
-    .talk-image {
-        margin-bottom: 1.5rem;
-    }
+  .talk-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
 
-    .talk-photo {
-        width: 100%;
-        height: auto;
-        filter: grayscale(100%);
-        transition: filter 0.3s ease;
-    }
+  .talk-card:hover .talk-img {
+    transform: scale(1.03);
+  }
 
-    .talk-card:hover .talk-photo {
-        filter: grayscale(0%);
-    }
+  .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
 
-    .talk-title {
-        font-family: "Playfair Display", serif;
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #000000;
-    }
+  .talk-card:hover .play-overlay {
+    opacity: 1;
+  }
 
-    .classic-theme.dark-mode .talk-title {
-        color: #ffffff;
-    }
+  .play-icon {
+    width: 36px;
+    height: 36px;
+    color: #fff;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  }
 
-    .talk-description {
-        line-height: 1.6;
-        margin-bottom: 1rem;
-        color: #666666;
-    }
+  .talk-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 
-    .classic-theme.dark-mode .talk-description {
-        color: #cccccc;
-    }
+  .talk-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fafafa;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
 
-    .talk-speaker {
-        font-size: 0.9rem;
-        color: #999999;
-        font-style: italic;
-    }
+  .talk-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #71717a;
+    margin: 0;
+  }
 
-    .classic-theme.dark-mode .talk-speaker {
-        color: #aaaaaa;
-    }
+  /* Articles */
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+  }
 
-    /* Blog Styles */
-    .blog-container {
-        display: grid;
-        gap: 1.5rem;
-    }
+  .article-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+  }
 
-    .blog-item {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-        padding: 1.5rem 0;
-        border-left: 3px solid transparent;
-        padding-left: 1.5rem;
-        transition: all 0.3s ease;
-    }
+  .article-row:last-child {
+    border-bottom: none;
+  }
 
-    .blog-item:hover {
-        border-left-color: #000000;
-    }
+  .article-row:hover {
+    padding-left: 0.5rem;
+  }
 
-    body.classic-theme.dark-mode .blog-item:hover {
-        border-left-color: #ffffff !important;
-    }
+  .article-row:hover .article-title {
+    color: #818cf8;
+  }
 
-    .blog-title {
-        font-family: "Playfair Display", serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        color: #000000;
-    }
+  .article-row:hover .article-arrow {
+    color: #818cf8;
+    transform: translate(2px, -2px);
+  }
 
-    .classic-theme.dark-mode .blog-title {
-        color: #ffffff;
-    }
+  .article-main {
+    flex: 1;
+    min-width: 0;
+  }
 
-    .blog-description {
-        line-height: 1.6;
-        color: #666666;
-    }
+  .article-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e4e4e7;
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+  }
 
-    .classic-theme.dark-mode .blog-description {
-        color: #cccccc;
-    }
+  .article-excerpt {
+    font-size: 0.85rem;
+    color: #52525b;
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
-    /* Philosophy Styles */
-    .philosophy-quote {
-        font-family: "Playfair Display", serif;
-        font-size: 1.5rem;
-        font-style: italic;
-        text-align: center;
-        margin: 0;
-        padding: 2rem;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        color: #000000;
-        position: relative;
-    }
+  .article-arrow {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+    color: #3f3f46;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
 
-    body.classic-theme.dark-mode .philosophy-quote {
-        border-color: rgba(255, 255, 255, 0.2) !important;
-        color: #ffffff !important;
-    }
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 5rem 0;
+  }
 
-    .philosophy-quote::before {
-        content: '"';
-        font-size: 3rem;
-        position: absolute;
-        top: -0.5rem;
-        left: 1rem;
-        color: #000000;
-    }
+  .cta-content {
+    max-width: 420px;
+    margin: 0 auto;
+  }
 
-    .classic-theme.dark-mode .philosophy-quote::before {
-        color: #ffffff;
-    }
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+    color: #fafafa;
+  }
 
-    /* Game Styles */
-    .game-section {
-        text-align: center;
-        padding: 3rem 0;
-    }
+  .cta-text {
+    font-size: 0.95rem;
+    color: #71717a;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
 
-    .game-description {
-        font-size: 1.1rem;
-        color: #666666;
-        margin-bottom: 2rem;
-        font-style: italic;
-    }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #6366f1;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
 
-    .game-container {
-        max-width: 600px;
-        margin: 0 auto;
-        border: 2px solid #000000;
-        border-radius: 8px;
-        overflow: hidden;
-        background: #f8f8f8;
-    }
+  .cta-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-1px);
+  }
 
-    #learningGame {
-        display: block;
-        width: 100%;
-        height: 200px;
-        background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #90EE90 60%, #90EE90 100%);
-    }
-
-    .game-controls {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        background: #ffffff;
-        border-top: 1px solid #ddd;
-    }
-
-    .game-button {
-        background: #000000;
-        color: #ffffff;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border-radius: 4px;
-    }
-
-    .game-button:hover {
-        background: #333333;
-        transform: translateY(-2px);
-    }
-
-    .game-button:disabled {
-        background: #cccccc;
-        cursor: not-allowed;
-        transform: none;
-    }
-
-    .game-stats {
-        display: flex;
-        gap: 1rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-    }
-
-    .game-instructions {
-        padding: 0.75rem 1rem;
-        margin: 0;
-        font-size: 0.85rem;
-        color: #666666;
-        background: #f5f5f5;
-        border-top: 1px solid #ddd;
-    }
-
-    .game-instructions kbd {
-        background: #000000;
-        color: #ffffff;
-        padding: 0.2rem 0.4rem;
-        border-radius: 3px;
-        font-size: 0.8rem;
-        font-weight: bold;
-    }
-
-    /* Contact Form Styles */
-    .contact-section {
-        max-width: 600px;
-        margin: 4rem auto;
-    }
-
-    .contact-form {
-        margin-top: 2rem;
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    .form-label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        color: #000000;
-        text-transform: uppercase;
-        font-size: 0.85rem;
-        letter-spacing: 0.05em;
-    }
-
-    .classic-theme.dark-mode .form-label {
-        color: #ffffff;
-    }
-
-    .form-input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid rgba(0, 0, 0, 0.3);
-        background: transparent;
-        color: #000000;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-    }
-
-    body.classic-theme.dark-mode .form-input {
-        border-color: rgba(255, 255, 255, 0.3) !important;
-        color: #ffffff !important;
-    }
-
-    .form-input:focus {
-        outline: none;
-        border-color: #000000;
-    }
-
-    body.classic-theme.dark-mode .form-input:focus {
-        border-color: #ffffff !important;
-    }
-
-    .form-input::placeholder {
-        color: #999999;
-    }
-
-    .classic-theme.dark-mode .form-input::placeholder {
-        color: #666666;
-    }
-
-    .form-textarea {
-        resize: vertical;
-        min-height: 100px;
-    }
-
-    .form-submit {
-        background-color: #000000 !important;
-        color: #ffffff !important;
-        border: 1px solid #000000 !important;
-        padding: 1rem 2rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        width: 100%;
-        font-family: inherit;
-    }
-
-    /* Multiple selectors for maximum specificity */
-    button.form-submit,
-    #contactFormBtn,
-    button#contactFormBtn.form-submit,
-    form button.form-submit {
-        color: #ffffff !important;
-        background-color: #000000 !important;
-    }
-
-    .form-submit:hover {
-        background-color: transparent !important;
-        color: #000000 !important;
-        border-color: #000000 !important;
-    }
-
-    .form-submit:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
+  .cta-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
 </style>
 
 <script>
-    function toggleYear(year) {
-        const heading = document.querySelector(`[data-year="${year}"]`);
-        const content = document.querySelector(`[data-year-content="${year}"]`);
+  function toggleYear(year: string) {
+    const heading = document.querySelector(`[data-year="${year}"]`);
+    const content = document.querySelector(`[data-year-content="${year}"]`);
 
-        if (heading && content) {
-            const isExpanded = heading.classList.contains('expanded');
+    if (heading && content) {
+      const isExpanded = heading.classList.contains("expanded");
 
-            if (isExpanded) {
-                heading.classList.remove('expanded');
-                heading.classList.add('collapsed');
-                content.classList.remove('expanded');
-                content.classList.add('collapsed');
-            } else {
-                heading.classList.remove('collapsed');
-                heading.classList.add('expanded');
-                content.classList.remove('collapsed');
-                content.classList.add('expanded');
-            }
-        }
+      if (isExpanded) {
+        heading.classList.replace("expanded", "collapsed");
+        content.classList.replace("expanded", "collapsed");
+      } else {
+        heading.classList.replace("collapsed", "expanded");
+        content.classList.replace("collapsed", "expanded");
+      }
     }
+  }
 
-    // Make function globally available
-    window.toggleYear = toggleYear;
-
-    // Learning Journey Game
-    class LearningGame {
-        constructor() {
-            this.canvas = document.getElementById('learningGame');
-            this.ctx = this.canvas.getContext('2d');
-            this.startButton = document.getElementById('startGame');
-            this.scoreElement = document.getElementById('gameScore');
-            this.fallsElement = document.getElementById('gameFalls');
-
-            this.init();
-        }
-
-        init() {
-            // Game state
-            this.gameRunning = false;
-            this.gameSpeed = 2;
-            this.score = 0;
-            this.falls = 0;
-
-            // Player
-            this.player = {
-                x: 50,
-                y: 120,
-                width: 20,
-                height: 30,
-                velocityY: 0,
-                jumping: false,
-                falling: false,
-                onGround: true
-            };
-
-            // Obstacles
-            this.obstacles = [];
-            this.obstacleTimer = 0;
-
-            // Bind events
-            this.startButton.addEventListener('click', () => this.startGame());
-            document.addEventListener('keydown', (e) => this.handleKeyPress(e));
-
-            this.draw();
-        }
-
-        startGame() {
-            this.gameRunning = true;
-            this.score = 0;
-            this.falls = 0;
-            this.player.y = 120;
-            this.player.falling = false;
-            this.player.onGround = true;
-            this.obstacles = [];
-            this.startButton.textContent = 'Running...';
-            this.startButton.disabled = true;
-            this.gameLoop();
-        }
-
-        handleKeyPress(e) {
-            if (e.code === 'Space' && this.gameRunning && this.player.onGround && !this.player.falling) {
-                e.preventDefault();
-                this.jump();
-            }
-            if (e.code === 'KeyR' && this.player.falling) {
-                e.preventDefault();
-                this.getUp();
-            }
-        }
-
-        jump() {
-            this.player.velocityY = -8;
-            this.player.jumping = true;
-            this.player.onGround = false;
-        }
-
-        getUp() {
-            this.player.falling = false;
-            this.player.onGround = true;
-            this.player.y = 120;
-            this.falls++;
-            this.updateStats();
-        }
-
-        updatePhysics() {
-            // Gravity
-            if (!this.player.onGround) {
-                this.player.velocityY += 0.5;
-                this.player.y += this.player.velocityY;
-
-                // Land
-                if (this.player.y >= 120) {
-                    this.player.y = 120;
-                    this.player.velocityY = 0;
-                    this.player.jumping = false;
-                    this.player.onGround = true;
-                }
-            }
-        }
-
-        spawnObstacle() {
-            this.obstacleTimer++;
-            if (this.obstacleTimer > 120) {
-                this.obstacles.push({
-                    x: this.canvas.width,
-                    y: 135,
-                    width: 15,
-                    height: 25
-                });
-                this.obstacleTimer = 0;
-            }
-        }
-
-        updateObstacles() {
-            this.obstacles.forEach((obstacle, index) => {
-                obstacle.x -= this.gameSpeed;
-
-                // Remove off-screen obstacles
-                if (obstacle.x + obstacle.width < 0) {
-                    this.obstacles.splice(index, 1);
-                    this.score += 10;
-                }
-
-                // Collision detection
-                if (this.checkCollision(this.player, obstacle) && !this.player.falling) {
-                    this.player.falling = true;
-                    this.player.onGround = false;
-                }
-            });
-        }
-
-        checkCollision(rect1, rect2) {
-            return rect1.x < rect2.x + rect2.width &&
-                   rect1.x + rect1.width > rect2.x &&
-                   rect1.y < rect2.y + rect2.height &&
-                   rect1.y + rect1.height > rect2.y;
-        }
-
-        draw() {
-            // Clear canvas
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-            // Draw ground
-            this.ctx.fillStyle = '#8B4513';
-            this.ctx.fillRect(0, 150, this.canvas.width, 50);
-
-            // Draw player
-            if (this.player.falling) {
-                this.drawFallenCharacter();
-            } else {
-                this.drawRunningCharacter();
-            }
-
-            // Draw obstacles
-            this.ctx.fillStyle = '#FF0000';
-            this.obstacles.forEach(obstacle => {
-                this.ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
-            });
-
-            // Draw message if falling
-            if (this.player.falling) {
-                this.ctx.fillStyle = '#000000';
-                this.ctx.font = '16px Arial';
-                this.ctx.textAlign = 'center';
-                this.ctx.fillText('Press R to Get Back Up!', this.canvas.width / 2, 50);
-            }
-        }
-
-        drawRunningCharacter() {
-            const x = this.player.x;
-            const y = this.player.y;
-
-            // Head (circle)
-            this.ctx.fillStyle = '#FFE0BD'; // Skin color
-            this.ctx.beginPath();
-            this.ctx.arc(x + 10, y + 8, 8, 0, Math.PI * 2);
-            this.ctx.fill();
-
-            // Eyes
-            this.ctx.fillStyle = '#000000';
-            this.ctx.beginPath();
-            this.ctx.arc(x + 7, y + 6, 1.5, 0, Math.PI * 2);
-            this.ctx.fill();
-            this.ctx.beginPath();
-            this.ctx.arc(x + 13, y + 6, 1.5, 0, Math.PI * 2);
-            this.ctx.fill();
-
-            // Smile
-            this.ctx.strokeStyle = '#000000';
-            this.ctx.lineWidth = 1.5;
-            this.ctx.beginPath();
-            this.ctx.arc(x + 10, y + 9, 3, 0, Math.PI);
-            this.ctx.stroke();
-
-            // Body
-            this.ctx.fillStyle = '#4444FF'; // Blue shirt
-            this.ctx.fillRect(x + 6, y + 16, 8, 12);
-
-            // Arms (simple lines)
-            this.ctx.strokeStyle = '#FFE0BD';
-            this.ctx.lineWidth = 3;
-            this.ctx.beginPath();
-            this.ctx.moveTo(x + 6, y + 20);
-            this.ctx.lineTo(x + 2, y + 24);
-            this.ctx.moveTo(x + 14, y + 20);
-            this.ctx.lineTo(x + 18, y + 24);
-            this.ctx.stroke();
-
-            // Legs (animated running)
-            const legOffset = Math.sin(this.score * 0.3) * 2;
-            this.ctx.strokeStyle = '#000080'; // Dark blue pants
-            this.ctx.lineWidth = 3;
-            this.ctx.beginPath();
-            this.ctx.moveTo(x + 8, y + 28);
-            this.ctx.lineTo(x + 6 + legOffset, y + 32);
-            this.ctx.moveTo(x + 12, y + 28);
-            this.ctx.lineTo(x + 14 - legOffset, y + 32);
-            this.ctx.stroke();
-        }
-
-        drawFallenCharacter() {
-            const x = this.player.x;
-            const y = 135;
-
-            // Head (sideways)
-            this.ctx.fillStyle = '#FFE0BD';
-            this.ctx.beginPath();
-            this.ctx.ellipse(x + 15, y + 5, 8, 6, 0, 0, Math.PI * 2);
-            this.ctx.fill();
-
-            // X_X eyes (fallen)
-            this.ctx.strokeStyle = '#000000';
-            this.ctx.lineWidth = 2;
-            this.ctx.beginPath();
-            this.ctx.moveTo(x + 10, y + 3);
-            this.ctx.lineTo(x + 14, y + 7);
-            this.ctx.moveTo(x + 14, y + 3);
-            this.ctx.lineTo(x + 10, y + 7);
-            this.ctx.moveTo(x + 16, y + 3);
-            this.ctx.lineTo(x + 20, y + 7);
-            this.ctx.moveTo(x + 20, y + 3);
-            this.ctx.lineTo(x + 16, y + 7);
-            this.ctx.stroke();
-
-            // Body (lying down)
-            this.ctx.fillStyle = '#FF4444'; // Red (hurt)
-            this.ctx.fillRect(x, y + 8, 25, 6);
-
-            // Arms and legs (sprawled)
-            this.ctx.strokeStyle = '#FFE0BD';
-            this.ctx.lineWidth = 2;
-            this.ctx.beginPath();
-            this.ctx.moveTo(x + 5, y + 10);
-            this.ctx.lineTo(x - 2, y + 6);
-            this.ctx.moveTo(x + 20, y + 10);
-            this.ctx.lineTo(x + 27, y + 6);
-            this.ctx.moveTo(x + 8, y + 14);
-            this.ctx.lineTo(x + 5, y + 18);
-            this.ctx.moveTo(x + 17, y + 14);
-            this.ctx.lineTo(x + 20, y + 18);
-            this.ctx.stroke();
-        }
-
-        updateStats() {
-            this.scoreElement.textContent = this.score;
-            this.fallsElement.textContent = this.falls;
-        }
-
-        gameLoop() {
-            if (!this.gameRunning) return;
-
-            this.updatePhysics();
-            this.spawnObstacle();
-            this.updateObstacles();
-            this.draw();
-            this.updateStats();
-
-            requestAnimationFrame(() => this.gameLoop());
-        }
-    }
-
-    // Initialize game when page loads
-    document.addEventListener('DOMContentLoaded', () => {
-        new LearningGame();
-    });
+  (window as any).toggleYear = toggleYear;
 </script>
 
 <script>
-    const contactForm = document.getElementById("contact-form");
-    const contactFormBtn = document.getElementById("contactFormBtn");
+  const contactForm = document.getElementById("contact-form");
+  const contactFormBtn = document.getElementById("contactFormBtn");
 
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
-    contactForm?.addEventListener("submit", function (e) {
-        e.preventDefault();
+  contactForm?.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
 
-        if (
-            this.from_name.value.length < 3 ||
-            this.message.value.length < 10 ||
-            !emailRegex.test(this.reply_to.value)
-        ) {
-            alert("Please fill the form correctly");
-            return;
-        }
+    if (
+      form.from_name.value.length < 3 ||
+      form.message.value.length < 10 ||
+      !emailRegex.test(form.reply_to.value)
+    ) {
+      alert("Please fill the form correctly");
+      return;
+    }
 
-        contactFormBtn?.setAttribute("disabled", "disabled");
-        contactFormBtn?.classList.add("opacity-50");
+    contactFormBtn?.setAttribute("disabled", "disabled");
 
-        emailjs
-            .sendForm(
-                "service_hf1jiuc",
-                "template_pg4422m",
-                this,
-                "aJgInfpLC2IuFXA9X"
-            )
-            .then(() => {
-                console.log("success");
-                alert("Message sent successfully!");
-
-                contactFormBtn?.removeAttribute("disabled");
-                contactFormBtn?.classList.remove("opacity-50");
-            })
-            .catch((err) => {
-                console.log(err);
-
-                contactFormBtn?.removeAttribute("disabled");
-                contactFormBtn?.classList.remove("opacity-50");
-            });
-    });
+    (window as any).emailjs
+      .sendForm(
+        "service_hf1jiuc",
+        "template_pg4422m",
+        form,
+        "aJgInfpLC2IuFXA9X"
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+        contactFormBtn?.removeAttribute("disabled");
+      })
+      .catch((err: any) => {
+        console.log(err);
+        contactFormBtn?.removeAttribute("disabled");
+      });
+  });
 </script>
