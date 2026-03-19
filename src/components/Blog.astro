@@ -15,338 +15,169 @@ export interface Props {
 
 const { blog, index = 0 } = Astro.props;
 
-// Format date
 const publishedDate = new Date(blog.published_at || Date.now());
 const formattedDate = publishedDate.toLocaleDateString("en-US", {
   year: "numeric",
-  month: "long",
+  month: "short",
   day: "numeric",
 });
 ---
 
-<article class="blog-card" data-index={index}>
-  <div class="card-header">
-    <div class="card-number">{String(index + 1).padStart(2, "0")}</div>
-    <div class="card-date">{formattedDate}</div>
-  </div>
+<article class="blog-card">
+  <a
+    href={blog.canonical_url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="card-link"
+  >
+    <div class="card-meta">
+      <time class="card-date">{formattedDate}</time>
+      <span class="card-reading">{blog.reading_time_minutes} min read</span>
+    </div>
 
-  <div class="card-content">
-    <a
-      href={blog.canonical_url}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="card-link"
-    >
-      <h3 class="card-title">{blog.title}</h3>
-      <p class="card-description">{blog.description}</p>
-    </a>
+    <h3 class="card-title">{blog.title}</h3>
+
+    <p class="card-desc">{blog.description}</p>
 
     {
       blog.tag_list && blog.tag_list.length > 0 && (
         <div class="card-tags">
           {blog.tag_list.slice(0, 3).map((tag) => (
-            <span class="tag">{tag}</span>
+            <span class="tag">#{tag}</span>
           ))}
         </div>
       )
     }
-  </div>
 
-  <div class="card-footer">
-    <div class="card-stats">
-      <div class="stat-item">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          class="stat-icon"
-        >
-          <path
-            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-          ></path>
+    <div class="card-footer">
+      <div class="reactions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="reaction-icon">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
         </svg>
-        <span class="stat-value">{blog.public_reactions_count}</span>
+        <span>{blog.public_reactions_count}</span>
       </div>
-
-      <div class="stat-divider"></div>
-
-      <div class="stat-item">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          class="stat-icon"
-        >
-          <circle cx="12" cy="12" r="10"></circle>
-          <polyline points="12,6 12,12 16,14"></polyline>
-        </svg>
-        <span class="stat-value">{blog.reading_time_minutes} min</span>
-      </div>
-    </div>
-
-    <a
-      href={blog.canonical_url}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="read-more"
-      aria-label="Read full article"
-    >
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-        ></path>
-        <polyline points="15,3 21,3 21,9"></polyline>
-        <line x1="10" y1="14" x2="21" y2="3"></line>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="arrow-icon">
+        <path d="M7 17L17 7M17 7H7M17 7V17"/>
       </svg>
-    </a>
-  </div>
+    </div>
+  </a>
 </article>
 
 <style>
   .blog-card {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    background: transparent;
-    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.25s ease;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-  }
-
-  body.classic-theme.dark-mode .blog-card {
-    border-color: rgba(255, 255, 255, 0.2) !important;
   }
 
   .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  .classic-theme.dark-mode .blog-card:hover {
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-  }
-
-  .blog-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: #000000;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  .classic-theme.dark-mode .blog-card::before {
-    background: #ffffff;
-  }
-
-  .blog-card:hover::before {
-    transform: scaleX(1);
-  }
-
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 1.5rem 0;
-    margin-bottom: 1rem;
-  }
-
-  .card-number {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #000000;
-    line-height: 1;
-  }
-
-  .classic-theme.dark-mode .card-number {
-    color: #ffffff;
-  }
-
-  .card-date {
-    font-size: 0.8rem;
-    color: #666666;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 500;
-  }
-
-  .classic-theme.dark-mode .card-date {
-    color: #cccccc;
-  }
-
-  .card-content {
-    flex: 1;
-    padding: 0 1.5rem;
-    margin-bottom: 1.5rem;
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-2px);
   }
 
   .card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem;
     text-decoration: none;
     color: inherit;
-    display: block;
-    margin-bottom: 1.5rem;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .card-date {
+    font-size: 0.75rem;
+    color: #52525b;
+    font-weight: 500;
+  }
+
+  .card-reading {
+    font-size: 0.75rem;
+    color: #52525b;
   }
 
   .card-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1.25rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-    color: #000000;
-    transition: color 0.3s ease;
+    color: #e4e4e7;
+    line-height: 1.4;
+    margin-bottom: 0.625rem;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
   }
 
-  .classic-theme.dark-mode .card-title {
-    color: #ffffff;
+  .blog-card:hover .card-title {
+    color: #818cf8;
   }
 
-  .card-link:hover .card-title {
-    color: #666666;
-  }
-
-  .classic-theme.dark-mode .card-link:hover .card-title {
-    color: #cccccc;
-  }
-
-  .card-description {
+  .card-desc {
+    font-size: 0.85rem;
     line-height: 1.6;
-    color: #666666;
-    font-size: 0.95rem;
-    margin: 0;
+    color: #71717a;
+    margin: 0 0 1rem;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-
-  .classic-theme.dark-mode .card-description {
-    color: #cccccc;
+    flex: 1;
   }
 
   .card-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .tag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: #666666;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+    color: #6366f1;
     font-weight: 500;
-    transition: all 0.3s ease;
-  }
-
-  body.classic-theme.dark-mode .tag {
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    color: #cccccc !important;
-  }
-
-  .tag:hover {
-    background: #000000;
-    color: #ffffff;
-    border-color: #000000;
-  }
-
-  body.classic-theme.dark-mode .tag:hover {
-    background: #ffffff !important;
-    color: #000000 !important;
-    border-color: #ffffff !important;
+    letter-spacing: 0.02em;
   }
 
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
     margin-top: auto;
   }
 
-  body.classic-theme.dark-mode .card-footer {
-    border-top-color: rgba(255, 255, 255, 0.1) !important;
-  }
-
-  .card-stats {
+  .reactions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.375rem;
+    font-size: 0.8rem;
+    color: #52525b;
   }
 
-  .stat-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #666666;
-    font-size: 0.85rem;
-  }
-
-  .classic-theme.dark-mode .stat-item {
-    color: #cccccc;
-  }
-
-  .stat-icon {
-    width: 1rem;
-    height: 1rem;
+  .reaction-icon {
+    width: 14px;
+    height: 14px;
     stroke-width: 2;
   }
 
-  .stat-value {
-    font-weight: 500;
-  }
-
-  .stat-divider {
-    width: 1px;
-    height: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .classic-theme.dark-mode .stat-divider {
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  .read-more {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: #000000;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  body.classic-theme.dark-mode .read-more {
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    color: #ffffff !important;
-  }
-
-  .read-more:hover {
-    background: #000000;
-    color: #ffffff;
-    border-color: #000000;
-  }
-
-  body.classic-theme.dark-mode .read-more:hover {
-    background: #ffffff !important;
-    color: #000000 !important;
-    border-color: #ffffff !important;
-  }
-
-  .read-more svg {
-    width: 1rem;
-    height: 1rem;
+  .arrow-icon {
+    width: 16px;
+    height: 16px;
     stroke-width: 2;
+    color: #3f3f46;
+    transition: all 0.2s ease;
+  }
+
+  .blog-card:hover .arrow-icon {
+    color: #818cf8;
+    transform: translate(2px, -2px);
   }
 </style>

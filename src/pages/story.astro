@@ -2,161 +2,103 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout
-  title="Story | Sidharth Mohanty"
-  description="Welcome to my page - Sid : )"
->
+<Layout title="Story | Sidharth Mohanty" description="The story behind the code">
   <section class="story-hero">
-    <div class="hero-content">
-      <div class="hero-quote-container">
-        <div class="quote-mark">"</div>
-        <blockquote class="hero-quote">
-          Through uncharted realms, I roam with might,<br />
-          seeking treasures hidden out of sight.
-        </blockquote>
-        <div class="quote-mark closing">"</div>
-      </div>
-
-      <h1 class="hero-title">
-        The Story Behind<br />
-        <span class="title-accent">The Code</span>
-      </h1>
-
-      <div class="hero-subtitle-container">
-        <div class="subtitle-line"></div>
-        <p class="hero-subtitle">Code • Gym • Caffeine • Repeat</p>
-        <div class="subtitle-line"></div>
-      </div>
-    </div>
+    <p class="hero-eyebrow">About Me</p>
+    <h1 class="hero-title">
+      The Story Behind
+      <span class="title-accent">The Code</span>
+    </h1>
+    <!-- Wavy accent -->
+    <svg class="wavy-accent" viewBox="0 0 120 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M2 6c4-4 8-4 12 0s8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0 8 4 12 0" stroke="url(#wavyGradStory)" stroke-width="2.5" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="wavyGradStory" x1="0" y1="6" x2="120" y2="6">
+          <stop offset="0%" stop-color="#6366f1"/>
+          <stop offset="50%" stop-color="#a78bfa"/>
+          <stop offset="100%" stop-color="#818cf8"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <p class="hero-tagline">Code. Build. Learn. Repeat.</p>
   </section>
 
-  <section class="story-content">
-    <div class="content-grid">
-      <div class="story-introduction">
-        <div class="intro-header">
-          <h2 class="intro-title">About Sidharth</h2>
-          <div class="intro-line"></div>
-        </div>
+  <section class="story-body">
+    <div class="story-grid">
+      <div class="intro-col">
+        <h2 class="col-heading">About Sidharth</h2>
 
-        <div class="intro-text">
-          <p class="greeting">Hi there, I'm Sidharth 👋</p>
+        <p class="body-text greeting">Hi there, I'm Sidharth</p>
 
-          <p class="intro-paragraph">
-            I'm a Software Engineer II at Builder.io, where I'm currently
-            working on world-class software that empowers developers globally.
-            I'm a fullstack developer with over 3 years of experience crafting
-            applications that solve real problems.
-          </p>
+        <p class="body-text">
+          I'm a Software Engineer II at Builder.io, where I'm currently
+          working on world-class software that empowers developers globally.
+          I'm a fullstack developer with over 3 years of experience crafting
+          applications that solve real problems.
+        </p>
 
-          <p class="intro-paragraph emphasis">
-            Web apps, mobile apps, chrome extensions, APIs—I've explored them
-            all. But here's the thing: <span class="highlight"
-              >I'm still learning every single day.</span
-            >
-          </p>
-        </div>
+        <p class="body-text emphasis">
+          Web apps, mobile apps, chrome extensions, APIs - I've explored them
+          all. But here's the thing:
+          <strong>I'm still learning every single day.</strong>
+        </p>
       </div>
 
-      <div class="story-details">
-        <div class="detail-section">
-          <h3 class="detail-title">Technical Journey</h3>
-          <div class="detail-content">
-            <p>
-              I've been a JavaScript enthusiast since day one. React, Vue,
-              Angular, Node, Express, Nest, Next, Nuxt—I've danced with them
-              all. But that's not where it ends.
-            </p>
-            <p>
-              I've ventured into the worlds of Golang and Python, creating APIs
-              and CLI tools that bridge the gap between complex problems and
-              elegant solutions.
-            </p>
-          </div>
+      <div class="details-col">
+        <div class="detail-block">
+          <h3 class="detail-heading">Technical Journey</h3>
+          <p class="body-text">
+            I've been a JavaScript enthusiast since day one. React, Vue,
+            Angular, Node, Express, Nest, Next, Nuxt - I've danced with them
+            all. I've also ventured into Golang and Python, creating APIs and
+            CLI tools that bridge complex problems and elegant solutions.
+          </p>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-title">Always Exploring</h3>
-          <div class="detail-content">
-            <p>
-              When it comes to technology, I'm always hunting for the latest
-              innovations. Backend architecture, DevOps practices, database
-              optimization, system design, CI/CD pipelines—curiosity drives my
-              exploration.
-            </p>
-            <p>
-              The tech landscape is vast and ever-changing, and I embrace that
-              complexity with enthusiasm and systematic learning.
-            </p>
-          </div>
+        <div class="detail-block">
+          <h3 class="detail-heading">Always Exploring</h3>
+          <p class="body-text">
+            Backend architecture, DevOps practices, database optimization,
+            system design, CI/CD pipelines - curiosity drives my exploration.
+            The tech landscape is vast, and I embrace that complexity with
+            enthusiasm and systematic learning.
+          </p>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-title">Beyond the Screen</h3>
-          <div class="detail-content">
-            <p>
-              But I'm not all about the code. I'm a fitness enthusiast who
-              believes in strengthening both mind and body. The gym is where I
-              find balance, building physical resilience alongside mental
-              agility.
-            </p>
-            <p>
-              And coffee? It's the fuel that powers late-night coding sessions
-              and early morning problem-solving marathons. Some call it
-              addiction; I call it dedication.
-            </p>
-          </div>
+        <div class="detail-block">
+          <h3 class="detail-heading">Beyond the Screen</h3>
+          <p class="body-text">
+            I'm a fitness enthusiast who believes in strengthening both mind
+            and body. The gym is where I find balance. And coffee? It's the
+            fuel that powers late-night coding sessions and early morning
+            problem-solving marathons.
+          </p>
         </div>
       </div>
     </div>
 
-    <div class="philosophy-section">
-      <div class="philosophy-header">
-        <div class="philosophy-line"></div>
-        <h2 class="philosophy-title">My Philosophy</h2>
-        <div class="philosophy-line"></div>
-      </div>
-
-      <blockquote class="philosophy-quote">
-        "Knowledge is power, and I'm here to absorb it all. An eternal learner,
-        always tinkering, experimenting, and solving problems. The tech world is
-        my infinite universe, and I'm on an endless quest for discovering new
-        horizons."
-      </blockquote>
-    </div>
-
-    <div class="journey-timeline">
-      <h2 class="timeline-title">The Journey So Far</h2>
-      <div class="timeline-grid">
-        <div class="timeline-item">
-          <div class="timeline-number">01</div>
-          <div class="timeline-content">
-            <h3>Student & Explorer</h3>
-            <p>Computer Science at OUTR, Bhubaneswar</p>
-          </div>
+    <div class="milestones">
+      <h2 class="milestones-heading">The Journey So Far</h2>
+      <div class="milestones-grid">
+        <div class="milestone-card">
+          <span class="milestone-num">01</span>
+          <h3 class="milestone-title">Student & Explorer</h3>
+          <p class="milestone-desc">Computer Science at OUTR, Bhubaneswar</p>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-number">02</div>
-          <div class="timeline-content">
-            <h3>Developer & Builder</h3>
-            <p>2+ years crafting fullstack applications</p>
-          </div>
+        <div class="milestone-card">
+          <span class="milestone-num">02</span>
+          <h3 class="milestone-title">Developer & Builder</h3>
+          <p class="milestone-desc">3+ years crafting fullstack applications</p>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-number">03</div>
-          <div class="timeline-content">
-            <h3>Open Source Contributor</h3>
-            <p>Contributing to meaningful projects worldwide</p>
-          </div>
+        <div class="milestone-card">
+          <span class="milestone-num">03</span>
+          <h3 class="milestone-title">Open Source Contributor</h3>
+          <p class="milestone-desc">Contributing to meaningful projects worldwide</p>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-number">04</div>
-          <div class="timeline-content">
-            <h3>Continuous Learner</h3>
-            <p>Always exploring new technologies and methodologies</p>
-          </div>
+        <div class="milestone-card">
+          <span class="milestone-num">04</span>
+          <h3 class="milestone-title">Continuous Learner</h3>
+          <p class="milestone-desc">Always exploring new technologies and methodologies</p>
         </div>
       </div>
     </div>
@@ -165,414 +107,196 @@ import Layout from "../layouts/Layout.astro";
 
 <style>
   .story-hero {
-    padding: 4rem 0 6rem;
-    margin-top: 2rem;
+    padding: 6rem 0 4rem;
     text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    animation: fadeInUp 0.6s ease both;
   }
 
-  body.classic-theme.dark-mode .story-hero {
-    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+  @media (min-width: 768px) {
+    .story-hero {
+      padding: 8rem 0 5rem;
+    }
   }
 
-  .hero-content {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .hero-quote-container {
-    position: relative;
-    margin-bottom: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .quote-mark {
-    font-family: "Playfair Display", serif;
-    font-size: 4rem;
-    font-weight: 700;
-    color: #000000;
-    line-height: 1;
-    opacity: 0.3;
-  }
-
-  .classic-theme.dark-mode .quote-mark {
-    color: #ffffff;
-  }
-
-  .quote-mark.closing {
-    align-self: flex-end;
-  }
-
-  .hero-quote {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    font-style: italic;
-    font-weight: 400;
-    line-height: 1.6;
-    color: #333333;
-    margin: 0;
-    text-align: center;
-    max-width: 500px;
-  }
-
-  .classic-theme.dark-mode .hero-quote {
-    color: #dddddd;
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6366f1;
+    margin-bottom: 1rem;
   }
 
   .hero-title {
-    font-family: "Playfair Display", serif;
-    font-size: 3.5rem;
+    font-size: 2.75rem;
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 2rem;
-    color: #000000;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
   }
 
   @media (min-width: 768px) {
     .hero-title {
-      font-size: 4.5rem;
+      font-size: 4rem;
     }
-  }
-
-  .classic-theme.dark-mode .hero-title {
-    color: #ffffff;
   }
 
   .title-accent {
-    color: #666666;
-    font-weight: 400;
+    display: block;
+    background: linear-gradient(135deg, #818cf8, #6366f1, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .classic-theme.dark-mode .title-accent {
-    color: #cccccc;
+  .wavy-accent {
+    width: 120px;
+    height: 12px;
+    display: block;
+    margin: 0 auto 1.25rem;
+    opacity: 0.8;
   }
 
-  .hero-subtitle-container {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    justify-content: center;
-  }
-
-  .subtitle-line {
-    flex: 1;
-    height: 1px;
-    background: #000000;
-    max-width: 100px;
-  }
-
-  .classic-theme.dark-mode .subtitle-line {
-    background: #ffffff;
-  }
-
-  .hero-subtitle {
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #666666;
+  .hero-tagline {
+    font-size: 0.9rem;
+    color: #71717a;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    white-space: nowrap;
     margin: 0;
   }
 
-  .classic-theme.dark-mode .hero-subtitle {
-    color: #cccccc;
-  }
-
-  .story-content {
+  .story-body {
     padding: 4rem 0;
   }
 
-  .content-grid {
+  .story-grid {
     display: grid;
-    gap: 4rem;
-    margin-bottom: 4rem;
-  }
-
-  @media (min-width: 1024px) {
-    .content-grid {
-      grid-template-columns: 1fr 1.2fr;
-      gap: 6rem;
-    }
-  }
-
-  .intro-header {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .intro-title {
-    font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #000000;
-    white-space: nowrap;
-  }
-
-  .classic-theme.dark-mode .intro-title {
-    color: #ffffff;
-  }
-
-  .intro-line {
-    flex: 1;
-    height: 1px;
-    background: #000000;
-  }
-
-  .classic-theme.dark-mode .intro-line {
-    background: #ffffff;
-  }
-
-  .intro-text {
-    margin-bottom: 2rem;
-  }
-
-  .greeting {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #000000;
-    margin-bottom: 1.5rem;
-  }
-
-  .classic-theme.dark-mode .greeting {
-    color: #ffffff;
-  }
-
-  .intro-paragraph {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #333333;
-    margin-bottom: 1.5rem;
-  }
-
-  .classic-theme.dark-mode .intro-paragraph {
-    color: #dddddd;
-  }
-
-  .intro-paragraph.emphasis {
-    font-style: italic;
-    border-left: 3px solid #000000;
-    padding-left: 1.5rem;
-  }
-
-  .classic-theme.dark-mode .intro-paragraph.emphasis {
-    border-left-color: #ffffff;
-  }
-
-  .highlight {
-    font-weight: 600;
-    color: #000000;
-    font-style: normal;
-  }
-
-  .classic-theme.dark-mode .highlight {
-    color: #ffffff;
-  }
-
-  .detail-section {
-    margin-bottom: 3rem;
-  }
-
-  .detail-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #000000;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #000000;
-    padding-bottom: 0.5rem;
-    display: inline-block;
-  }
-
-  body.classic-theme.dark-mode .detail-title {
-    color: #ffffff !important;
-    border-bottom-color: #ffffff !important;
-  }
-
-  .detail-content p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #333333;
-    margin-bottom: 1rem;
-  }
-
-  .classic-theme.dark-mode .detail-content p {
-    color: #dddddd;
-  }
-
-  .philosophy-section {
-    margin: 6rem 0;
-    text-align: center;
-  }
-
-  .philosophy-header {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    justify-content: center;
-  }
-
-  .philosophy-title {
-    font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #000000;
-    white-space: nowrap;
-  }
-
-  .classic-theme.dark-mode .philosophy-title {
-    color: #ffffff;
-  }
-
-  .philosophy-line {
-    flex: 1;
-    height: 1px;
-    background: #000000;
-    max-width: 150px;
-  }
-
-  .classic-theme.dark-mode .philosophy-line {
-    background: #ffffff;
-  }
-
-  .philosophy-quote {
-    font-family: "Playfair Display", serif;
-    font-size: 1.25rem;
-    font-style: italic;
-    line-height: 1.8;
-    color: #000000;
-    margin: 0 auto;
-    max-width: 700px;
-    padding: 3rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    position: relative;
-  }
-
-  body.classic-theme.dark-mode .philosophy-quote {
-    color: #ffffff !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
-  }
-
-  .philosophy-quote::before,
-  .philosophy-quote::after {
-    content: '"';
-    font-size: 3rem;
-    font-weight: 700;
-    color: #000000;
-    position: absolute;
-    opacity: 0.3;
-  }
-
-  .classic-theme.dark-mode .philosophy-quote::before,
-  .classic-theme.dark-mode .philosophy-quote::after {
-    color: #ffffff;
-  }
-
-  .philosophy-quote::before {
-    top: 1rem;
-    left: 1.5rem;
-  }
-
-  .philosophy-quote::after {
-    bottom: 0.5rem;
-    right: 1.5rem;
-  }
-
-  .journey-timeline {
-    margin: 6rem 0;
-  }
-
-  .timeline-title {
-    font-family: "Playfair Display", serif;
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: #000000;
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .classic-theme.dark-mode .timeline-title {
-    color: #ffffff;
-  }
-
-  .timeline-grid {
-    display: grid;
-    gap: 2rem;
+    gap: 3rem;
+    margin-bottom: 5rem;
   }
 
   @media (min-width: 768px) {
-    .timeline-grid {
+    .story-grid {
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+    }
+  }
+
+  .col-heading {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #71717a;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .body-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #a1a1aa;
+    margin-bottom: 1.25rem;
+  }
+
+  .greeting {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #e4e4e7;
+  }
+
+  .body-text.emphasis {
+    border-left: 2px solid #6366f1;
+    padding-left: 1rem;
+    color: #d4d4d8;
+  }
+
+  .body-text strong {
+    color: #fafafa;
+    font-weight: 600;
+  }
+
+  .detail-block {
+    margin-bottom: 2.5rem;
+  }
+
+  .detail-heading {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e4e4e7;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .milestones {
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .milestones-heading {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #71717a;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .milestones-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .milestones-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 1024px) {
-    .timeline-grid {
+    .milestones-grid {
       grid-template-columns: repeat(4, 1fr);
     }
   }
 
-  .timeline-item {
+  .milestone-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.25s ease;
     text-align: center;
-    padding: 2rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
   }
 
-  body.classic-theme.dark-mode .timeline-item {
-    border-color: rgba(255, 255, 255, 0.2) !important;
+  .milestone-card:hover {
+    border-color: rgba(99, 102, 241, 0.25);
+    background: rgba(99, 102, 241, 0.04);
+    transform: translateY(-2px);
   }
 
-  .timeline-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  .milestone-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #6366f1;
+    display: block;
+    margin-bottom: 0.75rem;
   }
 
-  .classic-theme.dark-mode .timeline-item:hover {
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-  }
-
-  .timeline-number {
-    font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #000000;
-    margin-bottom: 1rem;
-  }
-
-  .classic-theme.dark-mode .timeline-number {
-    color: #ffffff;
-  }
-
-  .timeline-content h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.1rem;
+  .milestone-title {
+    font-size: 0.95rem;
     font-weight: 600;
-    color: #000000;
-    margin-bottom: 0.5rem;
+    color: #e4e4e7;
+    margin-bottom: 0.375rem;
   }
 
-  .classic-theme.dark-mode .timeline-content h3 {
-    color: #ffffff;
-  }
-
-  .timeline-content p {
-    font-size: 0.9rem;
-    color: #666666;
+  .milestone-desc {
+    font-size: 0.85rem;
+    color: #71717a;
     line-height: 1.5;
     margin: 0;
-  }
-
-  .classic-theme.dark-mode .timeline-content p {
-    color: #cccccc;
   }
 </style>

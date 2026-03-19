@@ -7,8 +7,7 @@ const projects = [
   {
     id: 1,
     name: "jsnotion",
-    description:
-      "A code documentation tool that can 10x your productivity while learning how to code.",
+    description: "A code documentation tool that can 10x your productivity while learning how to code.",
     imgUrl: "/assets/jsnotion.png",
     github_link: "https://github.com/sidmohanty11/jsnotion",
     live_link: "https://www.npmjs.com/package/jsnotion",
@@ -18,8 +17,7 @@ const projects = [
   {
     id: 2,
     name: "forum",
-    description:
-      "A college hangout hub where you can discuss, ask questions and write blogs.",
+    description: "A college hangout hub where you can discuss, ask questions and write blogs.",
     imgUrl: "/assets/forum.png",
     github_link: "https://github.com/sidmohanty11/forum",
     live_link: "https://outr-forums.netlify.app/",
@@ -29,8 +27,7 @@ const projects = [
   {
     id: 3,
     name: "next-ecom",
-    description:
-      "A Next.js based e-commerce application with Shopify integration inspired by their Ecom Site.",
+    description: "A Next.js based e-commerce application with Shopify integration.",
     imgUrl: "/assets/next-ecom.png",
     github_link: "https://github.com/sidmohanty11/next-ecom",
     live_link: "https://next-ecom-one.vercel.app/",
@@ -49,8 +46,7 @@ const projects = [
   {
     id: 5,
     name: "mingo",
-    description:
-      "A minimal yet powerful HTTP client implemented in go (inspired by axios).",
+    description: "A minimal yet powerful HTTP client implemented in Go (inspired by axios).",
     imgUrl: "/assets/mingo.png",
     github_link: "https://github.com/sidmohanty11/mingo",
     category: "Library",
@@ -79,8 +75,7 @@ const projects = [
   {
     id: 8,
     name: "convo",
-    description:
-      "A chatting application that has whatsapp-like architecture, made by using Vue, Go, MongoDB and Pusher.",
+    description: "A chatting application with WhatsApp-like architecture, using Vue, Go, MongoDB and Pusher.",
     imgUrl: "/assets/convo.png",
     github_link: "https://github.com/sidmohanty11/good-f-issues",
     category: "Web App",
@@ -92,332 +87,222 @@ const mobile_projects = [
   {
     id: 1,
     name: "MaxGainz",
-    live_link:
-      "https://play.google.com/store/apps/details?id=com.sidmohanty11.maxgainz",
+    live_link: "https://play.google.com/store/apps/details?id=com.sidmohanty11.maxgainz",
     github_link: "",
     imgUrl: "/assets/maxgainz.jpeg",
-    description:
-      "Next Generation Workout Tracker App for those who want to progressively overload and achieve maximum gains.",
+    description: "Next Generation Workout Tracker App for progressive overload and maximum gains.",
     category: "Fitness",
     year: "2023",
   },
   {
     id: 2,
     name: "Poem Generator",
-    live_link:
-      "https://play.google.com/store/apps/details?id=com.poemgenerator",
+    live_link: "https://play.google.com/store/apps/details?id=com.poemgenerator",
     github_link: "https://github.com/sidmohanty11/poem-generator",
     imgUrl: "/assets/poemgenerator.jpeg",
-    description:
-      "An OpenAI GPT-3 API integration to use davinci model to generate cool poems on behalf of anyone to anyone. (DISCONTINUED)",
+    description: "An OpenAI GPT-3 API integration to generate poems. (DISCONTINUED)",
     category: "AI/ML",
     year: "2022",
   },
   {
     id: 3,
     name: "Multiplayer Tic Tac Toe",
-    live_link:
-      "https://drive.google.com/file/d/1obksEXNLTNnfbzD3nUhPs-4tRy-a5KCE/view?usp=drive_link",
+    live_link: "https://drive.google.com/file/d/1obksEXNLTNnfbzD3nUhPs-4tRy-a5KCE/view?usp=drive_link",
     github_link: "",
     imgUrl: "/assets/tictactoe.png",
-    description:
-      "A multiplayer tic tac toe game made using React Native and AWS Amplify.",
+    description: "A multiplayer tic tac toe game using React Native and AWS Amplify.",
     category: "Game",
     year: "2022",
   },
 ];
-
-// Calculate statistics
-const totalProjects = projects.length + mobile_projects.length;
-const webApps = projects.filter((p) => p.category === "Web App").length;
-const mobileApps = mobile_projects.length;
-const openSourceProjects = [...projects, ...mobile_projects].filter(
-  (p) => p.github_link
-).length;
 ---
 
-<Layout
-  title="Projects | Sidharth Mohanty"
-  description="Welcome to my page - Sid : )"
->
+<Layout title="Projects | Sidharth Mohanty" description="Projects and creations">
   <section class="projects-hero">
-    <div class="hero-content">
-      <h1 class="hero-title">Digital Creations</h1>
-
-      <div class="hero-subtitle-container">
-        <div class="subtitle-line"></div>
-        <p class="hero-subtitle">Always Exploring & Building</p>
-        <div class="subtitle-line"></div>
-      </div>
-
-      <p class="hero-description">
-        Over the years I have worked on many things, but here are the ones that
-        I am most proud of. I am a firm believer in open source, so please feel
-        free to explore, contribute, and learn from these projects.
-      </p>
-    </div>
+    <p class="hero-eyebrow">Projects</p>
+    <h1 class="hero-title">Things I've Built</h1>
+    <svg class="wavy-accent" viewBox="0 0 120 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M2 6c4-4 8-4 12 0s8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0 8 4 12 0" stroke="url(#wavyGradProj)" stroke-width="2.5" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="wavyGradProj" x1="0" y1="6" x2="120" y2="6">
+          <stop offset="0%" stop-color="#6366f1"/>
+          <stop offset="50%" stop-color="#a78bfa"/>
+          <stop offset="100%" stop-color="#818cf8"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <p class="hero-desc">
+      Open source projects, apps, and tools. Feel free to explore, contribute, and learn.
+    </p>
   </section>
 
-  <section class="mobile-projects-section">
+  <section class="projects-section">
     <div class="section-header">
-      <h2 class="section-title">Mobile Applications</h2>
-      <div class="section-line"></div>
+      <h2 class="section-label">Web Apps, CLIs & Libraries</h2>
     </div>
-
-    <div class="section-subtitle">
-      <p>
-        Native mobile experiences built with React Native and published to app
-        stores
-      </p>
-    </div>
-
-    <div class="mobile-projects-grid">
-      {
-        mobile_projects.map((project, index) => (
-          <MobileProject project={project} index={index} />
-        ))
-      }
+    <div class="web-grid">
+      {projects.map((project, index) => <Project project={project} index={index} />)}
     </div>
   </section>
 
-  <section class="web-projects-section">
+  <section class="projects-section">
     <div class="section-header">
-      <h2 class="section-title">Web Apps, CLIs & Libraries</h2>
-      <div class="section-line"></div>
+      <h2 class="section-label">Mobile Applications</h2>
     </div>
-
-    <div class="section-subtitle">
-      <p>Full-stack applications, command-line tools, and reusable libraries</p>
-    </div>
-
-    <div class="web-projects-grid">
-      {
-        projects.map((project, index) => (
-          <Project project={project} index={index} />
-        ))
-      }
+    <div class="mobile-grid">
+      {mobile_projects.map((project, index) => <MobileProject project={project} index={index} />)}
     </div>
   </section>
 
-  <section class="projects-footer">
-    <div class="footer-content">
-      <h3 class="footer-title">Interested in Collaboration?</h3>
-      <p class="footer-description">
-        I'm always open to discussing new projects, creative ideas, or
-        opportunities to build something amazing together.
-      </p>
-      <div class="footer-actions">
-        <a href="/experiences" class="footer-link">
-          <span>View My Experience</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="m9 18 6-6-6-6"></path>
-          </svg>
-        </a>
-        <a
-          href="https://github.com/sidmohanty11"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="footer-link"
-        >
-          <span>GitHub Profile</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-            ></path>
-            <polyline points="15,3 21,3 21,9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
-        </a>
-      </div>
-    </div>
+  <section class="projects-cta">
+    <p class="cta-text">Want to see more?</p>
+    <a
+      href="https://github.com/sidmohanty11"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-btn"
+    >
+      View GitHub Profile
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+      </svg>
+    </a>
   </section>
 </Layout>
 
 <style>
   .projects-hero {
-    padding: 4rem 0 1.3125rem;
-    margin-top: 2rem;
+    padding: 6rem 0 4rem;
     text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    animation: fadeInUp 0.6s ease both;
   }
 
-  .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
+  @media (min-width: 768px) {
+    .projects-hero {
+      padding: 8rem 0 5rem;
+    }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6366f1;
+    margin-bottom: 1rem;
   }
 
   .hero-title {
-    font-family: "Playfair Display", serif;
-    font-size: 3.5rem;
+    font-size: 2.75rem;
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    color: #000000;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
+    color: #fafafa;
   }
 
   @media (min-width: 768px) {
     .hero-title {
-      font-size: 4.5rem;
+      font-size: 4rem;
     }
   }
 
-  .hero-subtitle-container {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    justify-content: center;
+  .wavy-accent {
+    width: 120px;
+    height: 12px;
+    display: block;
+    margin: 0 auto 1.25rem;
+    opacity: 0.8;
   }
 
-  .subtitle-line {
-    flex: 1;
-    height: 1px;
-    background: #000000;
-    max-width: 100px;
+  .hero-desc {
+    font-size: 1.05rem;
+    color: #71717a;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
   }
 
-  .hero-subtitle {
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #666666;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    white-space: nowrap;
-    margin: 0;
-  }
-
-  .hero-description {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 3rem;
-    color: #333333;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .mobile-projects-section,
-  .web-projects-section {
-    padding: 4rem 0;
-  }
-
-  .web-projects-section {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  .projects-section {
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .section-header {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
-  .section-title {
-    font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #000000;
-    white-space: nowrap;
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #71717a;
   }
 
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: #000000;
-  }
-
-  .section-subtitle {
-    margin-bottom: 3rem;
-    text-align: center;
-  }
-
-  .section-subtitle p {
-    color: #666666;
-    font-style: italic;
-    font-size: 1rem;
-  }
-
-  .mobile-projects-grid {
+  .web-grid {
     display: grid;
-    gap: 3rem;
-    justify-items: center;
+    gap: 1.25rem;
   }
 
   @media (min-width: 768px) {
-    .mobile-projects-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .web-projects-grid {
-    display: grid;
-    gap: 3rem;
-  }
-
-  @media (min-width: 768px) {
-    .web-projects-grid {
+    .web-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  .projects-footer {
-    margin-top: 4rem;
-    padding: 4rem 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  .mobile-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .mobile-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .projects-cta {
     text-align: center;
+    padding: 4rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  .footer-content {
-    max-width: 600px;
-    margin: 0 auto;
+  .cta-text {
+    font-size: 0.9rem;
+    color: #52525b;
+    margin-bottom: 1.25rem;
   }
 
-  .footer-title {
-    font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #000000;
-    margin-bottom: 1rem;
-  }
-
-  .footer-description {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #333333;
-    margin-bottom: 2rem;
-  }
-
-  .footer-actions {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .footer-link {
+  .cta-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    color: #000000;
-    text-decoration: none;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: #a1a1aa;
+    font-size: 0.875rem;
     font-weight: 500;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    border: 1px solid #000000;
-    padding: 1rem 2rem;
-    transition: all 0.3s ease;
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
 
-  .footer-link:hover {
-    background: #000000;
-    color: #ffffff;
+  .cta-btn:hover {
+    color: #fafafa;
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
   }
 
-  .footer-link svg {
-    width: 1.2rem;
-    height: 1.2rem;
+  .cta-btn svg {
+    width: 16px;
+    height: 16px;
     stroke-width: 2;
   }
 </style>

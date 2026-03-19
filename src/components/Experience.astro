@@ -12,45 +12,24 @@ export interface Props {
 }
 
 const { experience, index = 0 } = Astro.props;
-
-// Determine if this is an even or odd index for alternating layout
-const isEven = index % 2 === 0;
 ---
 
-<article
-  class={`experience-item ${isEven ? "experience-left" : "experience-right"}`}
->
-  <div class="experience-marker">
-    <div class="marker-outer">
-      <div class="marker-inner"></div>
-    </div>
-    <div class="marker-number">{String(index + 1).padStart(2, "0")}</div>
+<article class="exp-card">
+  <div class="exp-left">
+    <time class="exp-period">{experience.span}</time>
   </div>
-
-  <div class="experience-card">
-    <div class="card-header">
-      <div class="company-info">
-        <h3 class="company-name" set:html={experience.company} />
-        <h4 class="position-title">{experience.title}</h4>
-      </div>
-      <div class="time-period">
-        <time class="period-text">{experience.span}</time>
-      </div>
+  <div class="exp-content">
+    <div class="exp-header">
+      <h3 class="exp-company" set:html={experience.company} />
+      <p class="exp-role">{experience.title}</p>
     </div>
-
-    <div class="card-content">
-      <p class="experience-description" set:html={experience.description} />
-    </div>
-
+    <p class="exp-description" set:html={experience.description} />
     {
       experience.skills && experience.skills.length > 0 && (
-        <div class="skills-section">
-          <h5 class="skills-title">Technologies & Skills</h5>
-          <div class="skills-grid">
-            {experience.skills.map((skill) => (
-              <span class="skill-tag">{skill}</span>
-            ))}
-          </div>
+        <div class="exp-skills">
+          {experience.skills.map((skill) => (
+            <span class="skill">{skill}</span>
+          ))}
         </div>
       )
     }
@@ -58,300 +37,122 @@ const isEven = index % 2 === 0;
 </article>
 
 <style>
-  .experience-item {
-    position: relative;
-    margin-bottom: 4rem;
-    padding-left: 6rem;
-  }
-
-  @media (min-width: 768px) {
-    .experience-item {
-      width: 50%;
-      margin-bottom: 6rem;
-      padding-left: 0;
-    }
-
-    .experience-left {
-      margin-left: 0;
-      padding-right: 4rem;
-    }
-
-    .experience-right {
-      margin-left: 50%;
-      padding-left: 4rem;
-    }
-  }
-
-  .experience-marker {
-    position: absolute;
-    left: 1rem;
-    top: 0;
+  .exp-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    z-index: 10;
-  }
-
-  @media (min-width: 768px) {
-    .experience-left .experience-marker {
-      right: -2rem;
-      left: auto;
-    }
-
-    .experience-right .experience-marker {
-      left: -2rem;
-    }
-  }
-
-  .marker-outer {
-    width: 2rem;
-    height: 2rem;
-    border: 2px solid #000000;
-    border-radius: 50%;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem 0 1.5rem 1.5rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    margin-left: 0;
     position: relative;
+    transition: border-color 0.2s ease;
   }
 
-  body.classic-theme.dark-mode .marker-outer {
-    border-color: #ffffff !important;
-    background: #000000 !important;
+  .exp-card:hover {
+    border-left-color: rgba(99, 102, 241, 0.4);
   }
 
-  .marker-inner {
-    width: 0.75rem;
-    height: 0.75rem;
-    background: #000000;
-    border-radius: 50%;
-  }
-
-  .classic-theme.dark-mode .marker-inner {
-    background: #ffffff;
-  }
-
-  .marker-number {
-    font-family: "Playfair Display", serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #000000;
-    background: #ffffff;
-    padding: 0.25rem 0.5rem;
-    border: 1px solid #000000;
-    text-align: center;
-    min-width: 2.5rem;
-  }
-
-  body.classic-theme.dark-mode .marker-number {
-    color: #ffffff !important;
-    background: #000000 !important;
-    border-color: #ffffff !important;
-  }
-
-  .experience-card {
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 2rem;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-
-  body.classic-theme.dark-mode .experience-card {
-    border-color: rgba(255, 255, 255, 0.2) !important;
-  }
-
-  .experience-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  }
-
-  .classic-theme.dark-mode .experience-card:hover {
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-  }
-
-  .experience-card::before {
+  .exp-card::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: #000000;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+    left: -3px;
+    top: 1.75rem;
+    width: 5px;
+    height: 5px;
+    background: #3f3f46;
+    border-radius: 50%;
+    transition: background 0.2s ease;
   }
 
-  .classic-theme.dark-mode .experience-card::before {
-    background: #ffffff;
+  .exp-card:hover::before {
+    background: #6366f1;
   }
 
-  .experience-card:hover::before {
-    transform: scaleX(1);
-  }
-
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-    gap: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    .card-header {
-      flex-direction: column;
-      gap: 1rem;
+  @media (min-width: 640px) {
+    .exp-card {
+      flex-direction: row;
+      gap: 2rem;
     }
   }
 
-  .company-info {
-    flex: 1;
+  .exp-left {
+    flex-shrink: 0;
   }
 
-  .company-name {
-    font-family: "Playfair Display", serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #000000;
-    margin: 0 0 0.5rem 0;
-    line-height: 1.3;
-  }
-
-  .classic-theme.dark-mode .company-name {
-    color: #ffffff;
-  }
-
-  :global(.company-name a) {
-    color: inherit !important;
-    text-decoration: none !important;
-    border-bottom: 1px solid transparent !important;
-    transition: all 0.3s ease !important;
-  }
-
-  :global(.company-name a:hover) {
-    border-bottom-color: #000000 !important;
-  }
-
-  :global(.classic-theme.dark-mode .company-name a:hover) {
-    border-bottom-color: #ffffff !important;
-  }
-
-  .position-title {
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #666666;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .classic-theme.dark-mode .position-title {
-    color: #cccccc;
-  }
-
-  .time-period {
-    text-align: right;
-  }
-
-  @media (max-width: 768px) {
-    .time-period {
-      text-align: left;
+  @media (min-width: 640px) {
+    .exp-left {
+      width: 140px;
     }
   }
 
-  .period-text {
-    font-family: "Playfair Display", serif;
-    font-size: 0.9rem;
+  .exp-period {
+    font-size: 0.8rem;
+    color: #52525b;
     font-weight: 500;
-    color: #000000;
-    background: #ffffff;
-    border: 1px solid #000000;
-    padding: 0.5rem 1rem;
-    display: inline-block;
     white-space: nowrap;
+    letter-spacing: 0;
   }
 
-  body.classic-theme.dark-mode .period-text {
-    color: #ffffff !important;
-    background: #000000 !important;
-    border-color: #ffffff !important;
+  .exp-content {
+    flex: 1;
+    min-width: 0;
   }
 
-  .card-content {
-    margin-bottom: 2rem;
+  .exp-header {
+    margin-bottom: 0.625rem;
   }
 
-  .experience-description {
+  .exp-company {
     font-size: 1rem;
-    line-height: 1.7;
-    color: #333333;
+    font-weight: 600;
+    color: #e4e4e7;
+    margin-bottom: 0.125rem;
+    letter-spacing: -0.01em;
+  }
+
+  :global(.exp-company a) {
+    color: #e4e4e7 !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+  }
+
+  :global(.exp-company a:hover) {
+    color: #818cf8 !important;
+  }
+
+  .exp-role {
+    font-size: 0.85rem;
+    color: #6366f1;
+    font-weight: 500;
     margin: 0;
   }
 
-  .classic-theme.dark-mode .experience-description {
-    color: #dddddd;
+  .exp-description {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #71717a;
+    margin: 0 0 0.75rem;
   }
 
-  .skills-section {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding-top: 1.5rem;
-  }
-
-  body.classic-theme.dark-mode .skills-section {
-    border-top-color: rgba(255, 255, 255, 0.1) !important;
-  }
-
-  .skills-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #000000;
-    margin: 0 0 1rem 0;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .classic-theme.dark-mode .skills-title {
-    color: #ffffff;
-  }
-
-  .skills-grid {
+  .exp-skills {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.375rem;
   }
 
-  .skill-tag {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    color: #666666;
-    font-size: 0.8rem;
+  .skill {
+    font-size: 0.7rem;
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.3s ease;
-    background: transparent;
+    color: #52525b;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
   }
 
-  body.classic-theme.dark-mode .skill-tag {
-    border-color: rgba(255, 255, 255, 0.3) !important;
-    color: #cccccc !important;
-  }
-
-  .skill-tag:hover {
-    background: #000000;
-    color: #ffffff;
-    border-color: #000000;
-  }
-
-  body.classic-theme.dark-mode .skill-tag:hover {
-    background: #ffffff !important;
-    color: #000000 !important;
-    border-color: #ffffff !important;
+  .skill:hover {
+    color: #a1a1aa;
+    border-color: rgba(255, 255, 255, 0.12);
   }
 </style>

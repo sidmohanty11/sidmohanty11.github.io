@@ -20,7 +20,7 @@ const { title, description } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <script
@@ -31,6 +31,15 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <!-- Ambient gradient orbs -->
+    <div class="ambient-bg" aria-hidden="true">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+    </div>
+    <!-- Dot grid overlay -->
+    <div class="dot-grid" aria-hidden="true"></div>
+
     <Nav />
     <main class="main-container">
       <slot />
@@ -38,41 +47,220 @@ const { title, description } = Astro.props;
     </main>
   </body>
 </html>
-<style>
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   body {
-    font-family: "Inter", sans-serif;
-    background: #ffffff;
-    color: #000000;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #050505;
+    color: #e4e4e7;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Ambient floating gradient orbs */
+  .ambient-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+    animation: floatOrb 20s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+    top: -10%;
+    right: -10%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    bottom: 20%;
+    left: -15%;
+    animation-delay: -7s;
+    animation-duration: 25s;
+  }
+
+  .orb-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+    top: 50%;
+    right: 20%;
+    animation-delay: -14s;
+    animation-duration: 30s;
+  }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -40px) scale(1.05); }
+    50% { transform: translate(-20px, 20px) scale(0.95); }
+    75% { transform: translate(15px, 30px) scale(1.02); }
+  }
+
+  /* Subtle dot grid */
+  .dot-grid {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+  }
+
+  /* Noise texture overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+  }
+
+  /* All real content above ambient layers */
+  .site-header,
+  .main-container {
+    position: relative;
+    z-index: 1;
   }
 
   .main-container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
 
-  /* Typography */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Playfair Display", serif;
+  @media (min-width: 768px) {
+    .main-container {
+      padding: 0 2.5rem;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Inter", sans-serif;
     font-weight: 600;
     margin: 0;
     line-height: 1.2;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    color: #fafafa;
   }
 
-  /* Classic grid patterns */
-  .classic-grid {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: rgba(99, 102, 241, 0.3);
+    color: #fff;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Scroll-reveal: elements start hidden, animate in on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger delays for child reveals */
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* Reduced motion: disable all continuous/reveal animations */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+    .gradient-orb {
+      animation: none;
+    }
+  }
+
+  /* Fallback: if JS hasn't run yet, show content after a delay */
+  @supports (animation-timeline: auto) {
+    .reveal {
+      animation: fadeInUp 0.6s ease 0.5s both;
+    }
   }
 </style>
+
+<script>
+  // Scroll-reveal observer
+  const revealElements = document.querySelectorAll('.reveal');
+  if (revealElements.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    revealElements.forEach((el) => observer.observe(el));
+  } else {
+    // If reduced motion or no IntersectionObserver, show everything
+    revealElements.forEach((el) => el.classList.add('visible'));
+  }
+</script>
